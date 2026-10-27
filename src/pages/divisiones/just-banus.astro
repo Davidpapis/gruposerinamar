@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import Hero from '../../components/ui/Hero.astro';
+
+const services = [
+  { title: 'Gestión administrativa', description: 'Coordinamos los trámites relacionados con tu vivienda.', items: ['Licencias y documentación de la propiedad', 'Certificados energéticos', 'Impuestos locales y asistencia para no residentes'] },
+  { title: 'Mantenimiento y reparaciones', description: 'Atendemos las necesidades técnicas de la casa.', items: ['Climatización, electricidad y fontanería', 'Cerrajería y control de accesos', 'Revisiones y coordinación de reparaciones'] },
+  { title: 'Reformas e interiorismo', description: 'Desde una puesta a punto hasta una renovación.', items: ['Reformas de cocinas, baños y terrazas', 'Pintura, carpintería y acabados', 'Decoración y amueblamiento'] },
+  { title: 'Limpieza y lavandería', description: 'Preparamos cada estancia y cuidamos la casa en tu ausencia.', items: ['Inspecciones periódicas', 'Limpieza de vivienda y tapicerías', 'Lavandería y preparación para tu llegada'] },
+  { title: 'Almacenamiento', description: 'Espacio para tus pertenencias durante alquileres o reformas.', items: ['Trasteros privados', 'Custodia de enseres y armarios de propietario', 'Control de inventario'] },
+  { title: 'Atención al propietario', description: 'Un contacto local para las necesidades de tu familia.', items: ['Custodia de llaves', 'Recepción de envíos y compras', 'Coordinación de proveedores y atención multilingüe'] }
+];
+
+---
+
+<BaseLayout title="Just Banús · Cuidado y mantenimiento de viviendas | Grupo Serinamar" description="Cuidado de viviendas en Marbella y Puerto Banús. Mantenimiento, reformas, limpieza y atención a propietarios con Just Banús." canonicalURL="https://gruposerinamar.com/divisiones/just-banus/">
+  <Header slot="header" currentLang="es" />
+  <Hero eyebrow="Just Banús · Marbella y Puerto Banús" title="Tu casa, lista para disfrutar." description="Nos ocupamos del mantenimiento, la limpieza y los detalles de tu vivienda, también cuando estás lejos." image="/images/hero/serinamar-villa-header.jpg" imageAlt="Comedor luminoso de una vivienda con salida a la terraza" actionLabel="Consultar por mi vivienda" actionHref="/contacto/" secondaryLabel="Ver servicios" secondaryHref="#servicios" />
+
+  <section class="page-section intro-grid">
+    <div>
+      <img class="brand-mark" src="/images/logos/just-banus-logo.png" alt="Just Banús" loading="lazy" />
+      <p class="eyebrow">Cuidado de propiedades</p>
+      <h2>Una casa cuidada.<br />Un equipo cerca.</h2>
+      <div class="body-copy">
+        <p>Desde una revisión periódica hasta una reforma, Just Banús coordina el cuidado de tu vivienda en Marbella con el apoyo de Grupo Serinamar.</p>
+        <p>Nos encargamos de las tareas del día a día y preparamos tu casa para tu próxima llegada o la de tus huéspedes.</p>
+      </div>
+      <div class="actions"><a class="text-link" href="https://wa.me/34678487594?text=Hola,%20me%20gustar%C3%ADa%20informaci%C3%B3n%20sobre%20Just%20Ban%C3%BAs" target="_blank" rel="noopener noreferrer">Hablar con el equipo por WhatsApp ↗</a></div>
+    </div>
+    <img class="feature-photo" src="/images/hero/naranjos-gardens.jpg" alt="Terraza amueblada de una vivienda en Los Naranjos de Marbella" loading="lazy" />
+  </section>
+  <section id="servicios" class="section-tint">
+    <div class="page-section">
+      <div class="section-heading"><p class="eyebrow">Cómo podemos ayudarte</p><h2>El cuidado que necesita tu vivienda.</h2><p class="body-copy">Elige un servicio concreto o cuéntanos qué necesitas para coordinar el conjunto.</p></div>
+      <div class="cards">
+        {services.map((service, i) => <article class="card"><span class="card-number">0{i + 1}</span><h3>{service.title}</h3><p>{service.description}</p><ul>{service.items.map(item => <li>{item}</li>)}</ul><a class="text-link" href="/contacto/">Consultar este servicio →</a></article>)}
+      </div>
+    </div>
+  </section>
+  <section class="page-section"><div class="callout"><div><h2>¿Quieres alquilar, comprar o vender?</h2><p>El equipo de Serinamar te acompaña en el alquiler vacacional y en la compraventa de tu propiedad.</p></div><a class="button sand" href="/divisiones/serinamar/">Conocer Serinamar →</a></div></section>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .page-section { max-width: 1200px; margin: 0 auto; padding: 64px 28px; }
+  .section-tint { background: #f3efe7; }
+  .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .section-heading { max-width: 680px; margin-bottom: 32px; }
+  .eyebrow { color: #796546; font-size: 12px; letter-spacing: .15em; text-transform: uppercase; font-weight: 700; margin-bottom: 14px; }
+  h2 { font-family: var(--font-serif, Georgia, serif); font-size: clamp(30px, 3.4vw, 44px); line-height: 1.12; color: #132238; margin-bottom: 20px; }
+  h3 { font-family: var(--font-serif, Georgia, serif); font-size: 25px; line-height: 1.2; color: #132238; margin-bottom: 14px; }
+  .body-copy { color: #596575; font-size: 16px; line-height: 1.8; }
+  .body-copy p + p { margin-top: 16px; }
+  .brand-mark { width: auto; max-width: 180px; height: 60px; object-fit: contain; object-position: left; margin-bottom: 24px; }
+  .feature-photo { width: 100%; height: 430px; object-fit: cover; border-radius: 16px; }
+  .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+  .cards.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .card { padding: 30px; background: #fff; border: 1px solid #e5dfd4; border-radius: 16px; }
+  .card p, .card li { color: #596575; font-size: 15px; line-height: 1.7; }
+  .card ul { padding-left: 18px; margin: 20px 0; list-style: disc; }
+  .card li + li { margin-top: 8px; }
+  .card-number { display: block; color: #9c865f; font-size: 14px; margin-bottom: 20px; }
+  .text-link { display: inline-block; color: #132238; font-size: 14px; font-weight: 700; border-bottom: 1px solid #b89c72; padding-bottom: 3px; }
+  .text-link:hover { color: #796546; }
+  .button { display: inline-flex; justify-content: center; align-items: center; min-height: 48px; padding: 13px 22px; background: #132238; color: white; border: 1px solid #132238; border-radius: 7px; font-size: 14px; font-weight: 600; text-align: center; }
+  .button:hover { background: #25415d; }
+  .button.sand { background: #e5d6bc; color: #132238; border-color: #e5d6bc; }
+  .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 26px; align-items: center; }
+  .callout { background: #132238; color: white; border-radius: 16px; padding: 40px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+  .callout h2 { color: white; font-size: clamp(28px, 3vw, 38px); }
+  .callout p { color: #d5dce2; max-width: 640px; line-height: 1.7; }
+  .callout .button { flex-shrink: 0; }
+  .contact-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+  .contact-form .full { grid-column: 1 / -1; }
+  label { display: block; font-size: 14px; color: #132238; font-weight: 600; margin-bottom: 9px; }
+  input, select, textarea { width: 100%; border: 1px solid #cfd4d9; border-radius: 7px; padding: 13px 14px; color: #132238; background: white; font: inherit; font-size: 16px; }
+  input:focus, select:focus, textarea:focus { outline: 2px solid #9c865f; outline-offset: 2px; }
+  .form-note { color: #596575; font-size: 13px; line-height: 1.6; margin-top: 12px; }
+  @media (max-width: 800px) {
+    .page-section { padding: 44px 20px; }
+    .intro-grid { grid-template-columns: 1fr; gap: 30px; }
+    .cards, .cards.two { grid-template-columns: 1fr; }
+    .feature-photo { height: 300px; }
+    .card { padding: 25px; }
+    .callout { padding: 28px; align-items: flex-start; flex-direction: column; }
+    .contact-form { grid-template-columns: 1fr; }
+  }
+</style>

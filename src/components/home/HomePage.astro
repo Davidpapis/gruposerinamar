@@ -1,0 +1,405 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../layout/Header.astro';
+import Footer from '../layout/Footer.astro';
+import FeaturedProperties from './FeaturedProperties.astro';
+interface Props { lang?: 'es' | 'en' }
+const { lang = 'es' } = Astro.props;
+const en = lang === 'en';
+const copy = en ? {
+  title: 'Holiday stays & property care in Marbella | Serinamar',
+  description: 'Discover holiday stays in Marbella and a local team to look after your property. Serinamar, in Los Naranjos since 2000.',
+  eyebrow: 'MARBELLA · PUERTO BANÚS · SINCE 2000',
+  headline: 'Your place in Marbella.',
+  headlineTwo: 'In good hands.',
+  intro: 'A holiday to look forward to. A home to feel good about. Discover our stays and local property services.',
+  primary: 'Find a holiday stay', secondary: 'I own a property', photo: 'Puerto Banús marina at sunset',
+  quick: [ ['01','Stay in Marbella','Find your next holiday home','/alojamientos/'],['02','Care for your property','A local team, all year round','/propietarios/'],['03','Buy or sell','Take the next step with us','/divisiones/serinamar/'] ],
+  ownerEyebrow: 'FOR PROPERTY OWNERS', ownerTitle: 'Your home, cared for. Wherever you are.',
+  ownerCopy: 'From holiday rentals to day-to-day maintenance, we bring together the people and services your property needs.',
+  services: [ ['Holiday rental management','From preparing your home to welcoming your guests.'],['Maintenance & renovations','Inspections, repairs and thoughtful improvements.'],['Support for non-residents','Help with paperwork and tax administration, in your language.'] ],
+  ownerCta: 'Explore owner services', ownerImage: 'Bright dining room opening onto a terrace',
+  placeEyebrow: 'LOS NARANJOS DE MARBELLA', placeTitle: 'A little more time for the good things.',
+  placeCopy: 'Breakfast on the terrace. An afternoon by the pool. A walk around Puerto Banús. A Mediterranean setting to enjoy at your own pace.',
+  placeCta: 'Discover Los Naranjos', placeImage: 'Covered terrace with outdoor dining area in Los Naranjos', poolAlt: 'Communal pool and gardens in Los Naranjos de Marbella',
+  trustEyebrow: 'LOCAL KNOWLEDGE. PERSONAL SERVICE.',trustTitle: 'Here for you, since 2000.',
+  trustCopy: 'Our story began in Marbella. Today, we continue to welcome guests and support property owners with the same personal approach.',trustCta: 'Meet the group',
+  brandsEyebrow: 'THE SERINAMAR GROUP',brandsTitle: 'Four specialities. One team to turn to.',
+  brands: [ ['Serinamar','Holiday rentals & real estate','serinamar'],['Just Banús','Home care & renovations','just-banus'],['Iberian Sun','Support for non-residents','iberian-sun'],['Los Naranjos','Holiday stays in Marbella','los-naranjos'] ],
+  contactEyebrow: 'LET’S TALK',contactTitle: 'What brings you to Marbella?',contactCopy: 'Tell us what you need. We will help you take the next step.',contactCta:'Contact our team'
+} : {
+  title: 'Alojamientos y gestión en Marbella | Grupo Serinamar',
+  description: 'Tu estancia y tu propiedad en Marbella, en buenas manos. Alojamientos vacacionales y servicios para propietarios con un equipo local desde 2000.',
+  eyebrow: 'MARBELLA · PUERTO BANÚS · DESDE 2000',
+  headline: 'Tu lugar en Marbella.',
+  headlineTwo: 'En buenas manos.',
+  intro: 'Una estancia para disfrutar. Una propiedad para confiar. Descubre nuestros alojamientos y un equipo local que cuida de cada detalle.',
+  primary: 'Buscar alojamiento', secondary: 'Soy propietario', photo: 'Puerto Banús y su puerto deportivo al atardecer',
+  quick: [ ['01','Disfrutar de Marbella','Encuentra tu próxima estancia','/alojamientos/'],['02','Cuidar mi propiedad','Un equipo local, todo el año','/propietarios/'],['03','Comprar o vender','Te acompañamos en el siguiente paso','/divisiones/serinamar/'] ],
+  ownerEyebrow: 'PARA PROPIETARIOS', ownerTitle: 'Tu casa, cuidada. Estés donde estés.',
+  ownerCopy: 'Del alquiler vacacional al mantenimiento diario. Reunimos a las personas y los servicios que tu vivienda necesita.',
+  services: [ ['Gestión del alquiler','Desde preparar tu vivienda hasta recibir a tus huéspedes.'],['Mantenimiento y reformas','Revisiones, reparaciones y mejoras para tu casa.'],['Asistencia a no residentes','Ayuda con trámites y gestión fiscal, en tu idioma.'] ],
+  ownerCta: 'Servicios para propietarios', ownerImage: 'Comedor luminoso con acceso a una terraza',
+  placeEyebrow: 'LOS NARANJOS DE MARBELLA', placeTitle: 'Más tiempo para lo que te hace bien.',
+  placeCopy: 'Desayunar en la terraza. Una tarde junto a la piscina. Pasear por Puerto Banús. Un entorno mediterráneo para disfrutar a tu ritmo.',
+  placeCta: 'Descubrir Los Naranjos',placeImage:'Terraza cubierta con comedor exterior en Los Naranjos',poolAlt:'Piscina comunitaria y jardines de Los Naranjos de Marbella',
+  trustEyebrow: 'CERCANÍA Y EXPERIENCIA LOCAL',trustTitle: 'A tu lado, desde 2000.',
+  trustCopy: 'Nuestra historia empezó en Marbella. Hoy seguimos recibiendo a huéspedes y acompañando a propietarios con el mismo trato cercano.',trustCta:'Conocer al grupo',
+  brandsEyebrow: 'GRUPO SERINAMAR',brandsTitle: 'Cuatro especialidades. Un equipo de confianza.',
+  brands: [ ['Serinamar','Alquiler vacacional y compraventa','serinamar'],['Just Banús','Cuidado y reformas de viviendas','just-banus'],['Iberian Sun','Asistencia a no residentes','iberian-sun'],['Los Naranjos','Estancias en Marbella','los-naranjos'] ],
+  contactEyebrow:'HABLEMOS',contactTitle:'¿Qué te trae a Marbella?',contactCopy:'Cuéntanos qué necesitas. Te ayudamos a dar el siguiente paso.',contactCta:'Contactar con el equipo'
+};
+---
+<BaseLayout title={copy.title} description={copy.description} canonicalURL={`https://gruposerinamar.com/${en ? 'en/' : ''}`} lang={lang}>
+  <Header slot="header" currentLang={lang} />
+  <!-- 3. HERO SECTION CINEMATOGRÁFICO MARBELLA -->
+  <section class="relative pt-12 pb-24 md:pt-20 md:pb-36 px-4 sm:px-8 bg-gradient-to-b from-[#132238] via-[#1B2F4C] to-[#F9F8F6] text-white overflow-hidden">
+    
+    <!-- Imagen de fondo con opacidad elegante -->
+    <div class="absolute inset-0 z-0 opacity-25 mix-blend-luminosity scale-105 filter blur-[1px]">
+      <img 
+        src="/images/hero/puerto-banus-panorama.webp" 
+        alt="Marbella Puerto Banús Panorama" 
+        class="w-full h-full object-cover"
+        fetchpriority="high"
+      />
+    </div>
+    
+    <div class="max-w-7xl mx-auto relative z-10">
+      
+      <div class="text-center max-w-4xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-[#C5A880]/40 text-[#C5A880] text-xs font-semibold uppercase tracking-widest mb-6">
+          <span class="w-2 h-2 rounded-full bg-[#C5A880]"></span>
+          <span>{en ? 'Corporate Holding · Marbella & Puerto Banús' : 'Holding Corporativo · Marbella & Puerto Banús'}</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-white leading-[1.15] mb-6 tracking-tight">
+          {en ? 'One Single Group. Every Need for Your Property in Marbella.' : 'Un Solo Grupo. Todas las Necesidades de su Propiedad en Marbella.'}
+        </h1>
+
+        <p class="text-base sm:text-lg md:text-xl text-[#EAE3D9] font-light leading-relaxed max-w-3xl mx-auto mb-8">
+          {en ? (
+            <>Since 2000, <strong>Grupo Serinamar</strong> brings together leading companies to accompany you throughout the property lifecycle: sales, holiday rentals powered by Guesty, day-to-day care with <strong>Just Banús</strong> and non-resident tax advisory with <strong>Iberian Sun</strong>.</>
+          ) : (
+            <>Desde el año 2000, <strong>Grupo Serinamar</strong> reúne empresas líderes para acompañarle en todo el ciclo del inmueble: compraventa, alquiler vacacional con motor Guesty, cuidado diario con <strong>Just Banús</strong> y asesoría tributaria a no residentes con <strong>Iberian Sun</strong>.</>
+          )}
+        </p>
+
+        <!-- Métricas Comprobadas -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto pt-4 border-t border-white/15 text-center">
+          <div>
+            <span class="block text-2xl md:text-3xl font-serif font-bold text-[#C5A880]">{en ? '+25 Years' : '+25 Años'}</span>
+            <span class="text-xs uppercase tracking-wider text-[#EAE3D9]/70 font-medium">{en ? 'Experience (2000)' : 'Trayectoria (2000)'}</span>
+          </div>
+          <div>
+            <span class="block text-2xl md:text-3xl font-serif font-bold text-[#C5A880]">+150</span>
+            <span class="text-xs uppercase tracking-wider text-[#EAE3D9]/70 font-medium">{en ? 'Active Properties' : 'Propiedades Activas'}</span>
+          </div>
+          <div>
+            <span class="block text-2xl md:text-3xl font-serif font-bold text-[#C5A880]">4.8 ★</span>
+            <span class="text-xs uppercase tracking-wider text-[#EAE3D9]/70 font-medium">{en ? 'Guest Satisfaction' : 'Satisfacción Huéspedes'}</span>
+          </div>
+          <div>
+            <span class="block text-2xl md:text-3xl font-serif font-bold text-[#C5A880]">360°</span>
+            <span class="text-xs uppercase tracking-wider text-[#EAE3D9]/70 font-medium">{en ? 'Property Management' : 'Gestión Patrimonial'}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. BUSCADOR DUAL FLOTANTE (GUESTY VACACIONAL + INMOWEB VENTA) -->
+      <div id="buscador" class="relative z-20 -mb-28 md:-mb-36 w-full max-w-5xl mx-auto rounded-2xl bg-white shadow-2xl border border-[#EAE3D9] overflow-hidden text-[#132238]">
+        
+        <!-- Pestañas -->
+        <div class="flex border-b border-[#EAE3D9] bg-[#F4F0E8]">
+          <button 
+            id="btn-tab-vacational" 
+            type="button"
+            class="flex-1 py-4 px-6 text-center font-medium text-sm md:text-base flex items-center justify-center gap-2 border-b-2 border-[#132238] bg-white text-[#132238] transition-colors"
+          >
+            <svg class="w-5 h-5 text-[#C5A880]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span>{en ? 'Direct Holiday Rentals' : 'Alquiler Vacacional Directo'} <strong class="text-xs font-semibold px-2 py-0.5 rounded-full bg-[#EAE3D9] text-[#132238] hidden sm:inline">Guesty PMS</strong></span>
+          </button>
+          
+          <button 
+            id="btn-tab-realestate" 
+            type="button"
+            class="flex-1 py-4 px-6 text-center font-medium text-sm md:text-base flex items-center justify-center gap-2 text-[#64748B] hover:text-[#132238] transition-colors"
+          >
+            <svg class="w-5 h-5 text-[#C5A880]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+            <span>{en ? 'Real Estate & Investment' : 'Compraventa e Inversión'} <strong class="text-xs font-semibold px-2 py-0.5 rounded-full bg-[#EAE3D9] text-[#132238] hidden sm:inline">Serinamar MLS</strong></span>
+          </button>
+        </div>
+
+        <!-- Formulario Vacacional (Guesty) -->
+        <form id="view-vacational" class="p-5 md:p-7 block">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+            <div>
+              <label for="inp-checkin" class="block text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1.5">{en ? 'Check-in' : 'Llegada'}</label>
+              <input type="date" id="inp-checkin" class="w-full bg-[#F9F8F6] border border-[#EAE3D9] rounded-xl px-3.5 py-3 text-sm text-[#132238] font-medium focus:ring-2 focus:ring-[#C5A880] outline-none" />
+            </div>
+            <div>
+              <label for="inp-checkout" class="block text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1.5">{en ? 'Check-out' : 'Salida'}</label>
+              <input type="date" id="inp-checkout" class="w-full bg-[#F9F8F6] border border-[#EAE3D9] rounded-xl px-3.5 py-3 text-sm text-[#132238] font-medium focus:ring-2 focus:ring-[#C5A880] outline-none" />
+            </div>
+            <div>
+              <label for="inp-guests" class="block text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1.5">{en ? 'Guests' : 'Huéspedes'}</label>
+              <select id="inp-guests" class="w-full bg-[#F9F8F6] border border-[#EAE3D9] rounded-xl px-3.5 py-3 text-sm text-[#132238] font-medium focus:ring-2 focus:ring-[#C5A880] outline-none">
+                <option value="1">{en ? '1 Guest' : '1 Huésped'}</option>
+                <option value="2" selected>{en ? '2 Guests' : '2 Huéspedes'}</option>
+                <option value="3">{en ? '3 Guests' : '3 Huéspedes'}</option>
+                <option value="4">{en ? '4 Guests' : '4 Huéspedes'}</option>
+                <option value="5">{en ? '5+ Guests' : '5+ Huéspedes'}</option>
+              </select>
+            </div>
+            <div>
+              <button type="submit" class="w-full bg-[#132238] hover:bg-[#1E3557] text-white font-medium text-sm md:text-[15px] py-3.5 px-6 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 border border-[#C5A880]/30">
+                <svg class="w-4 h-4 text-[#C5A880]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <span>{en ? 'Search Availability' : 'Buscar Disponibilidad'}</span>
+              </button>
+            </div>
+          </div>
+          <div class="mt-4 pt-3.5 border-t border-[#EAE3D9]/60 flex flex-wrap items-center justify-between text-xs text-[#64748B] gap-2">
+            <span>{en ? '✓ Best direct rate guaranteed' : '✓ Mejor tarifa directa garantizada'}</span>
+            <span>{en ? '✓ On-site reception at Los Naranjos' : '✓ Recepción física en Los Naranjos'}</span>
+            <span>{en ? '✓ Door-to-door Málaga Airport transfers' : '✓ Transfers puerta a puerta al Aeropuerto de Málaga'}</span>
+          </div>
+        </form>
+
+        <!-- Formulario Inmobiliario (Inmoweb) -->
+        <form id="view-realestate" class="p-5 md:p-7 hidden">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+            <div>
+              <label for="inp-operation" class="block text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1.5">{en ? 'Operation' : 'Operación'}</label>
+              <select id="inp-operation" class="w-full bg-[#F9F8F6] border border-[#EAE3D9] rounded-xl px-3.5 py-3 text-sm text-[#132238] font-medium focus:ring-2 focus:ring-[#C5A880] outline-none">
+                <option value="1" selected>{en ? 'Buy (For Sale)' : 'Comprar (Venta)'}</option>
+                <option value="2">{en ? 'Long Term Rental' : 'Alquiler Larga Temporada'}</option>
+                <option value="sell">{en ? 'Sell My Property' : 'Quiero Vender mi Vivienda'}</option>
+              </select>
+            </div>
+            <div>
+              <label for="inp-zone" class="block text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1.5">{en ? 'Area' : 'Zona de Marbella'}</label>
+              <select id="inp-zone" class="w-full bg-[#F9F8F6] border border-[#EAE3D9] rounded-xl px-3.5 py-3 text-sm text-[#132238] font-medium focus:ring-2 focus:ring-[#C5A880] outline-none">
+                <option selected>Los Naranjos de Marbella</option>
+                <option>Nueva Andalucía / Golf Valley</option>
+                <option>Puerto Banús</option>
+                <option>Milla de Oro</option>
+                <option>Estepona / Cancelada</option>
+              </select>
+            </div>
+            <div>
+              <label for="inp-type" class="block text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1.5">{en ? 'Property Type' : 'Tipología'}</label>
+              <select id="inp-type" class="w-full bg-[#F9F8F6] border border-[#EAE3D9] rounded-xl px-3.5 py-3 text-sm text-[#132238] font-medium focus:ring-2 focus:ring-[#C5A880] outline-none">
+                <option selected>{en ? 'All property types' : 'Todas las tipologías'}</option>
+                <option>{en ? 'Apartments & Ground Floors' : 'Apartamentos y Plantas Bajas'}</option>
+                <option>{en ? 'Duplex Penthouses' : 'Áticos Dúplex'}</option>
+                <option>{en ? 'Townhouses' : 'Casas Adosadas'}</option>
+                <option>{en ? 'Exclusive Villas' : 'Villas Exclusivas'}</option>
+              </select>
+            </div>
+            <div>
+              <button type="submit" class="w-full bg-[#132238] hover:bg-[#1E3557] text-white font-medium text-sm md:text-[15px] py-3.5 px-6 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 border border-[#C5A880]/30">
+                <svg class="w-4 h-4 text-[#C5A880]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                <span>{en ? 'View Properties' : 'Ver Catálogo Inmuebles'}</span>
+              </button>
+            </div>
+          </div>
+          <div class="mt-4 pt-3.5 border-t border-[#EAE3D9]/60 flex flex-wrap items-center justify-between text-xs text-[#64748B] gap-2">
+            <span>{en ? 'Official valuations by Serinamar Properties' : 'Valoraciones oficiales de inmuebles por Serinamar Properties'}</span>
+            <a href="tel:678487594" class="text-[#C5A880] font-semibold hover:underline">{en ? 'Direct advisor: +34 678 48 75 94' : 'Asesor personal: 678 48 75 94'}</a>
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ESPACIO DE SEPARACIÓN PARA EL BUSCADOR FLOTANTE -->
+  <div class="h-28 md:h-36"></div>
+
+  <script>
+    function setupDualSearch() {
+      const btnVac = document.getElementById('btn-tab-vacational');
+      const btnReal = document.getElementById('btn-tab-realestate');
+      const viewVac = document.getElementById('view-vacational');
+      const viewReal = document.getElementById('view-realestate');
+
+      if (!btnVac || !btnReal || !viewVac || !viewReal) return;
+
+      btnVac.addEventListener('click', () => {
+        btnVac.className = "flex-1 py-4 px-6 text-center font-medium text-sm md:text-base flex items-center justify-center gap-2 border-b-2 border-[#132238] bg-white text-[#132238] transition-colors";
+        btnReal.className = "flex-1 py-4 px-6 text-center font-medium text-sm md:text-base flex items-center justify-center gap-2 text-[#64748B] hover:text-[#132238] transition-colors";
+        viewVac.classList.remove('hidden');
+        viewReal.classList.add('hidden');
+      });
+
+      btnReal.addEventListener('click', () => {
+        btnReal.className = "flex-1 py-4 px-6 text-center font-medium text-sm md:text-base flex items-center justify-center gap-2 border-b-2 border-[#132238] bg-white text-[#132238] transition-colors";
+        btnVac.className = "flex-1 py-4 px-6 text-center font-medium text-sm md:text-base flex items-center justify-center gap-2 text-[#64748B] hover:text-[#132238] transition-colors";
+        viewReal.classList.remove('hidden');
+        viewVac.classList.add('hidden');
+      });
+
+      viewVac.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const checkIn = (document.getElementById('inp-checkin') as HTMLInputElement)?.value;
+        const checkOut = (document.getElementById('inp-checkout') as HTMLInputElement)?.value;
+        const guests = (document.getElementById('inp-guests') as HTMLSelectElement)?.value;
+
+        let targetUrl = 'https://serinamar.guestybookings.com/properties?';
+        const params = new URLSearchParams();
+        if (guests) params.append('minOccupancy', guests);
+        if (checkIn) params.append('checkIn', checkIn);
+        if (checkOut) params.append('checkOut', checkOut);
+
+        window.open(targetUrl + params.toString(), '_blank');
+      });
+
+      viewReal.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const op = (document.getElementById('inp-operation') as HTMLSelectElement)?.value;
+        if (op === 'sell') {
+          window.open('https://www.serinamar.com/form_captacion/', '_blank');
+        } else {
+          window.open('https://www.serinamar.com/results?id_tipo_operacion=' + (op || '1'), '_blank');
+        }
+      });
+    }
+
+    setupDualSearch();
+    document.addEventListener('astro:page-load', setupDualSearch);
+  </script>
+
+  <FeaturedProperties lang={lang} />
+
+  <section class="owner-feature site-section" aria-labelledby="owner-heading">
+    <div class="site-shell owner-feature__grid">
+      <div class="owner-feature__visual">
+        <img src="/images/hero/serinamar-villa-header.jpg" alt={copy.ownerImage} width="2496" height="1665" loading="lazy" />
+        <div class="owner-feature__note"><span>Just Banús</span><small>{en ? 'Your home. Taken care of.' : 'Tu casa, siempre cuidada.'}</small></div>
+      </div>
+      <div class="owner-feature__copy">
+        <p class="site-eyebrow">{copy.ownerEyebrow}</p>
+        <h2 id="owner-heading">{copy.ownerTitle}</h2>
+        <p class="section-intro">{copy.ownerCopy}</p>
+        <ul class="owner-services">{copy.services.map(([title,text],index)=><li><span class="service-number">0{index+1}</span><div><h3>{title}</h3><p>{text}</p></div></li>)}</ul>
+        <a class="site-button" href="/propietarios/">{copy.ownerCta}<span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="destination site-section" aria-labelledby="place-heading">
+    <div class="site-shell destination__grid">
+      <div class="destination__copy">
+        <p class="site-eyebrow">{copy.placeEyebrow}</p>
+        <h2 id="place-heading">{copy.placeTitle}</h2>
+        <p class="section-intro">{copy.placeCopy}</p>
+        <a class="site-link" href="/divisiones/los-naranjos/">{copy.placeCta}<span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="destination__photos">
+        <img class="destination__main" src="/images/hero/naranjos-gardens.jpg" alt={copy.placeImage} width="2560" height="1920" loading="lazy" />
+        <img class="destination__detail" src="/images/hero/naranjos-fase2.webp" alt={copy.poolAlt} width="1574" height="1050" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-story site-shell" aria-labelledby="trust-heading">
+    <div><p class="site-eyebrow">{copy.trustEyebrow}</p><h2 id="trust-heading">{copy.trustTitle}</h2></div>
+    <div><p>{copy.trustCopy}</p><a class="site-link" href="/sobre-nosotros/">{copy.trustCta}<span aria-hidden="true">↗</span></a></div>
+  </section>
+  <section class="group-brands site-section" aria-labelledby="brands-heading">
+    <div class="site-shell">
+      <p class="site-eyebrow">{copy.brandsEyebrow}</p>
+      <h2 id="brands-heading">{copy.brandsTitle}</h2>
+    </div>
+    
+    <!-- Escort / Carrusel Deslizante Continuo -->
+    <div class="brands-carousel-container" aria-label={en ? 'Serinamar Group Brands Carousel' : 'Carrusel deslizante de marcas del Grupo Serinamar'}>
+      <div class="brands-carousel-track">
+        {[...copy.brands, ...copy.brands, ...copy.brands, ...copy.brands].map(([name,description,slug], idx)=>(
+          <a href={`/divisiones/${slug}/`} class="brand-card-slide" tabindex={idx >= copy.brands.length ? '-1' : '0'}>
+            <div class="brand-card-slide__logo">
+              <img src={`/images/logos/${slug}-logo.png`} alt={name} loading="lazy" width="180" height="95" />
+            </div>
+            <div class="brand-card-slide__info">
+              <span class="brand-card-slide__name">{name}</span>
+              <span class="brand-card-slide__desc">{description}</span>
+            </div>
+            <span class="brand-card-slide__arrow" aria-hidden="true">↗</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="contact-band">
+    <div class="site-shell contact-band__inner">
+      <div><p class="site-eyebrow">{copy.contactEyebrow}</p><h2>{copy.contactTitle}</h2><p>{copy.contactCopy}</p></div>
+      <a class="site-button" href="/contacto/">{copy.contactCta}<span aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+  <Footer slot="footer" currentLang={lang} />
+</BaseLayout>
+<style>
+  h2{font-size:clamp(32px,3.3vw,46px);line-height:1.17;letter-spacing:-.035em;font-weight:500;text-wrap:balance;}
+  .site-eyebrow{margin-bottom:16px;}
+  .section-intro{font-size:15px;line-height:1.85;color:var(--site-muted);margin-block:22px 28px;max-width:490px;}
+  .home-hero{position:relative;isolation:isolate;min-height:530px;display:flex;align-items:center;margin:0 24px;border-radius:8px;overflow:hidden;color:#fff;background:#294550;}
+  .home-hero__image,.home-hero__shade{position:absolute;inset:0;width:100%;height:100%;z-index:-1;}
+  .home-hero__image{object-fit:cover;object-position:center 60%;}
+  .home-hero__shade{background:linear-gradient(90deg,#102a32d9 0%,#122a35ab 28%,#162b3630 65%,#162b3608 100%);}
+  .home-hero__content{padding-block:68px;}
+  .home-hero .site-eyebrow{color:#f0dfc3;margin-bottom:22px;}
+  .home-hero h1{font-size:clamp(44px,4.5vw,66px);font-weight:500;letter-spacing:-.045em;line-height:1.12;}
+  .home-hero h1 em{font-weight:400;color:#f2dfbe;}
+  .home-hero__intro{max-width:450px;font-size:15px;line-height:1.85;color:#f8f5f0;margin-top:24px;}
+  .home-hero__actions{display:flex;align-items:center;gap:28px;margin-top:30px;flex-wrap:wrap;}
+  .hero-owner{display:inline-flex;gap:20px;align-items:center;border-bottom:1px solid #ffffff70;font-size:13px;padding-block:12px;}
+  .home-hero__caption{position:absolute;bottom:22px;right:30px;display:flex;gap:16px;font-size:10px;letter-spacing:.08em;text-shadow:0 1px 4px #000;}
+  .quick-paths{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--site-line);padding-block:28px;}
+  .quick-paths>a{display:flex;align-items:center;gap:18px;padding:8px 26px;border-right:1px solid var(--site-line);}
+  .quick-paths>a:first-child{padding-left:0;}.quick-paths>a:last-child{border:0;padding-right:0;}
+  .quick-paths__number{font:italic 24px var(--font-serif);color:#a78a62;}
+  .quick-paths strong{display:block;font-weight:600;font-size:13px;}
+  .quick-paths small{display:block;color:var(--site-muted);font-size:11px;margin-top:3px;}
+  .quick-paths__arrow{margin-left:auto;color:#826340;font-size:20px;}.quick-paths a:hover strong{color:#826340;}
+  .owner-feature{background:#f0ebe2;}
+  .owner-feature__grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+  .owner-feature__visual{position:relative;}
+  .owner-feature__visual>img{width:100%;height:565px;object-fit:cover;border-radius:6px;}
+  .owner-feature__note{position:absolute;bottom:24px;left:24px;padding:18px 24px;background:#fdfbf7f2;border-radius:3px;min-width:210px;}
+  .owner-feature__note span{font:25px var(--font-serif);display:block;}.owner-feature__note small{font-size:11px;color:var(--site-muted);}
+  .owner-services{padding:0;margin:0 0 28px;list-style:none;}
+  .owner-services li{display:flex;gap:17px;border-top:1px solid #d8d1c5;padding-block:17px;}
+  .service-number{font-size:11px;color:#987448;margin-top:3px;}.owner-services h3{font-family:var(--font-sans);font-size:13px;font-weight:600;}.owner-services p{font-size:12px;color:var(--site-muted);margin-top:3px;line-height:1.7;}
+  .destination__grid{display:grid;grid-template-columns: .85fr 1.15fr;align-items:center;gap:90px;}
+  .destination__photos{position:relative;padding:0 0 50px 45px;}
+  .destination__main{height:420px;width:100%;object-fit:cover;border-radius:6px;}
+  .destination__detail{position:absolute;left:0;bottom:0;width:49%;height:190px;object-fit:cover;border:7px solid #fdfbf7;border-radius:4px;}
+  .trust-story{display:grid;grid-template-columns:1fr 1fr;gap:80px;border-top:1px solid var(--site-line);border-bottom:1px solid var(--site-line);padding-block:50px;}
+  .trust-story p:not(.site-eyebrow){font-size:14px;line-height:1.85;color:var(--site-muted);margin-bottom:12px;max-width:490px;}
+  .group-brands>h2{max-width:650px;}
+  .brands-carousel-container{position:relative;width:100%;overflow:hidden;margin-top:36px;padding-block:12px;mask-image:linear-gradient(to right,transparent 0%,#000 7%,#000 93%,transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 7%,#000 93%,transparent 100%);}
+  .brands-carousel-track{display:flex;gap:24px;width:max-content;animation:marquee 28s linear infinite;will-change:transform;}
+  .brands-carousel-container:hover .brands-carousel-track{animation-play-state:paused;}
+  @keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(calc(-50% - 12px));}}
+  .brand-card-slide{flex:0 0 310px;padding:24px 22px 20px;border:1px solid var(--site-line);background:#fff;border-radius:12px;display:flex;flex-direction:column;gap:16px;text-decoration:none;box-shadow:0 4px 14px rgba(19,34,56,.04);transition:transform .24s var(--ease-out),border-color .24s var(--ease-out),box-shadow .24s var(--ease-out);position:relative;}
+  .brand-card-slide:hover{transform:translateY(-4px);border-color:#C5A880;box-shadow:0 12px 26px -8px rgba(19,34,56,.12);}
+  .brand-card-slide__logo{height:95px;display:flex;align-items:center;justify-content:center;}
+  .brand-card-slide__logo img{max-height:80px;max-width:180px;width:auto;object-fit:contain;transition:transform .2s;}
+  .brand-card-slide:hover .brand-card-slide__logo img{transform:scale(1.04);}
+  .brand-card-slide__info{border-top:1px solid var(--site-line);padding-top:14px;display:flex;flex-direction:column;gap:4px;}
+  .brand-card-slide__name{font-size:13px;font-weight:700;color:#132238;letter-spacing:.02em;}
+  .brand-card-slide__desc{font-size:12px;color:var(--site-muted);line-height:1.45;}
+  .brand-card-slide__arrow{position:absolute;top:20px;right:20px;font-size:18px;color:#C5A880;transition:transform .2s;}
+  .brand-card-slide:hover .brand-card-slide__arrow{transform:translate(2px,-2px);color:#132238;}
+  .contact-band{background:#eae1d2;padding-block:56px;}.contact-band__inner{display:flex;justify-content:space-between;align-items:center;gap:32px;}.contact-band h2{font-size:38px;}.contact-band p:not(.site-eyebrow){font-size:14px;margin-top:16px;color:#52616b;}.contact-band .site-button{flex-shrink:0;}
+  @media(max-width:1100px){.quick-paths>a{padding-inline:18px;gap:12px;}.quick-paths__number{display:none;}.owner-feature__grid,.destination__grid{gap:40px;}.owner-feature__visual>img{height:550px;}.group-brands__grid{gap:12px;}}
+  @media(max-width:767px){
+    .home-hero{margin:0 12px;min-height:460px;}.home-hero__content{padding-block:46px 58px;}.home-hero h1{font-size:42px;}.home-hero__image{object-position:64% center;}.home-hero__shade{background:linear-gradient(90deg,#102a32d9,#122a3570);}.home-hero .site-eyebrow{font-size:9px;letter-spacing:.12em;}.home-hero__intro{font-size:14px;max-width:340px;margin-top:20px;}.home-hero__actions{gap:20px;margin-top:24px;}.home-hero .site-button{padding-inline:16px;font-size:12px;gap:14px;}.hero-owner{font-size:12px;gap:12px;}.home-hero__caption{font-size:9px;right:20px;bottom:16px;}
+    .quick-paths{padding-block:18px;width:calc(100% - 40px);}.quick-paths>a{padding:2px 12px;display:block;}.quick-paths strong{font-size:11px;line-height:1.5;}.quick-paths small{display:none;}.quick-paths__arrow{font-size:16px;display:block;margin-top:4px;}
+    .owner-feature__grid,.destination__grid{grid-template-columns:1fr;gap:32px;}.owner-feature__visual>img{height:320px;}.owner-feature__note{left:18px;bottom:18px;padding:12px 18px;}.owner-feature__copy h2{max-width:360px;}.owner-feature__copy{grid-row:1;}.owner-feature__visual{grid-row:2;}
+    .destination__photos{padding:0 0 36px 24px;}.destination__main{height:300px;}.destination__detail{height:145px;}.section-intro{font-size:14px;margin-block:18px 20px;}
+    .trust-story{grid-template-columns:1fr;gap:20px;padding-block:38px;}.group-brands__grid{grid-template-columns:1fr 1fr;gap:12px;margin-top:24px;}.group-brands__grid>a{padding:12px;font-size:10px;gap:8px;}.group-brands__logo{height:80px;margin-bottom:4px;}.group-brands__logo img{max-width:120px;height:70px;}.contact-band{padding-block:40px;}.contact-band__inner{align-items:flex-start;flex-direction:column;gap:24px;}.contact-band h2{font-size:32px;}
+  }
+  @media(max-width:370px){.home-hero h1{font-size:38px;}.home-hero__actions{gap:12px;}.hero-owner{gap:8px;}.home-hero .site-button{padding-inline:12px;}.site-eyebrow{font-size:10px;}}
+</style>

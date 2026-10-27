@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import Hero from '../../components/ui/Hero.astro';
+
+---
+
+<BaseLayout title="Serinamar · Alojamientos y compraventa en Marbella" description="Alojamientos vacacionales, gestión de alquileres y compraventa de viviendas en Marbella y Puerto Banús. Conoce Serinamar." canonicalURL="https://gruposerinamar.com/divisiones/serinamar/">
+  <Header slot="header" currentLang="es" />
+  <Hero eyebrow="Serinamar · Desde 2000" title="Encuentra tu lugar en Marbella." description="Para unas vacaciones, una nueva casa o la gestión de tu propiedad. Un equipo local te acompaña en cada paso." image="/images/hero/serinamar-villa-header.jpg" imageAlt="Comedor luminoso y terraza de una vivienda" actionLabel="Buscar alojamiento" actionHref="/alojamientos/" secondaryLabel="Comprar una propiedad" secondaryHref="https://www.serinamar.com/" />
+
+  <section class="page-section">
+    <div class="section-heading"><img class="brand-mark" src="/images/logos/serinamar-logo.png" alt="Serinamar" loading="lazy" /><p class="eyebrow">Dos formas de acompañarte</p><h2>Vacaciones y viviendas, con atención cercana.</h2></div>
+    <div class="cards two">
+      <article class="card"><span class="card-number">01 · Alquiler vacacional</span><h3>Tu estancia, bien atendida.</h3><p>Gestionamos alojamientos turísticos y atendemos a huéspedes y propietarios desde nuestra recepción en Los Naranjos de Marbella.</p><ul><li>Reservas y atención durante la estancia.</li><li>Precios adaptados a la temporada y la demanda.</li><li>Coordinación de limpieza, mantenimiento y entrega de llaves.</li></ul><div class="actions"><a class="button" href="/alojamientos/">Ver alojamientos</a><a class="text-link" href="/propietarios/">Soy propietario →</a></div></article>
+      <article class="card"><span class="card-number">02 · Compraventa</span><h3>Una casa para tu próxima etapa.</h3><p>Te ayudamos a comprar o vender una vivienda en Marbella, Nueva Andalucía y Puerto Banús, acompañándote durante la operación y después de la firma.</p><ul><li>Búsqueda y comercialización de propiedades.</li><li>Coordinación de los trámites de compraventa.</li><li>Continuidad con el cuidado y la gestión de la vivienda.</li></ul><div class="actions"><a class="button" href="https://www.serinamar.com/" target="_blank" rel="noopener noreferrer">Ver propiedades ↗</a><a class="text-link" href="#valoracion">Solicitar valoración →</a></div></article>
+    </div>
+  </section>
+  <section id="valoracion" class="section-tint"><div class="page-section intro-grid" style="align-items:start">
+    <div><p class="eyebrow">Para propietarios</p><h2>Hablemos de tu vivienda.</h2><p class="body-copy">Cuéntanos dónde está y qué quieres hacer con ella. El equipo estudiará tu caso para orientarte sobre la venta o el alquiler.</p><div class="actions"><a class="text-link" href="https://www.serinamar.com/form_captacion/" target="_blank" rel="noopener noreferrer">Acceder al formulario del portal inmobiliario ↗</a></div></div>
+    <form id="valuation-form" class="contact-form card" action="mailto:inmobiliaria@serinamar.com" method="post" enctype="text/plain">
+      <div><label for="valuation-name">Nombre y apellidos</label><input id="valuation-name" name="nombre" autocomplete="name" required /></div>
+      <div><label for="valuation-email">Correo electrónico</label><input id="valuation-email" name="email" type="email" autocomplete="email" required /></div>
+      <div><label for="valuation-phone">Teléfono</label><input id="valuation-phone" name="telefono" type="tel" autocomplete="tel" /></div>
+      <div><label for="valuation-purpose">¿Qué necesitas?</label><select id="valuation-purpose" name="objetivo"><option>Vender mi vivienda</option><option>Gestionar el alquiler vacacional</option><option>Comprar una propiedad</option><option>Cuidado y mantenimiento</option></select></div>
+      <div class="full"><label for="valuation-property">Cuéntanos sobre la propiedad</label><textarea id="valuation-property" name="propiedad" rows="4" placeholder="Zona, tipo de vivienda y cualquier detalle que quieras compartir." required></textarea></div>
+      <div class="full"><button class="button" type="submit">Preparar correo de consulta →</button><p class="form-note">Se abrirá tu aplicación de correo para revisar y enviar la consulta a inmobiliaria@serinamar.com.</p></div>
+    </form>
+  </div></section>
+  <script>
+    const valuationForm = document.querySelector<HTMLFormElement>('#valuation-form');
+    valuationForm?.addEventListener('submit', event => {
+      event.preventDefault();
+      const values = new FormData(valuationForm);
+      const subject = `Consulta inmobiliaria: ${values.get('objetivo')}`;
+      const body = `Nombre: ${values.get('nombre')}
+Email: ${values.get('email')}
+Teléfono: ${values.get('telefono')}
+Objetivo: ${values.get('objetivo')}
+
+${values.get('propiedad')}`;
+      window.location.href = `mailto:inmobiliaria@serinamar.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+  </script>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .page-section { max-width: 1200px; margin: 0 auto; padding: 64px 28px; }
+  .section-tint { background: #f3efe7; }
+  .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .section-heading { max-width: 680px; margin-bottom: 32px; }
+  .eyebrow { color: #796546; font-size: 12px; letter-spacing: .15em; text-transform: uppercase; font-weight: 700; margin-bottom: 14px; }
+  h2 { font-family: var(--font-serif, Georgia, serif); font-size: clamp(30px, 3.4vw, 44px); line-height: 1.12; color: #132238; margin-bottom: 20px; }
+  h3 { font-family: var(--font-serif, Georgia, serif); font-size: 25px; line-height: 1.2; color: #132238; margin-bottom: 14px; }
+  .body-copy { color: #596575; font-size: 16px; line-height: 1.8; }
+  .body-copy p + p { margin-top: 16px; }
+  .brand-mark { width: auto; max-width: 180px; height: 60px; object-fit: contain; object-position: left; margin-bottom: 24px; }
+  .feature-photo { width: 100%; height: 430px; object-fit: cover; border-radius: 16px; }
+  .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+  .cards.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .card { padding: 30px; background: #fff; border: 1px solid #e5dfd4; border-radius: 16px; }
+  .card p, .card li { color: #596575; font-size: 15px; line-height: 1.7; }
+  .card ul { padding-left: 18px; margin: 20px 0; list-style: disc; }
+  .card li + li { margin-top: 8px; }
+  .card-number { display: block; color: #9c865f; font-size: 14px; margin-bottom: 20px; }
+  .text-link { display: inline-block; color: #132238; font-size: 14px; font-weight: 700; border-bottom: 1px solid #b89c72; padding-bottom: 3px; }
+  .text-link:hover { color: #796546; }
+  .button { display: inline-flex; justify-content: center; align-items: center; min-height: 48px; padding: 13px 22px; background: #132238; color: white; border: 1px solid #132238; border-radius: 7px; font-size: 14px; font-weight: 600; text-align: center; }
+  .button:hover { background: #25415d; }
+  .button.sand { background: #e5d6bc; color: #132238; border-color: #e5d6bc; }
+  .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 26px; align-items: center; }
+  .callout { background: #132238; color: white; border-radius: 16px; padding: 40px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+  .callout h2 { color: white; font-size: clamp(28px, 3vw, 38px); }
+  .callout p { color: #d5dce2; max-width: 640px; line-height: 1.7; }
+  .callout .button { flex-shrink: 0; }
+  .contact-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+  .contact-form .full { grid-column: 1 / -1; }
+  label { display: block; font-size: 14px; color: #132238; font-weight: 600; margin-bottom: 9px; }
+  input, select, textarea { width: 100%; border: 1px solid #cfd4d9; border-radius: 7px; padding: 13px 14px; color: #132238; background: white; font: inherit; font-size: 16px; }
+  input:focus, select:focus, textarea:focus { outline: 2px solid #9c865f; outline-offset: 2px; }
+  .form-note { color: #596575; font-size: 13px; line-height: 1.6; margin-top: 12px; }
+  @media (max-width: 800px) {
+    .page-section { padding: 44px 20px; }
+    .intro-grid { grid-template-columns: 1fr; gap: 30px; }
+    .cards, .cards.two { grid-template-columns: 1fr; }
+    .feature-photo { height: 300px; }
+    .card { padding: 25px; }
+    .callout { padding: 28px; align-items: flex-start; flex-direction: column; }
+    .contact-form { grid-template-columns: 1fr; }
+  }
+</style>

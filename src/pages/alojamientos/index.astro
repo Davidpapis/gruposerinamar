@@ -1,0 +1,191 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import FeaturedProperties from '../../components/home/FeaturedProperties.astro';
+
+const questions = [
+  { question: '¿Cómo consulto precios y disponibilidad?', answer: 'Selecciona tus fechas y el número de huéspedes. En nuestro portal de reservas encontrarás las viviendas disponibles, sus fotografías, el precio final y las condiciones de cada estancia.' },
+  { question: '¿Cómo se organiza la llegada?', answer: 'Nuestro equipo te confirmará las instrucciones de llegada y la entrega de llaves antes de tu estancia. Si necesitas una llegada especial, consúltanos con antelación.' },
+  { question: '¿Qué equipamiento tiene cada alojamiento?', answer: 'La ficha de cada vivienda detalla su equipamiento y el acceso a las zonas comunes. Revísala antes de reservar y contacta con nosotros si necesitas algo concreto.' },
+  { question: '¿Puedo modificar o cancelar mi reserva?', answer: 'Las condiciones dependen de la tarifa y del alojamiento elegidos. Puedes consultarlas antes de confirmar la reserva y en la documentación que recibirás después.' },
+];
+---
+
+<BaseLayout
+  title="Alojamientos en Marbella | Apartamentos y casas · Serinamar"
+  description="Encuentra tu alojamiento en Marbella y Los Naranjos. Consulta fechas, viviendas disponibles y precios, con la atención del equipo local de Serinamar."
+  canonicalURL="https://gruposerinamar.com/alojamientos/"
+>
+  <Header slot="header" currentLang="es" />
+
+  <section class="stay-hero" aria-labelledby="stay-title">
+    <img class="stay-hero-image" src="/images/hero/naranjos-fase2.webp" alt="Piscina y jardines de Los Naranjos de Marbella" width="1574" height="1050" fetchpriority="high" />
+    <div class="stay-hero-shade"></div>
+    <div class="stay-hero-content">
+      <p class="hero-eyebrow">MARBELLA · NUEVA ANDALUCÍA</p>
+      <h1 id="stay-title">Tus días al sol.<br />Tu casa en Marbella.</h1>
+      <p>Apartamentos y casas para vivir el Mediterráneo a tu ritmo, con un equipo local cerca de ti.</p>
+    </div>
+  </section>
+
+  <section id="buscar" class="search-section" aria-label="Buscar alojamiento">
+    <div class="search-panel">
+      <form action="https://serinamar.guestybookings.com/properties" method="GET" target="_blank" rel="noopener noreferrer" id="accommodation-search">
+        <div class="search-field">
+          <label for="stay-check-in">Entrada</label>
+          <input type="date" name="checkIn" id="stay-check-in" required />
+        </div>
+        <div class="search-field">
+          <label for="stay-check-out">Salida</label>
+          <input type="date" name="checkOut" id="stay-check-out" required />
+        </div>
+        <div class="search-field">
+          <label for="stay-guests">Huéspedes</label>
+          <select name="minOccupancy" id="stay-guests">
+            <option value="1">1 huésped</option>
+            <option value="2" selected>2 huéspedes</option>
+            <option value="3">3 huéspedes</option>
+            <option value="4">4 huéspedes</option>
+            <option value="5">5 huéspedes</option>
+            <option value="6">6 huéspedes</option>
+            <option value="7">7 huéspedes</option>
+            <option value="8">8 huéspedes</option>
+          </select>
+        </div>
+        <button type="submit">Consultar disponibilidad <span aria-hidden="true">↗</span></button>
+      </form>
+      <p class="search-note">Consulta las viviendas, los precios y las condiciones para tus fechas en nuestro portal de reservas.</p>
+    </div>
+  </section>
+
+  <FeaturedProperties />
+
+  <section class="transfer-section" aria-labelledby="transfer-heading">
+    <div class="transfer-inner">
+      <div class="transfer-copy">
+        <p class="eyebrow">DESDE EL PRIMER DÍA</p>
+        <h2 id="transfer-heading">Llegar y empezar<br />a disfrutar.</h2>
+        <p>Organizamos tu traslado desde el aeropuerto de Málaga o la estación María Zambrano hasta tu alojamiento.</p>
+        <p>Cuéntanos cuándo llegas y cuántas personas viajáis. Nuestro equipo te ayudará a preparar el traslado y la llegada.</p>
+        <a class="solid-button" href="/contacto/">Solicitar un traslado <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="transfer-image">
+        <img src="/images/services/mercedes-transfer.png" alt="Vehículo Mercedes para el servicio de traslados de Serinamar" width="900" height="600" loading="lazy" decoding="async" />
+        <p>Servicio de traslado · Consulta disponibilidad y tarifas</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section" aria-labelledby="faq-heading">
+    <div class="faq-intro">
+      <p class="eyebrow">ANTES DE RESERVAR</p>
+      <h2 id="faq-heading">Todo un poco<br />más sencillo.</h2>
+      <p>Si tienes una duda concreta, estamos cerca para ayudarte.</p>
+      <a href="/contacto/">Hablar con el equipo <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="faq-list">
+      {questions.map(({ question, answer }) => (
+        <details>
+          <summary>{question}<span aria-hidden="true">+</span></summary>
+          <p>{answer}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<script>
+  const searchForm = document.querySelector<HTMLFormElement>('#accommodation-search');
+  const checkIn = document.querySelector<HTMLInputElement>('#stay-check-in');
+  const checkOut = document.querySelector<HTMLInputElement>('#stay-check-out');
+
+  if (searchForm && checkIn && checkOut) {
+    const dateValue = (date: Date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+    const dayAfter = (value: string) => {
+      const date = new Date(`${value}T12:00:00`);
+      date.setDate(date.getDate() + 1);
+      return dateValue(date);
+    };
+    const today = dateValue(new Date());
+    checkIn.min = today;
+
+    const validateDates = () => {
+      const firstNight = checkIn.value && checkIn.value >= today ? checkIn.value : today;
+      checkOut.min = dayAfter(firstNight);
+      checkIn.setCustomValidity(checkIn.value && checkIn.value < today ? 'La fecha de entrada debe ser hoy o posterior.' : '');
+      checkOut.setCustomValidity(checkIn.value && checkOut.value && checkOut.value <= checkIn.value ? 'La salida debe ser posterior a la entrada.' : '');
+    };
+
+    checkIn.addEventListener('input', validateDates);
+    checkOut.addEventListener('input', validateDates);
+    searchForm.addEventListener('submit', (event) => {
+      validateDates();
+      if (!searchForm.reportValidity()) event.preventDefault();
+    });
+    validateDates();
+  }
+</script>
+
+<style>
+  .stay-hero { position: relative; min-height: 470px; display: flex; align-items: center; overflow: hidden; color: #fff; margin: 0 24px; border-radius: 8px; }
+  .stay-hero-image, .stay-hero-shade { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .stay-hero-image { object-fit: cover; object-position: center 56%; }
+  .stay-hero-shade { background: linear-gradient(90deg, rgba(10, 25, 34, .77), rgba(10, 25, 34, .31) 55%, rgba(10, 25, 34, .07)); }
+  .stay-hero-content { position: relative; width: min(100% - 3rem, 1240px); margin: auto; padding: 4.5rem 0 6rem; }
+  .hero-eyebrow { margin: 0 0 1.5rem; color: #F3E9DA; font-size: .7rem; font-weight: 600; letter-spacing: .2em; }
+  h1 { margin: 0 0 1.5rem; max-width: 780px; font-size: clamp(2.75rem, 5.2vw, 4.7rem); font-weight: 400; letter-spacing: -.035em; line-height: 1.08; }
+  .stay-hero-content > p:last-child { max-width: 530px; margin: 0; font-size: 1rem; line-height: 1.85; color: #F7F5F0; }
+  .search-section { position: relative; z-index: 1; margin-top: -2.5rem; padding: 0 1.5rem; }
+  .search-panel { max-width: 1240px; margin: auto; padding: 1.75rem 2rem 1.25rem; background: #fff; border: 1px solid #EAE3D9; border-radius: .35rem; box-shadow: 0 12px 35px rgba(19, 34, 56, .055); }
+  form { display: grid; grid-template-columns: 1fr 1fr .85fr 1.45fr; gap: 1.5rem; align-items: end; }
+  .search-field { min-width: 0; }
+  label { display: block; margin-bottom: .65rem; font-size: .75rem; font-weight: 600; }
+  input, select { display: block; width: 100%; min-width: 0; height: 48px; padding: .7rem .85rem; border: 1px solid #DED7CC; border-radius: .2rem; background: #FDFBF7; color: #132238; font-family: inherit; font-size: .82rem; }
+  button, .solid-button { display: inline-flex; align-items: center; justify-content: center; gap: 1rem; min-height: 48px; padding: .8rem 1rem; background: #132238; color: #fff; border: 1px solid #132238; border-radius: .2rem; font-size: .75rem; font-weight: 600; line-height: 1.5; text-decoration: none; cursor: pointer; }
+  button:hover, .solid-button:hover { background: #263E59; }
+  button span, .solid-button span { color: #DDC9AB; font-size: 1.1rem; }
+  .search-note { margin: 1rem 0 0; color: #6D737C; font-size: .68rem; line-height: 1.65; }
+  .transfer-section { padding: 5rem 1.5rem; background: #F0EAE0; }
+  .transfer-inner { max-width: 1240px; margin: auto; display: grid; grid-template-columns: .9fr 1.1fr; gap: 5rem; align-items: center; }
+  .eyebrow { margin: 0 0 1rem; color: #806847; font-size: .69rem; font-weight: 600; letter-spacing: .18em; }
+  h2 { margin: 0 0 1.5rem; font-size: clamp(2rem, 3.4vw, 3.25rem); font-weight: 400; line-height: 1.15; letter-spacing: -.025em; }
+  .transfer-copy > p:not(.eyebrow), .faq-intro > p:not(.eyebrow) { color: #5C6570; font-size: .9rem; line-height: 1.9; margin: 0 0 1rem; }
+  .transfer-copy .solid-button { margin-top: 1rem; padding-inline: 1.4rem; }
+  .transfer-image { padding: 2rem; background: #FDFBF7; border-radius: .35rem; }
+  .transfer-image img { display: block; width: 100%; height: 300px; object-fit: contain; }
+  .transfer-image p { margin: 1rem 0 0; color: #68717B; font-size: .67rem; line-height: 1.7; text-align: center; }
+  .faq-section { display: grid; grid-template-columns: .8fr 1.2fr; gap: 5rem; max-width: 1288px; margin: auto; padding: 5.5rem 1.5rem; }
+  .faq-intro a { display: inline-flex; gap: 1.2rem; align-items: center; margin-top: .75rem; padding-bottom: .5rem; border-bottom: 1px solid #C5A880; font-size: .78rem; font-weight: 600; text-decoration: none; }
+  details { border-bottom: 1px solid #DED7CC; }
+  details:first-child { border-top: 1px solid #DED7CC; }
+  summary { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding: 1.4rem 0; font-size: .89rem; font-weight: 500; line-height: 1.6; cursor: pointer; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary span { flex-shrink: 0; color: #806847; font-size: 1.4rem; font-weight: 400; }
+  details[open] summary span { transform: rotate(45deg); }
+  details > p { margin: 0; padding: 0 1.5rem 1.5rem 0; color: #5C6570; font-size: .85rem; line-height: 1.85; }
+  input:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible, summary:focus-visible { outline: 2px solid #806847; outline-offset: 4px; }
+  @media (max-width: 1000px) { form { grid-template-columns: repeat(2, minmax(0, 1fr)); } .transfer-inner, .faq-section { gap: 3rem; } }
+  @media (max-width: 700px) {
+    .stay-hero { min-height: 400px; margin-inline: 12px; }
+    .stay-hero-content { width: calc(100% - 2.5rem); padding: 3rem 0 5rem; }
+    .stay-hero-shade { background: linear-gradient(90deg, rgba(10, 25, 34, .73), rgba(10, 25, 34, .22)); }
+    h1 { font-size: clamp(2.65rem, 9vw, 3.5rem); }
+    .stay-hero-content > p:last-child { max-width: 400px; font-size: .9rem; }
+    .hero-eyebrow { font-size: .6rem; }
+    .search-section { padding: 0 1.25rem; }
+    .search-panel { padding: 1.25rem; }
+    form { gap: 1rem; }
+    form button { align-self: end; }
+    .search-note { font-size: .65rem; }
+    .transfer-section { padding: 3.5rem 1.25rem; }
+    .transfer-inner, .faq-section { grid-template-columns: 1fr; gap: 2.5rem; }
+    .transfer-image { padding: 1.5rem; }
+    .transfer-image img { height: 220px; }
+    .faq-section { padding: 3.5rem 1.25rem; }
+    .faq-intro h2 br { display: none; }
+  }
+  @media (max-width: 359px) { form { grid-template-columns: 1fr; } .stay-hero { min-height: 420px; } }
+</style>

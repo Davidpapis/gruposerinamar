@@ -1,0 +1,115 @@
+---
+const steps = [
+  {
+    step: "01",
+    title: "Adquisición e Inversión",
+    division: "Serinamar Real Estate",
+    link: "/divisiones/serinamar/",
+    description: "Identificamos las mejores oportunidades inmobiliarias en Marbella, Milla de Oro y Nueva Andalucía. Acompañamiento legal, valoración y compraventa con más de 25 años de experiencia.",
+    icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6",
+    staggerClass: "stagger-1"
+  },
+  {
+    step: "02",
+    title: "Puesta a Punto y Reforma",
+    division: "Just Banús · Building & Reforms",
+    link: "/divisiones/just-banus/",
+    description: "Modernización, reformas de fontanería/electricidad, albañilería, decoración y Home Staging para multiplicar el valor de mercado de su vivienda y maximizar su atractivo para alquiler o venta.",
+    icon: "M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z",
+    staggerClass: "stagger-2"
+  },
+  {
+    step: "03",
+    title: "Explotación y Rentabilidad",
+    division: "Serinamar Hospitality (Guesty PMS)",
+    link: "/alojamientos/",
+    description: "Gestión integral de alquiler vacacional: publicación en canales internacionales, fijación dinámica de precios, reservas directas, recepción de huéspedes y limpieza profesional entre estancias.",
+    icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+    staggerClass: "stagger-3"
+  },
+  {
+    step: "04",
+    title: "Cuidado Continuo y Fiscalidad",
+    division: "Just Banús & Iberian Sun",
+    link: "/divisiones/iberian-sun/",
+    description: "Inspecciones periódicas de viviendas cerradas, resolución de incidencias 24/7, custodia de llaves, trasteros seguros y tramitación tributaria para no residentes (Modelo 210 de la AEAT).",
+    icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
+    staggerClass: "stagger-4"
+  }
+];
+---
+
+<section id="ciclo-vida" class="py-20 md:py-28 bg-[#132238] text-white relative overflow-hidden">
+  <!-- Fondo decorativo sutil con gradiente ambiental -->
+  <div class="absolute inset-0 bg-[radial-gradient(#C5A880_1px,transparent_1px)] [background-size:32px_32px] opacity-10"></div>
+  <div class="absolute -top-40 -right-40 w-80 h-80 bg-[#C5A880]/10 rounded-full blur-3xl pointer-events-none"></div>
+  
+  <div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
+      <span class="inline-block text-xs uppercase tracking-widest text-[#C5A880] font-semibold bg-white/5 border border-[#C5A880]/30 px-4 py-1.5 rounded-full mb-4 shadow-xs">
+        Acompañamiento 360°
+      </span>
+      <h2 class="text-3xl md:text-5xl font-serif leading-tight mb-5">
+        El Ciclo Completo de su Propiedad en Marbella
+      </h2>
+      <p class="text-[#EAE3D9]/80 text-base md:text-lg leading-relaxed font-light">
+        Nuestro valor diferencial es acompañar al propietario desde la adquisición del inmueble hasta su puesta en valor, rentabilidad y cuidado diario.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+      {steps.map((item) => (
+        <a 
+          href={item.link} 
+          class={`reveal-on-scroll ${item.staggerClass} hover-lift bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-7 flex flex-col justify-between hover:bg-white/10 hover:border-[#C5A880]/60 transition-all duration-300 relative group`}
+        >
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="text-4xl font-serif font-bold text-[#C5A880] group-hover:scale-110 transition-transform duration-300">
+                {item.step}
+              </span>
+              <div class="w-12 h-12 rounded-xl bg-[#C5A880]/15 flex items-center justify-center text-[#C5A880] border border-[#C5A880]/30 group-hover:bg-[#C5A880] group-hover:text-[#132238] transition-colors duration-300">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d={item.icon}/></svg>
+              </div>
+            </div>
+
+            <span class="block text-xs uppercase tracking-wider text-[#C5A880] font-semibold mb-1">
+              {item.division}
+            </span>
+            <h3 class="text-xl font-serif font-bold mb-3 text-white group-hover:text-[#C5A880] transition-colors">
+              {item.title}
+            </h3>
+            <p class="text-xs md:text-sm text-[#EAE3D9]/75 leading-relaxed font-light">
+              {item.description}
+            </p>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-[#C5A880] font-medium">
+            <span>Explorar esta fase</span>
+            <svg class="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- Call to action para propietarios hacia la página /propietarios/ -->
+    <div class="reveal-scale mt-14 p-8 rounded-3xl bg-gradient-to-r from-white/10 via-white/5 to-white/10 border border-[#C5A880]/30 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left hover:border-[#C5A880]/60 transition-colors">
+      <div>
+        <h4 class="text-xl font-serif font-bold text-white mb-1">
+          ¿Tiene una vivienda en Marbella y desea despreocuparse por completo?
+        </h4>
+        <p class="text-sm text-[#EAE3D9]/80 font-light">
+          Descubra nuestro Hub de Propietarios y calcule la rentabilidad estimada de su inmueble.
+        </p>
+      </div>
+      <a 
+        href="/propietarios/" 
+        class="shrink-0 inline-flex items-center gap-2 bg-[#C5A880] hover:bg-[#B8986C] text-[#132238] font-bold text-xs uppercase tracking-wider px-6 py-3.5 rounded-full shadow-lg transition-all transform active:scale-95 group/btn"
+      >
+        <span>Acceder a Hub Propietarios 360°</span>
+        <svg class="w-4 h-4 text-[#132238] group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>

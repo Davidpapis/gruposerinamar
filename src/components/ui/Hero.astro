@@ -1,0 +1,41 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  actionLabel?: string;
+  actionHref?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+}
+const { eyebrow, title, description, image, imageAlt, actionLabel, actionHref, secondaryLabel, secondaryHref } = Astro.props;
+---
+<section class="page-hero" aria-labelledby="page-title">
+  <img class="page-hero__photo" src={image} alt={imageAlt} fetchpriority="high" decoding="async" />
+  <div class="page-hero__shade"></div>
+  <div class="site-shell page-hero__content">
+    <p class="site-eyebrow">{eyebrow}</p>
+    <h1 id="page-title">{title}</h1>
+    <p class="page-hero__description">{description}</p>
+    {(actionLabel || secondaryLabel) && <div class="page-hero__actions">
+      {actionLabel && <a class="site-button site-button--light" href={actionHref}>{actionLabel}<span aria-hidden="true">↗</span></a>}
+      {secondaryLabel && <a class="page-hero__secondary" href={secondaryHref}>{secondaryLabel}<span aria-hidden="true">→</span></a>}
+    </div>}
+    <slot />
+  </div>
+</section>
+<style>
+  .page-hero { position:relative; isolation:isolate; min-height:470px; display:flex; align-items:center; margin:0 24px; border-radius:8px; overflow:hidden; color:#fff; background:#355265; }
+  .page-hero__photo,.page-hero__shade {position:absolute;inset:0;width:100%;height:100%;z-index:-1;}
+  .page-hero__photo {object-fit:cover;object-position:center 52%;}
+  .page-hero__shade {background:linear-gradient(90deg,rgba(10,28,38,.83) 0%,rgba(10,28,38,.64) 38%,rgba(10,28,38,.12) 78%);}
+  .page-hero__content {padding-block:76px;}
+  .page-hero .site-eyebrow {color:#f1dfc2;margin-bottom:22px;}
+  .page-hero h1 {font-size:clamp(36px,4.2vw,60px);font-weight:500;line-height:1.1;letter-spacing:-.035em;max-width:760px;text-wrap:balance;}
+  .page-hero__description {max-width:550px;font-size:16px;line-height:1.8;color:#f4f1eb;margin-top:22px;}
+  .page-hero__actions {display:flex;align-items:center;gap:26px;flex-wrap:wrap;margin-top:30px;}
+  .page-hero__secondary {display:inline-flex;align-items:center;gap:16px;color:#fff;font-size:14px;font-weight:500;padding-block:12px;border-bottom:1px solid #ffffff70;}
+  @media(max-width:767px){.page-hero{margin:0 12px;min-height:440px;}.page-hero__content{padding-block:48px;}.page-hero h1{font-size:38px;}.page-hero__shade{background:linear-gradient(90deg,#0a1c26c9,#0a1c2670);}.page-hero__description{font-size:15px;line-height:1.7;}.page-hero__actions{gap:16px;margin-top:24px;}}
+</style>

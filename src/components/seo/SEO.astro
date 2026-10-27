@@ -1,0 +1,114 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalURL?: string;
+  image?: string;
+  lang?: 'es' | 'en';
+}
+
+const {
+  title = "Grupo Serinamar | Gestión Integral de Propiedades en Marbella",
+  description = "Más de 25 años cuidando de su patrimonio en Marbella. Compraventa, alquiler vacacional directo, mantenimiento de viviendas y asesoría fiscal para no residentes.",
+  canonicalURL = "https://gruposerinamar.com",
+  image = "/images/hero/puerto-banus-panorama.webp",
+  lang = "es"
+} = Astro.props;
+
+const siteUrl = "https://gruposerinamar.com";
+
+// JSON-LD Schema estructurado según Skill SEO Astro
+const schemaData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Organization", "RealEstateAgent", "LocalBusiness"],
+      "@id": `${siteUrl}/#organization`,
+      "name": "Grupo Serinamar",
+      "url": siteUrl,
+      "logo": `${siteUrl}/images/logos/serinamar-logo-no-bg.png`,
+      "image": `${siteUrl}/images/logos/serinamar-logo-no-bg.png`,
+      "description": description,
+      "telephone": "+34952813362",
+      "email": "info@serinamar.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Urb. Los Naranjos De Marbella, Centro Comercial, Local 5",
+        "addressLocality": "Marbella",
+        "postalCode": "29660",
+        "addressRegion": "Málaga",
+        "addressCountry": "ES"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 36.5072,
+        "longitude": -4.9504
+      },
+      "sameAs": [
+        "https://www.facebook.com/serinamar",
+        "https://www.instagram.com/serinamar/",
+        "https://twitter.com/nmserinamar"
+      ],
+      "department": [
+        {
+          "@type": "LocalBusiness",
+          "name": "Just Banús · Property Management & Owner Services",
+          "description": "Cuidado, reformas, mantenimiento integral e inspección de viviendas en Puerto Banús y Marbella."
+        },
+        {
+          "@type": "RealEstateAgent",
+          "name": "Serinamar Hospitality & Real Estate",
+          "description": "Compraventa y explotación turística de apartamentos y villas en Costa del Sol."
+        },
+        {
+          "@type": "FinancialService",
+          "name": "Iberian Sun · International Property Services",
+          "description": "Asesoría fiscal, gestión documental e impuestos para no residentes en España desde Reino Unido."
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      "url": siteUrl,
+      "name": "Grupo Serinamar",
+      "inLanguage": ["es-ES", "en-GB"]
+    }
+  ]
+};
+---
+
+<!-- Títulos y Metadatos Esenciales -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description.length > 160 ? description.substring(0, 157) + "..." : description} />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Multilingüe hreflang con x-default -->
+<link rel="alternate" hreflang="es" href="https://gruposerinamar.com/" />
+<link rel="alternate" hreflang="en" href="https://gruposerinamar.com/en/" />
+<link rel="alternate" hreflang="x-default" href="https://gruposerinamar.com/" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image, siteUrl).href} />
+<meta property="og:locale" content={lang === 'es' ? 'es_ES' : 'en_GB'} />
+<meta property="og:site_name" content="Grupo Serinamar" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={new URL(image, siteUrl).href} />
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="/images/logos/serinamar-logo-header.png" />
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json" set:html={JSON.stringify(schemaData)} />

@@ -1,0 +1,105 @@
+---
+interface Props { currentLang?: 'es' | 'en'; }
+const { currentLang = 'es' } = Astro.props;
+const en = currentLang === 'en';
+const copy = en
+  ? { since: 'Marbella · Since 2000', intro: 'Holiday stays, real estate and property care. A local team to help you enjoy Marbella.', explore: 'How can we help?', stays: 'Find your holiday stay', owners: 'Services for owners', realestate: 'Buy or sell a property', about: 'About us', contact: 'Contact', group: 'Our brands', serinamar: 'Holiday stays & real estate', justbanus: 'Property management & care', iberian: 'Services for non-residents', naranjos: 'Holiday stays in Marbella', portal: 'Owner portal', availability: 'Check availability', whatsapp: 'Chat on WhatsApp', address: 'Urb. Los Naranjos de Marbella, Shopping Centre, Unit 5, 29660 Marbella (Málaga)', rights: 'All rights reserved.', tax: 'Tax ID', home: 'Grupo Serinamar home' }
+  : { since: 'Marbella · Desde 2000', intro: 'Alojamientos, inmobiliaria y cuidado de propiedades. Un equipo local para ayudarte a disfrutar de Marbella.', explore: '¿Qué necesitas?', stays: 'Buscar alojamiento', owners: 'Servicios para propietarios', realestate: 'Comprar o vender una propiedad', about: 'Sobre nosotros', contact: 'Contacto', group: 'Nuestras marcas', serinamar: 'Alojamientos e inmobiliaria', justbanus: 'Gestión y cuidado de viviendas', iberian: 'Servicios para no residentes', naranjos: 'Estancias en Marbella', portal: 'Acceso propietarios', availability: 'Consultar disponibilidad', whatsapp: 'Hablemos por WhatsApp', address: 'Urb. Los Naranjos de Marbella, Centro Comercial, Local 5, 29660 Marbella (Málaga)', rights: 'Todos los derechos reservados.', tax: 'CIF', home: 'Inicio de Grupo Serinamar' };
+const brands = [
+  { name: 'Serinamar', href: '/divisiones/serinamar/', detail: copy.serinamar },
+  { name: 'Just Banús', href: '/divisiones/just-banus/', detail: copy.justbanus },
+  { name: 'Iberian Sun', href: '/divisiones/iberian-sun/', detail: copy.iberian },
+  { name: 'Los Naranjos de Marbella', href: '/divisiones/los-naranjos/', detail: copy.naranjos },
+];
+const whatsappMessage = en ? 'Hello, I would like information about Grupo Serinamar.' : 'Hola, me gustaría información sobre Grupo Serinamar.';
+---
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-company">
+        <a class="footer-brand" href={en ? '/en/' : '/'} aria-label={copy.home}>
+          <img src="/images/logos/serinamar-logo-header.png" width="64" height="32" alt="" loading="lazy" />
+          <span><strong>Grupo Serinamar</strong><small>{copy.since}</small></span>
+        </a>
+        <p class="footer-intro">{copy.intro}</p>
+        <address>
+          <p>{copy.address}</p>
+          <div class="phone-links"><a href="tel:+34952813362">+34 952 81 33 62</a><span aria-hidden="true">·</span><a href="tel:+34678487594">+34 678 48 75 94</a></div>
+          <a class="email-link" href="mailto:info@serinamar.com">info@serinamar.com</a>
+        </address>
+        <a class="whatsapp-link" href={`https://wa.me/34678487594?text=${encodeURIComponent(whatsappMessage)}`} target="_blank" rel="noopener noreferrer">{copy.whatsapp}<span aria-hidden="true">↗</span></a>
+      </div>
+      <nav class="footer-navigation" aria-label={copy.explore}>
+        <h2>{copy.explore}</h2>
+        <ul>
+          <li><a href="/alojamientos/">{copy.stays}</a></li>
+          <li><a href="/propietarios/">{copy.owners}</a></li>
+          <li><a href="/divisiones/serinamar/">{copy.realestate}</a></li>
+          <li><a href="/sobre-nosotros/">{copy.about}</a></li>
+          <li><a href="/contacto/">{copy.contact}</a></li>
+        </ul>
+        <div class="footer-portals">
+          <a href="https://serinamar.guestyowners.com" target="_blank" rel="noopener noreferrer">{copy.portal}<span aria-hidden="true">↗</span></a>
+          <a href="https://serinamar.guestybookings.com" target="_blank" rel="noopener noreferrer">{copy.availability}<span aria-hidden="true">↗</span></a>
+        </div>
+      </nav>
+      <nav class="footer-brands" aria-label={copy.group}>
+        <h2>{copy.group}</h2>
+        <ul>{brands.map(brand => (<li><a href={brand.href}><span>{brand.name}</span><small>{brand.detail}</small></a></li>))}</ul>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p>© {new Date().getFullYear()} Grupo Serinamar. {copy.rights}</p>
+      <p>Solutions Serinamar S.L. · {copy.tax} B-92164478</p>
+    </div>
+  </div>
+</footer>
+<style>
+  .site-footer { background: #132238; color: #e8e7e3; padding: 68px 0 24px; }
+  .footer-inner { max-width: 1328px; padding: 0 40px; margin: 0 auto; }
+  .site-footer a { color: inherit; text-decoration: none; }
+  .site-footer a:hover { color: #dec7a7; }
+  .site-footer a:focus-visible { outline: 2px solid #c5a880; outline-offset: 5px; }
+  .footer-grid { display: grid; grid-template-columns: 1.35fr 1fr 1fr; gap: 72px; padding-bottom: 52px; }
+  .footer-brand { display: inline-flex; align-items: center; gap: 13px; }
+  .footer-brand img { width: 64px; height: auto; filter: brightness(0) invert(1); opacity: .9; }
+  .footer-brand strong { display: block; font-size: 14px; font-weight: 500; letter-spacing: .09em; text-transform: uppercase; }
+  .footer-brand small { display: block; margin-top: 5px; font-size: 10px; color: #c5a880; letter-spacing: .1em; text-transform: uppercase; }
+  .footer-intro { max-width: 350px; margin: 24px 0 22px; font-size: 13px; line-height: 1.85; color: #c1c6cb; }
+  .site-footer address { font-style: normal; font-size: 12px; line-height: 1.8; color: #c1c6cb; }
+  .site-footer address p { max-width: 300px; margin: 0 0 12px; }
+  .phone-links { display: flex; flex-wrap: wrap; column-gap: 9px; row-gap: 2px; }
+  .phone-links a { white-space: nowrap; }
+  .email-link { display: inline-block; margin-top: 6px; }
+  .whatsapp-link { display: inline-flex; align-items: center; gap: 23px; margin-top: 21px; padding-bottom: 6px; border-bottom: 1px solid #8d7a61; font-size: 12px; color: #dec7a7 !important; }
+  .whatsapp-link span { font-size: 16px; }
+  .site-footer h2 { margin: 3px 0 24px; font: inherit; font-size: 11px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: #c5a880; }
+  .site-footer ul { padding: 0; margin: 0; list-style: none; }
+  .footer-navigation ul { display: grid; gap: 15px; font-size: 13px; }
+  .footer-portals { display: grid; gap: 13px; margin-top: 24px; padding-top: 21px; border-top: 1px solid #ffffff1f; font-size: 12px; color: #c1c6cb; }
+  .footer-portals a { display: flex; justify-content: space-between; gap: 12px; }
+  .footer-portals span { color: #c5a880; }
+  .footer-brands ul { display: grid; gap: 21px; }
+  .footer-brands a { display: inline-block; }
+  .footer-brands a > span { display: block; font-size: 14px; }
+  .footer-brands small { display: block; margin-top: 5px; font-size: 11px; line-height: 1.5; color: #aeb6bf; }
+  .footer-bottom { display: flex; justify-content: space-between; gap: 16px; padding-top: 22px; border-top: 1px solid #ffffff1f; color: #a5aeb9; font-size: 10px; line-height: 1.7; }
+  .footer-bottom p { margin: 0; }
+  @media (max-width: 1023px) { .footer-grid { gap: 36px; grid-template-columns: 1.25fr 1fr 1fr; } .footer-inner { padding: 0 28px; } .footer-brand { gap: 9px; } .footer-brand img { width: 46px; } .footer-brand strong { font-size: 11px; } }
+  @media (max-width: 767px) {
+    .site-footer { padding: 43px 0 22px; }
+    .footer-inner { padding: 0 24px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 35px 24px; padding-bottom: 32px; }
+    .footer-company { grid-column: 1 / -1; }
+    .footer-brand img { width: 58px; }
+    .footer-brand strong { font-size: 14px; }
+    .footer-intro { max-width: 400px; margin: 20px 0 16px; }
+    .site-footer h2 { font-size: 10px; letter-spacing: .09em; margin-bottom: 20px; }
+    .footer-navigation ul { font-size: 12px; gap: 13px; line-height: 1.65; }
+    .footer-portals { font-size: 11px; line-height: 1.6; }
+    .footer-brands a > span { font-size: 12px; line-height: 1.5; }
+    .footer-brands small { font-size: 10px; }
+    .footer-brands ul { gap: 19px; }
+    .footer-bottom { flex-direction: column; gap: 7px; font-size: 9px; }
+  }
+</style>

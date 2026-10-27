@@ -1,0 +1,163 @@
+---
+const divisions = [
+  {
+    id: "serinamar",
+    name: "SERINAMAR",
+    subheading: "Hospitality & Real Estate",
+    logo: "/images/logos/serinamar-logo.png",
+    tagline: "Explotación turística y comercialización inmobiliaria",
+    description: "Gestión integral de apartamentos turísticos ofreciendo a propietarios y huéspedes un servicio profesional y personalizado, junto con la comercialización, compraventa y postventa de propiedades en Marbella y Costa del Sol.",
+    badge: "Fundada en 2000 · +25 Años",
+    features: [
+      "Comercialización y compraventa de inmuebles exclusivos",
+      "Gestión y explotación de apartamentos turísticos con Guesty",
+      "Acompañamiento postventa continuo al propietario",
+      "Valoraciones de mercado y asesoramiento de inversión"
+    ],
+    ctaText: "Descubrir Serinamar Real Estate",
+    ctaUrl: "/divisiones/serinamar/",
+    accentColor: "border-[#9C865F]/40",
+    staggerClass: "stagger-1"
+  },
+  {
+    id: "just-banus",
+    name: "JUST BANUS",
+    subheading: "Property Management & Owner Services",
+    logo: "/images/logos/just-banus-logo.png",
+    tagline: "Your Marbella home. Taken care of.",
+    description: "Especializado exclusivamente en el cuidado, gestión y mantenimiento de propiedades privadas en Puerto Banús y Marbella. Todo lo que su vivienda necesita, profesionalmente gestionado para que usted solo disfrute.",
+    badge: "Puerto Banús & Marbella",
+    features: [
+      "Mantenimiento técnico integral y coordinación de averías",
+      "Reformas, albañilería, pintura y decoración",
+      "Housekeeping especializado: inspecciones y lavandería",
+      "Asistencia administrativa, impuestos y licencias de alquiler"
+    ],
+    ctaText: "Ver Servicios Just Banús",
+    ctaUrl: "/divisiones/just-banus/",
+    accentColor: "border-[#C5A880]/40",
+    staggerClass: "stagger-2"
+  },
+  {
+    id: "iberian-sun",
+    name: "IBERIAN SUN",
+    subheading: "International & Non-Resident Property Services",
+    logo: "/images/logos/iberian-sun-logo.png",
+    tagline: "Asesoramiento y gestión a propietarios no residentes",
+    description: "Con presencia en Reino Unido y Marbella, facilitamos la relación entre el propietario extranjero y sus obligaciones en España: liquidación del Modelo 210, gestión documental, asesoría jurídica y soporte continuo en inglés.",
+    badge: "UK & International Desk",
+    features: [
+      "Gestión y presentación del Impuesto de No Residentes (Modelo 210)",
+      "Apoyo administrativo, NIE, cuentas y suministros en España",
+      "Interlocutor de confianza nativo desde Reino Unido",
+      "Asistencia en compraventas y herencias transfronterizas"
+    ],
+    ctaText: "Consultar Iberian Sun Desk",
+    ctaUrl: "/divisiones/iberian-sun/",
+    accentColor: "border-[#D4AF37]/40",
+    staggerClass: "stagger-3"
+  },
+  {
+    id: "los-naranjos",
+    name: "LOS NARANJOS DE MARBELLA",
+    subheading: "Holiday Rentals & Direct Stays",
+    logo: "/images/logos/los-naranjos-logo.png",
+    tagline: "Alquiler vacacional directo sin comisiones",
+    description: "Complejo residencial mediterráneo de referencia en Nueva Andalucía. Apartamentos y villas de lujo con 8 piscinas, jardines subtropicales, transfers privados al aeropuerto y atención personalizada permanente.",
+    badge: "Motor Guesty Integrado",
+    features: [
+      "Reserva directa con mejor tarifa online garantizada",
+      "Apartamentos de 1, 2, 3 dormitorios, áticos y adosadas",
+      "Flota propia de transfers Mercedes al Aeropuerto de Málaga",
+      "Recepción física y atención en Centro Comercial Los Naranjos"
+    ],
+    ctaText: "Explorar Los Naranjos Resort",
+    ctaUrl: "/divisiones/los-naranjos/",
+    accentColor: "border-[#A66236]/40",
+    staggerClass: "stagger-4"
+  }
+];
+---
+
+<section id="divisiones" class="py-20 md:py-28 px-4 sm:px-8 max-w-7xl mx-auto">
+  <div class="text-center max-w-3xl mx-auto mb-16 reveal-on-scroll">
+    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EAE3D9] text-[#132238] text-xs font-semibold tracking-wider uppercase mb-3.5">
+      <span>Ecosistema de Marcas Especializadas</span>
+    </div>
+    <h2 class="text-3xl md:text-5xl font-serif text-[#132238] leading-tight mb-5">
+      Cuatro Divisiones. Un Solo Grupo de Confianza.
+    </h2>
+    <p class="text-[#64748B] text-base md:text-lg leading-relaxed font-light">
+      Cada empresa de Grupo Serinamar responde con el máximo nivel de especialización y trayectoria a una etapa concreta de la propiedad en la Costa del Sol. Haga clic en cada división para conocer su propuesta completa.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+    {divisions.map((div) => (
+      <article class={`reveal-on-scroll ${div.staggerClass} hover-lift interactive-tilt-card bg-white rounded-3xl p-8 lg:p-10 border ${div.accentColor} shadow-sm transition-all duration-300 flex flex-col justify-between group relative overflow-hidden`}>
+        
+        <!-- Acento decorativo superior con transición -->
+        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#132238] via-[#C5A880] to-[#132238] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        
+        <div>
+          <!-- Cabecera de la Tarjeta con Logo Oficial -->
+          <div class="flex items-start justify-between gap-4 mb-6">
+            <div>
+              <span class="inline-block text-[11px] font-bold uppercase tracking-widest text-[#C5A880] bg-[#132238] px-3 py-1 rounded-full mb-3 shadow-xs">
+                {div.badge}
+              </span>
+              <h3 class="text-2xl font-serif font-bold text-[#132238] tracking-wide group-hover:text-[#9C865F] transition-colors">
+                {div.name}
+              </h3>
+              <p class="text-xs uppercase tracking-wider text-[#64748B] font-semibold mt-0.5">
+                {div.subheading}
+              </p>
+            </div>
+
+            <!-- Contenedor del Logo Oficial -->
+            <div class="h-16 w-32 flex items-center justify-end p-2 bg-[#FDFBF7] rounded-xl border border-[#EAE3D9]/60 shrink-0 group-hover:border-[#C5A880]/60 transition-colors">
+              <img 
+                src={div.logo} 
+                alt={`${div.name} Logo Oficial`} 
+                class="max-h-full max-w-full object-contain filter group-hover:scale-108 transition-transform duration-300"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          <!-- Lema y Descripción -->
+          <div class="mb-6">
+            <p class="text-sm font-semibold text-[#132238] italic mb-2">
+              "{div.tagline}"
+            </p>
+            <p class="text-sm text-[#64748B] leading-relaxed font-light">
+              {div.description}
+            </p>
+          </div>
+
+          <!-- Puntos Clave -->
+          <ul class="space-y-2.5 mb-8 border-t border-[#EAE3D9]/70 pt-5">
+            {div.features.map((feat) => (
+              <li class="flex items-start gap-2.5 text-xs md:text-sm text-[#132238]">
+                <svg class="w-4 h-4 text-[#9C865F] shrink-0 mt-0.5 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                <span>{feat}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Botón de Enlace a la Página Independiente -->
+        <div>
+          <a 
+            href={div.ctaUrl}
+            class="inline-flex w-full items-center justify-center gap-2 bg-[#FDFBF7] group-hover:bg-[#132238] text-[#132238] group-hover:text-white font-medium text-sm py-3.5 px-6 rounded-xl border border-[#EAE3D9] group-hover:border-[#132238] transition-all duration-200 group/btn shadow-xs hover:shadow-md"
+          >
+            <span>{div.ctaText}</span>
+            <svg class="w-4 h-4 transform group-hover/btn:translate-x-1.5 transition-transform duration-200 text-[#C5A880]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+        </div>
+
+      </article>
+    ))}
+  </div>
+</section>

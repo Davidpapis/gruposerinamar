@@ -1,0 +1,96 @@
+---
+interface Props {
+  lang?: 'es' | 'en';
+}
+
+const { lang = 'es' } = Astro.props;
+const isEnglish = lang === 'en';
+const bookingUrl = 'https://serinamar.guestybookings.com/properties';
+const copy = isEnglish ? {
+  eyebrow: 'STAY IN MARBELLA',
+  title: 'Find your place in the sun.',
+  description: 'Apartments, townhouses and the Mediterranean setting of Los Naranjos. Discover a stay that suits you.',
+  action: 'View accommodation',
+  availability: 'Check availability',
+  imageNote: 'Illustrative image',
+  note: 'See each available property for its own photos, amenities and current rates.',
+  properties: [
+    { title: 'Apartments', text: 'A place of your own to enjoy Marbella at your own pace.', image: '/images/hero/serinamar-villa-header.jpg', alt: 'Bright dining room with a wooden table and large windows' },
+    { title: 'Townhouses', text: 'Discover the options for your next holiday with family or friends.', image: '/images/properties/adosada-exterior.jpg', alt: 'White townhouse exterior with a patio and greenery' },
+    { title: 'Los Naranjos', text: 'Explore our accommodation in this corner of Nueva Andalucía.', image: '/images/hero/naranjos-fase2.webp', alt: 'Communal swimming pool surrounded by gardens at Los Naranjos' },
+  ],
+} : {
+  eyebrow: 'ALOJARSE EN MARBELLA',
+  title: 'Encuentra tu lugar al sol.',
+  description: 'Apartamentos, casas adosadas y el entorno mediterráneo de Los Naranjos. Descubre la estancia que va contigo.',
+  action: 'Ver alojamientos',
+  availability: 'Consultar disponibilidad',
+  imageNote: 'Imagen ilustrativa',
+  note: 'Consulta las fotos, el equipamiento y las tarifas de cada vivienda disponible antes de reservar.',
+  properties: [
+    { title: 'Apartamentos', text: 'Un espacio propio para disfrutar de Marbella a tu ritmo.', image: '/images/hero/serinamar-villa-header.jpg', alt: 'Comedor luminoso con mesa de madera y grandes ventanales' },
+    { title: 'Casas adosadas', text: 'Descubre las opciones para tus próximas vacaciones en familia o con amigos.', image: '/images/properties/adosada-exterior.jpg', alt: 'Fachada blanca de una casa adosada con patio y vegetación' },
+    { title: 'Los Naranjos', text: 'Explora nuestros alojamientos en este rincón de Nueva Andalucía.', image: '/images/hero/naranjos-fase2.webp', alt: 'Piscina comunitaria rodeada de jardines en Los Naranjos' },
+  ],
+};
+---
+
+<section id="alojamientos-destacados" class="stays" aria-labelledby="stays-heading">
+  <div class="stays-inner">
+    <div class="stays-heading">
+      <div class="stays-intro">
+        <p class="eyebrow">{copy.eyebrow}</p>
+        <h2 id="stays-heading">{copy.title}</h2>
+        <p class="stays-description">{copy.description}</p>
+      </div>
+      <a class="collection-link" href={bookingUrl} target="_blank" rel="noopener noreferrer">
+        {copy.action}<span aria-hidden="true">↗</span>
+      </a>
+    </div>
+    <div class="stays-grid">
+      {copy.properties.map((property) => (
+        <article class="stay-card">
+          <figure>
+            <img src={property.image} alt={property.alt} width="800" height="600" loading="lazy" decoding="async" />
+            <figcaption>{copy.imageNote}</figcaption>
+          </figure>
+          <div class="stay-content">
+            <h3>{property.title}</h3>
+            <p>{property.text}</p>
+            <a href={bookingUrl} target="_blank" rel="noopener noreferrer" aria-label={`${copy.availability}: ${property.title}`}>
+              {copy.availability}<span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+    <p class="stays-note">{copy.note}</p>
+  </div>
+</section>
+
+<style>
+  .stays { padding: 80px 48px; background: #FDFBF7; color: #132238; }
+  .stays-inner { width: 100%; max-width: 1240px; margin: auto; }
+  .stays-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; margin-bottom: 2.5rem; }
+  .stays-intro { max-width: 680px; }
+  .eyebrow { margin: 0 0 1rem; color: #806847; font-size: .69rem; font-weight: 600; letter-spacing: .18em; }
+  h2 { margin: 0 0 1rem; font-size: clamp(2rem, 3.4vw, 3.25rem); font-weight: 400; line-height: 1.15; letter-spacing: -.025em; }
+  .stays-description { margin: 0; max-width: 600px; color: #5C6570; font-size: .96rem; line-height: 1.8; }
+  .collection-link { display: inline-flex; align-items: center; gap: 1.5rem; flex-shrink: 0; padding: .85rem 0; border-bottom: 1px solid #C5A880; font-size: .83rem; font-weight: 600; text-decoration: none; }
+  .collection-link span { font-size: 1.25rem; }
+  .stays-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+  .stay-card { display: flex; flex-direction: column; background: #fff; border: 1px solid #EAE3D9; border-radius: .35rem; overflow: hidden; }
+  figure { position: relative; margin: 0; overflow: hidden; }
+  figure img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; transition: transform 450ms ease; }
+  figcaption { position: absolute; bottom: .7rem; left: .7rem; padding: .3rem .55rem; background: rgba(255, 255, 255, .94); color: #46505B; font-size: .62rem; border-radius: .15rem; }
+  .stay-content { display: flex; flex-direction: column; flex: 1; padding: 1.6rem; }
+  h3 { margin: 0 0 .6rem; font-size: 1.65rem; font-weight: 400; line-height: 1.3; }
+  .stay-content p { margin: 0 0 1.75rem; color: #5C6570; font-size: .85rem; line-height: 1.75; }
+  .stay-content a { display: flex; align-items: center; justify-content: space-between; gap: .65rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid #EAE3D9; font-size: .76rem; font-weight: 600; text-decoration: none; }
+  .stay-content a span { font-size: 1.15rem; }
+  .stays-note { margin: 1.25rem 0 0; color: #68717B; font-size: .7rem; line-height: 1.7; }
+  a:focus-visible { outline: 2px solid #806847; outline-offset: 5px; }
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) { .stay-card:hover img { transform: scale(1.035); } }
+  @media (max-width: 900px) { .stays-heading { align-items: flex-start; flex-direction: column; gap: 1rem; } .stay-content { padding: 1.25rem; } }
+  @media (max-width: 640px) { .stays { padding: 48px 20px; } .stays-heading { margin-bottom: 1.75rem; } .stays-grid { grid-template-columns: 1fr; gap: 1.5rem; } .stay-content { padding: 1.4rem; } .stay-content p { margin-bottom: 1.25rem; } }
+</style>

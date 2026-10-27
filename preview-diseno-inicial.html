@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grupo Serinamar | Prototipo de Diseño Inicial (Marbella Luxury)</title>
+  <meta name="description" content="Diseño inicial corporativo para Grupo Serinamar. Centralización de Serinamar Hospitality, Just Banús, Iberian Sun y Los Naranjos de Marbella.">
+
+  <!-- Tipografía Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN para renderizado inmediato en navegador -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue: '#132238',
+              navy: '#0B1524',
+              gold: '#C5A880',
+              goldHover: '#B8986C',
+              sand: '#EAE3D9',
+              linen: '#F9F8F6',
+              cream: '#F4F0E8',
+              dark: '#1E293B',
+              muted: '#64748B',
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['Montserrat', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Montserrat', system-ui, sans-serif;
+      background-color: #F9F8F6;
+      color: #132238;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, .font-serif {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+    .interactive-card {
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .interactive-card:hover {
+      transform: translateY(-4px);
+    }
+    button, a {
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    button:active, a:active {
+      transform: scale(0.98);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-[#C5A880] selection:text-white">
+
+  <!-- 1. TOP BAR INSTITUCIONAL -->
+  <div class="bg-[#0B1524] text-[#EAE3D9] text-xs py-2 px-4 sm:px-8 border-b border-white/10">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center gap-1.5 text-[#C5A880] font-medium tracking-wide">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#C5A880] animate-pulse"></span>
+          MARBELLA & PUERTO BANÚS
+        </span>
+        <span class="hidden md:inline text-white/40">|</span>
+        <span class="hidden md:inline text-white/70">Más de 25 años de experiencia y gestión patrimonial (Est. 2000)</span>
+      </div>
+      <div class="flex items-center gap-4 text-white/80">
+        <a href="tel:952813362" class="hover:text-[#C5A880] flex items-center gap-1 transition-colors">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          952 81 33 62
+        </a>
+        <span class="text-white/30">•</span>
+        <a href="https://serinamar.guestyowners.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#C5A880] flex items-center gap-1 text-[11px] uppercase tracking-wider text-[#C5A880] font-medium transition-colors">
+          Owner's Portal
+          <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. HEADER CON LOGO OFICIAL Y GLASSMORPHISM -->
+  <header class="sticky top-0 z-40 w-full backdrop-blur-md bg-[#F9F8F6]/95 border-b border-[#EAE3D9]/70 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between">
+      
+      <!-- Logo Oficial Grupo Serinamar -->
+      <a href="#" class="flex items-center gap-3 group">
+        <img 
+          src="./recursos/serinamar-logo-no-bg.png" 
+          alt="Grupo Serinamar Logo Oficial" 
+          class="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+        />
+        <div class="border-l border-[#132238]/20 pl-3 py-0.5 hidden sm:block">
+          <span class="block text-[11px] font-semibold tracking-[0.2em] uppercase text-[#132238]">GRUPO SERINAMAR</span>
+          <span class="block text-[9.5px] tracking-wider text-[#C5A880] font-medium uppercase">Marbella · Est. 2000</span>
+        </div>
+      </a>
+
+      <!-- Menú Desktop -->
+      <nav class="hidden lg:flex items-center gap-7 text-[13.5px] font-medium tracking-wide text-[#132238]">
+        <a href="#buscador" class="hover:text-[#C5A880] transition-colors py-1">Alojamientos</a>
+        <a href="#divisiones" class="hover:text-[#C5A880] transition-colors py-1">Divisiones</a>
+        <a href="#ciclo-vida" class="hover:text-[#C5A880] transition-colors py-1">Ciclo 360°</a>
+        <a href="#propietarios" class="hover:text-[#C5A880] transition-colors py-1">Propietarios & Care</a>
+        <a href="#sobre-nosotros" class="hover:text-[#C5A880] transition-colors py-1">Sobre Nosotros</a>
+        <a href="#contacto" class="hover:text-[#C5A880] transition-colors py-1">Contacto</a>
+      </nav>
+
+      <!-- Selector de Idioma y CTA Principal -->
+      <div class="flex items-center gap-3.5">
+        <div class="flex items-center bg-[#EFE9DF] rounded-full p-0.5 text-xs font-semibold text-[#132238]">
+          <span class="px-2.5 py-1 rounded-full bg-[#132238] text-white shadow-xs">ES</span>
+          <a href="#" class="px-2.5 py-1 rounded-full text-[#132238]/70 hover:text-[#132238]">EN</a>
+        </div>
+
+        <a 
+          href="#buscador" 
+          class="inline-flex items-center gap-2 bg-[#132238] hover:bg-[#1C3252] text-white text-xs md:text-[13px] font-medium uppercase tracking-wider px-4 md:px-5 py-2.5 rounded-full shadow-md hover:shadow-lg transition-all transform active:scale-95 border border-[#C5A880]/30"
+        >
+          <span class="w-2 h-2 rounded-full bg-[#C5A880]"></span>
+          <span>Reservar Ahora</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- 3. HERO SECTION CINEMATOGRÁFICO MARBELLA -->
+  <section class="relative pt-12 pb-24 md:pt-20 md:pb-36 px-4 sm:px-8 bg-gradient-to-b from-[#132238] via-[#1B2F4C] to-[#F9F8F6] text-white overflow-hidden">
+    
+    <!-- Imagen de fondo con opacidad elegante -->
+    <div class="absolute inset-0 z-0 opacity-25 mix-blend-luminosity scale-105 filter blur-[1px]">
+      <img 
+        src="https://usercontent.one/wp/naranjosdemarbella.com/wp-content/uploads/2024/04/puerto-banuspanorama-scaled-1.webp" 
+        alt="Marbella Puerto Banús Panorama" 
+        class="w-full h-full object-cover"
+      />
+    </div>
+    
+    <div class="max-w-7xl mx-auto relative z-10">
+      
+      <div class="text-center max-w-4xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-[#C5A880]/40 text-[#C5A880] text-xs font-semibold uppercase tracking-widest mb-6">
+          <span class="w-2 h-2 rounded-full bg-[#C5A880]"></span>
+          <span>Holding Corporativo · Marbella & Puerto Banús</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-white leading-[1.15] mb-6 tracking-tight">
+          Un Solo Grupo. Todas las Necesidades de su Propiedad en Marbella.
+        </h1>
+
+        <p class="text-base sm:text-lg md:text-xl text-[#EAE3D9] font-light leading-relaxed max-w-3xl mx-auto mb-8">
+          Desde el año 2000, <strong>Grupo Serinamar</strong> reúne empresas líderes para acompañarle en todo el ciclo del inmueble: compraventa, alquiler vacacional con motor Guesty, cuidado diario con <strong>Just Banús</strong> y asesoría tributaria a no residentes con <strong>Iberian Sun</strong>.
+        </p>
+
+        <!-- Métricas Comprobadas -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto pt-4 border-t border-white/15 text-center">
+          <div>
+            <span class="block text-2xl md:text-3xl font-serif font-bold text-[#C5A880]">+25 Años</span>
+            <span class="text-xs uppercase tracking-wider text-[#EAE3D9]/70 font-medium">Trayectoria (2000)</span>
+          </div>
+          <div>
+            <span class="block text-2xl md:text-3xl font-serif font-bold text-[#C5A880]">+150</span>
+            <span class="text-xs uppercase tracking-wider text-[#EAE3D9]/70 font-medium">Propiedades Activas</span>
+          </div>
+          <div>
+            <span class="block text-2xl md:text-3xl font-serif font-bold text-[#C5A880]">4.8 ★</span>
+            <span class="text-xs uppercase tracking-wider text-[#EAE3D9]/70 font-medium">Satisfacción Huéspedes</span>
+          </div>
+          <div>
+            <span class="block text-2xl md:text-3xl font-serif font-bold text-[#C5A880]">360°</span>
+            <span class="text-xs uppercase tracking-wider text-[#EAE3D9]/70 font-medium">Gestión Patrimonial</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. BUSCADOR DUAL FLOTANTE (GUESTY VACACIONAL + INMOWEB VENTA) -->
+      <div id="buscador" class="relative z-20 -mb-28 md:-mb-36 w-full max-w-5xl mx-auto rounded-2xl bg-white shadow-2xl border border-[#EAE3D9] overflow-hidden text-[#132238]">
+        
+        <!-- Pestañas -->
+        <div class="flex border-b border-[#EAE3D9] bg-[#F4F0E8]">
+          <button 
+            id="btn-tab-vacational" 
+            onclick="switchSearchTab('vacational')" 
+            class="flex-1 py-4 px-6 text-center font-medium text-sm md:text-base flex items-center justify-center gap-2 border-b-2 border-[#132238] bg-white text-[#132238]"
+          >
+            <svg class="w-5 h-5 text-[#C5A880]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span>Alquiler Vacacional Directo <strong class="text-xs font-semibold px-2 py-0.5 rounded-full bg-[#EAE3D9] text-[#132238] hidden sm:inline">Guesty PMS</strong></span>
+          </button>
+          
+          <button 
+            id="btn-tab-realestate" 
+            onclick="switchSearchTab('realestate')" 
+            class="flex-1 py-4 px-6 text-center font-medium text-sm md:text-base flex items-center justify-center gap-2 text-[#64748B] hover:text-[#132238]"
+          >
+            <svg class="w-5 h-5 text-[#C5A880]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+            <span>Compraventa e Inversión <strong class="text-xs font-semibold px-2 py-0.5 rounded-full bg-[#EAE3D9] text-[#132238] hidden sm:inline">Serinamar MLS</strong></span>
+          </button>
+        </div>
+
+        <!-- Formulario Vacacional (Guesty) -->
+        <form id="view-vacational" onsubmit="submitGuesty(event)" class="p-5 md:p-7 block">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1.5">Llegada</label>
+              <input type="date" id="inp-checkin" class="w-full bg-[#F9F8F6] border border-[#EAE3D9] rounded-xl px-3.5 py-3 text-sm text-[#132238] font-medium focus:ring-2 focus:ring-[#C5A880] outline-none" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1.5">Salida</label>
+              <input type="date" id="inp-checkout" class="w-full bg-[#F9F8F6] border border-[#EAE3D9] rounded-xl px-3.5 py-3 text-sm text-[#132238] font-medium focus:ring-2 focus:ring-[#C5A880] outline-none" />
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1.5">Huéspedes</label>
+              <select id="inp-guests" class="w-full bg-[#F9F8F6] border border-[#EAE3D9] rounded-xl px-3.5 py-3 text-sm text-[#132238] font-medium focus:ring-2 focus:ring-[#C5A880] outline-none">
+                <option value="1">1 Huésped</option>
+                <option value="2" selected>2 Huéspedes</option>
+                <option value="3">3 Huéspedes</option>
+                <option value="4">4 Huéspedes</option>
+                <option value="5">5+ Huéspedes</option>
+              </select>
+            </div>
+            <div>
+              <button type="submit" class="w-full bg-[#132238] hover:bg-[#1E3557] text-white font-medium text-sm md:text-[15px] py-3.5 px-6 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 border border-[#C5A880]/30">
+                <svg class="w-4 h-4 text-[#C5A880]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                <span>Buscar Disponibilidad</span>
+              </button>
+            </div>
+          </div>
+          <div class="mt-4 pt-3.5 border-t border-[#EAE3D9]/60 flex flex-wrap items-center justify-between text-xs text-[#64748B] gap-2">
+            <span>✓ Mejor tarifa directa garantizada</span>
+            <span>✓ Recepción física en Los Naranjos</span>
+            <span>✓ Transfers puerta a puerta al Aeropuerto de Málaga</span>
+          </div>
+        </form>
+
+        <!-- Formulario Inmobiliario (Inmoweb) -->
+        <form id="view-realestate" onsubmit="submitInmoweb(event)" class="p-5 md:p-7 hidden">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1.5">Operación</label>
+              <select id="inp-operation" class="w-full bg-[#F9F8F6] border border-[#EAE3D9] rounded-xl px-3.5 py-3 text-sm text-[#132238] font-medium focus:ring-2 focus:ring-[#C5A880] outline-none">
+                <option value="1" selected>Comprar (Venta)</option>
+                <option value="2">Alquiler Larga Temporada</option>
+                <option value="sell">Quiero Vender mi Vivienda</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1.5">Zona de Marbella</label>
+              <select class="w-full bg-[#F9F8F6] border border-[#EAE3D9] rounded-xl px-3.5 py-3 text-sm text-[#132238] font-medium focus:ring-2 focus:ring-[#C5A880] outline-none">
+                <option selected>Los Naranjos de Marbella</option>
+                <option>Nueva Andalucía / Golf Valley</option>
+                <option>Puerto Banús</option>
+                <option>Milla de Oro</option>
+                <option>Estepona / Cancelada</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1.5">Tipología</label>
+              <select class="w-full bg-[#F9F8F6] border border-[#EAE3D9] rounded-xl px-3.5 py-3 text-sm text-[#132238] font-medium focus:ring-2 focus:ring-[#C5A880] outline-none">
+                <option selected>Todas las tipologías</option>
+                <option>Apartamentos y Plantas Bajas</option>
+                <option>Áticos Dúplex</option>
+                <option>Casas Adosadas</option>
+                <option>Villas Exclusivas</option>
+              </select>
+            </div>
+            <div>
+              <button type="submit" class="w-full bg-[#132238] hover:bg-[#1E3557] text-white font-medium text-sm md:text-[15px] py-3.5 px-6 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 border border-[#C5A880]/30">
+                <svg class="w-4 h-4 text-[#C5A880]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                <span>Ver Catálogo Inmuebles</span>
+              </button>
+            </div>
+          </div>
+          <div class="mt-4 pt-3.5 border-t border-[#EAE3D9]/60 flex flex-wrap items-center justify-between text-xs text-[#64748B] gap-2">
+            <span>Valoraciones oficiales de inmuebles por Serinamar Properties</span>
+            <a href="tel:678487594" class="text-[#C5A880] font-semibold hover:underline">Asesor personal: 678 48 75 94</a>
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ESPACIO DE SEPARACIÓN -->
+  <div class="h-16 md:h-24"></div>
+
+  <!-- 5. SECCIÓN EDITORIAL: 25 AÑOS DE EXPERIENCIA -->
+  <section id="sobre-nosotros" class="py-20 md:py-28 px-4 sm:px-8 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <div class="lg:col-span-5 relative">
+        <div class="rounded-3xl overflow-hidden border border-[#EAE3D9] shadow-2xl relative">
+          <img 
+            src="https://usercontent.one/wp/naranjosdemarbella.com/wp-content/uploads/2024/04/FASE-2.webp" 
+            alt="Los Naranjos de Marbella Arquitectura" 
+            class="w-full h-[460px] object-cover"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#132238]/85 via-transparent to-transparent flex items-end p-8">
+            <div class="text-white">
+              <span class="block text-xs uppercase tracking-widest text-[#C5A880] font-bold">Sede Central</span>
+              <p class="text-base font-serif font-semibold">Urb. Los Naranjos de Marbella, Centro Comercial, Local 5</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="absolute -bottom-6 -right-4 md:-right-6 bg-[#132238] text-white p-5 rounded-2xl shadow-xl border border-[#C5A880]/50 hidden sm:block">
+          <span class="block text-3xl font-serif font-bold text-[#C5A880]">2000 - 2026</span>
+          <span class="text-xs uppercase tracking-wider text-white/80 font-medium">Más de 25 años en Marbella</span>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 lg:pl-6">
+        <span class="inline-block text-xs uppercase tracking-widest text-[#132238] font-bold bg-[#EAE3D9] px-3.5 py-1.5 rounded-full mb-4">
+          Experiencia, Cercanía y Confianza
+        </span>
+        <h2 class="text-3xl md:text-5xl font-serif text-[#132238] leading-tight mb-6">
+          "Conocer personalmente a cada cliente y ofrecer soluciones prácticas, profesionales y a largo plazo."
+        </h2>
+        
+        <div class="space-y-4 text-[#64748B] text-base md:text-lg leading-relaxed">
+          <p>
+            Después de más de 25 años trabajando en el sector de la Costa del Sol, nuestra filosofía fundacional sigue siendo inalterable: comprender al milímetro las necesidades de cada dueño o huésped para aportar tranquilidad, profesionalidad y solvencia.
+          </p>
+          <p>
+            Lo que verdaderamente nos diferencia es la <strong>capacidad de acompañar al propietario durante todo el ciclo de vida de su inmueble</strong>: desde la compraventa y adecuación, hasta la gestión turística de alto rendimiento con Guesty, el mantenimiento técnico diario con Just Banús y la fiscalidad internacional para no residentes con Iberian Sun.
+          </p>
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-[#EAE3D9] flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-[#132238] text-[#C5A880] flex items-center justify-center font-bold text-sm">
+              GS
+            </div>
+            <div>
+              <span class="block text-sm font-bold text-[#132238]">Dirección Grupo Serinamar</span>
+              <span class="text-xs text-[#64748B]">Marbella · Puerto Banús · Nueva Andalucía</span>
+            </div>
+          </div>
+
+          <a href="#contacto" class="inline-flex items-center gap-2 text-sm font-semibold text-[#132238] hover:text-[#C5A880] transition-colors">
+            <span>Contactar con la dirección</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 6. CUATRO DIVISIONES CON LOGOS OFICIALES -->
+  <section id="divisiones" class="py-20 md:py-28 px-4 sm:px-8 max-w-7xl mx-auto border-t border-[#EAE3D9]">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EAE3D9] text-[#132238] text-xs font-semibold tracking-wider uppercase mb-3.5">
+        <span>Ecosistema de Marcas Especializadas</span>
+      </div>
+      <h2 class="text-3xl md:text-5xl font-serif text-[#132238] leading-tight mb-5">
+        Cuatro Divisiones. Un Solo Grupo de Confianza.
+      </h2>
+      <p class="text-[#64748B] text-base md:text-lg">
+        Cada división de Grupo Serinamar responde con la máxima especialización a una etapa concreta de la propiedad.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+      
+      <!-- División 1: Serinamar -->
+      <article class="bg-white rounded-3xl p-8 lg:p-10 border border-[#EAE3D9] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:border-[#C5A880]/60 relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#132238] via-[#C5A880] to-[#132238] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-6">
+            <div>
+              <span class="inline-block text-[11px] font-semibold uppercase tracking-widest text-[#C5A880] bg-[#132238] px-3 py-1 rounded-full mb-3">
+                Est. 2000 · +25 Años
+              </span>
+              <h3 class="text-2xl font-serif font-bold text-[#132238]">SERINAMAR</h3>
+              <p class="text-xs uppercase tracking-wider text-[#64748B] font-semibold mt-0.5">Hospitality & Real Estate</p>
+            </div>
+            <div class="h-14 w-28 flex items-center justify-end p-1">
+              <img src="./recursos/serinamar-logo-header.png" alt="Serinamar Logo" class="max-h-full max-w-full object-contain" />
+            </div>
+          </div>
+
+          <p class="text-sm font-semibold text-[#132238] italic mb-2">"Explotación turística y comercialización inmobiliaria"</p>
+          <p class="text-sm text-[#64748B] leading-relaxed mb-6">
+            Gestión profesional de apartamentos turísticos y comercialización de propiedades de compraventa y larga estancia en Marbella y Costa del Sol, ofreciendo continuidad y asesoramiento integral.
+          </p>
+
+          <ul class="space-y-2.5 mb-8 border-t border-[#EAE3D9]/70 pt-5 text-xs md:text-sm text-[#132238]">
+            <li class="flex items-center gap-2">✓ Comercialización y compraventa de inmuebles exclusivos</li>
+            <li class="flex items-center gap-2">✓ Explotación de apartamentos turísticos con alta rentabilidad</li>
+            <li class="flex items-center gap-2">✓ Acompañamiento postventa continuo al propietario</li>
+            <li class="flex items-center gap-2">✓ Valoraciones oficiales de mercado</li>
+          </ul>
+        </div>
+
+        <a href="https://www.serinamar.com" target="_blank" rel="noopener noreferrer" class="inline-flex w-full items-center justify-center gap-2 bg-[#F9F8F6] hover:bg-[#132238] text-[#132238] hover:text-white font-medium text-sm py-3.5 px-6 rounded-xl border border-[#EAE3D9] hover:border-[#132238] transition-all">
+          <span>Ver Inmuebles en Serinamar.com</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+        </a>
+      </article>
+
+      <!-- División 2: Just Banús (LOGO OFICIAL INCORPORADO) -->
+      <article class="bg-white rounded-3xl p-8 lg:p-10 border border-[#EAE3D9] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:border-[#C5A880]/60 relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#132238] via-[#C5A880] to-[#132238] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-6">
+            <div>
+              <span class="inline-block text-[11px] font-semibold uppercase tracking-widest text-[#C5A880] bg-[#132238] px-3 py-1 rounded-full mb-3">
+                Puerto Banús & Marbella
+              </span>
+              <h3 class="text-2xl font-serif font-bold text-[#132238]">JUST BANUS</h3>
+              <p class="text-xs uppercase tracking-wider text-[#64748B] font-semibold mt-0.5">Property Management & Owner Services</p>
+            </div>
+            <div class="h-14 w-28 flex items-center justify-end p-1">
+              <img src="./recursos/JB LOGO NO BG.png" alt="Just Banús Logo Oficial" class="max-h-full max-w-full object-contain" />
+            </div>
+          </div>
+
+          <p class="text-sm font-semibold text-[#132238] italic mb-2">"Your Marbella home. Taken care of."</p>
+          <p class="text-sm text-[#64748B] leading-relaxed mb-6">
+            Especializado exclusivamente en el cuidado, gestión y mantenimiento de propiedades privadas. Todo lo que su vivienda necesita, profesionalmente gestionado para que usted solo disfrute.
+          </p>
+
+          <ul class="space-y-2.5 mb-8 border-t border-[#EAE3D9]/70 pt-5 text-xs md:text-sm text-[#132238]">
+            <li class="flex items-center gap-2">✓ Mantenimiento técnico, averías 24/7 y fontanería/electricidad</li>
+            <li class="flex items-center gap-2">✓ Reformas integrales, albañilería, decoración y Home Staging</li>
+            <li class="flex items-center gap-2">✓ Housekeeping: inspecciones periódicas y lavandería</li>
+            <li class="flex items-center gap-2">✓ Trasteros seguros y gestión de licencias turísticas</li>
+          </ul>
+        </div>
+
+        <a href="#propietarios" class="inline-flex w-full items-center justify-center gap-2 bg-[#F9F8F6] hover:bg-[#132238] text-[#132238] hover:text-white font-medium text-sm py-3.5 px-6 rounded-xl border border-[#EAE3D9] hover:border-[#132238] transition-all">
+          <span>Servicios para Propietarios Just Banús</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </article>
+
+      <!-- División 3: Iberian Sun -->
+      <article class="bg-white rounded-3xl p-8 lg:p-10 border border-[#EAE3D9] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:border-[#C5A880]/60 relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#132238] via-[#C5A880] to-[#132238] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-6">
+            <div>
+              <span class="inline-block text-[11px] font-semibold uppercase tracking-widest text-[#C5A880] bg-[#132238] px-3 py-1 rounded-full mb-3">
+                UK & International Desk
+              </span>
+              <h3 class="text-2xl font-serif font-bold text-[#132238]">IBERIAN SUN</h3>
+              <p class="text-xs uppercase tracking-wider text-[#64748B] font-semibold mt-0.5">International Property Services</p>
+            </div>
+            <div class="h-10 px-3 bg-[#EAE3D9] rounded-lg flex items-center justify-center text-xs font-bold text-[#132238]">
+              UK DESK
+            </div>
+          </div>
+
+          <p class="text-sm font-semibold text-[#132238] italic mb-2">"Asesoramiento y gestión tributaria para no residentes"</p>
+          <p class="text-sm text-[#64748B] leading-relaxed mb-6">
+            Con presencia en Reino Unido y Marbella, facilitamos la relación entre el propietario extranjero y sus obligaciones en España: Modelo 210, gestión documental, fiscalidad y representación de confianza.
+          </p>
+
+          <ul class="space-y-2.5 mb-8 border-t border-[#EAE3D9]/70 pt-5 text-xs md:text-sm text-[#132238]">
+            <li class="flex items-center gap-2">✓ Liquidación del Impuesto de No Residentes (Modelo 210)</li>
+            <li class="flex items-center gap-2">✓ Asistencia administrativa, legal y bancaria en España</li>
+            <li class="flex items-center gap-2">✓ Interlocutor nativo de confianza desde el Reino Unido</li>
+            <li class="flex items-center gap-2">✓ Asesoría en herencias y transmisiones de inmuebles</li>
+          </ul>
+        </div>
+
+        <a href="#contacto" class="inline-flex w-full items-center justify-center gap-2 bg-[#F9F8F6] hover:bg-[#132238] text-[#132238] hover:text-white font-medium text-sm py-3.5 px-6 rounded-xl border border-[#EAE3D9] hover:border-[#132238] transition-all">
+          <span>Solicitar Asesoría No Residentes</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </article>
+
+      <!-- División 4: Los Naranjos de Marbella -->
+      <article class="bg-white rounded-3xl p-8 lg:p-10 border border-[#EAE3D9] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:border-[#C5A880]/60 relative overflow-hidden">
+        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#132238] via-[#C5A880] to-[#132238] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        <div>
+          <div class="flex items-start justify-between gap-4 mb-6">
+            <div>
+              <span class="inline-block text-[11px] font-semibold uppercase tracking-widest text-[#C5A880] bg-[#132238] px-3 py-1 rounded-full mb-3">
+                Motor Guesty Directo
+              </span>
+              <h3 class="text-2xl font-serif font-bold text-[#132238]">LOS NARANJOS</h3>
+              <p class="text-xs uppercase tracking-wider text-[#64748B] font-semibold mt-0.5">Vacation Rentals & Direct Stays</p>
+            </div>
+            <div class="h-14 w-28 flex items-center justify-end p-1">
+              <img src="./recursos/naranjos-logo-no-bg.png" alt="Naranjos de Marbella Logo" class="max-h-full max-w-full object-contain" />
+            </div>
+          </div>
+
+          <p class="text-sm font-semibold text-[#132238] italic mb-2">"Alquiler vacacional directo sin comisiones"</p>
+          <p class="text-sm text-[#64748B] leading-relaxed mb-6">
+            Complejo residencial emblemático en Nueva Andalucía con apartamentos y adosadas premium, recepción presencial, piscinas comunitarias, jardines y transfers al aeropuerto de Málaga.
+          </p>
+
+          <ul class="space-y-2.5 mb-8 border-t border-[#EAE3D9]/70 pt-5 text-xs md:text-sm text-[#132238]">
+            <li class="flex items-center gap-2">✓ Reserva directa sin comisiones de intermediarios (OTAs)</li>
+            <li class="flex items-center gap-2">✓ Apartamentos de 1, 2, 3 dormitorios, áticos y villas</li>
+            <li class="flex items-center gap-2">✓ Transfers puerta a puerta Aeropuerto de Málaga</li>
+            <li class="flex items-center gap-2">✓ Recepción presencial en Centro Comercial Los Naranjos</li>
+          </ul>
+        </div>
+
+        <a href="#buscador" class="inline-flex w-full items-center justify-center gap-2 bg-[#F9F8F6] hover:bg-[#132238] text-[#132238] hover:text-white font-medium text-sm py-3.5 px-6 rounded-xl border border-[#EAE3D9] hover:border-[#132238] transition-all">
+          <span>Reservar en Motor Guesty</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- 7. CICLO 360° DE LA PROPIEDAD EN MARBELLA -->
+  <section id="ciclo-vida" class="py-20 md:py-28 bg-[#132238] text-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="inline-block text-xs uppercase tracking-widest text-[#C5A880] font-semibold bg-white/5 border border-[#C5A880]/30 px-4 py-1.5 rounded-full mb-4">
+          Acompañamiento 360°
+        </span>
+        <h2 class="text-3xl md:text-5xl font-serif leading-tight mb-5">
+          El Ciclo Completo de su Propiedad en Marbella
+        </h2>
+        <p class="text-[#EAE3D9]/80 text-base md:text-lg">
+          Nuestro valor diferencial es acompañar al propietario desde la adquisición del inmueble hasta su puesta en valor, rentabilidad y cuidado diario.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-7 flex flex-col justify-between hover:bg-white/10 hover:border-[#C5A880]/50 transition-all">
+          <div>
+            <span class="text-4xl font-serif font-bold text-[#C5A880] block mb-4">01</span>
+            <span class="block text-xs uppercase tracking-wider text-[#C5A880] font-semibold mb-1">Serinamar Real Estate</span>
+            <h3 class="text-xl font-serif font-bold mb-3 text-white">Adquisición e Inversión</h3>
+            <p class="text-xs md:text-sm text-[#EAE3D9]/75 leading-relaxed">
+              Detección de oportunidades inmobiliarias en Marbella, Milla de Oro y Nueva Andalucía. Acompañamiento legal, valoración y compraventa con más de 25 años de experiencia.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 text-xs text-[#C5A880] font-medium">Fase 1 · Compraventa</div>
+        </div>
+
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-7 flex flex-col justify-between hover:bg-white/10 hover:border-[#C5A880]/50 transition-all">
+          <div>
+            <span class="text-4xl font-serif font-bold text-[#C5A880] block mb-4">02</span>
+            <span class="block text-xs uppercase tracking-wider text-[#C5A880] font-semibold mb-1">Just Banús · Building & Reforms</span>
+            <h3 class="text-xl font-serif font-bold mb-3 text-white">Puesta a Punto y Reforma</h3>
+            <p class="text-xs md:text-sm text-[#EAE3D9]/75 leading-relaxed">
+              Modernización, reformas de fontanería/electricidad, albañilería, decoración y Home Staging para multiplicar el valor de mercado de su vivienda y maximizar su atractivo.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 text-xs text-[#C5A880] font-medium">Fase 2 · Puesta a Punto</div>
+        </div>
+
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-7 flex flex-col justify-between hover:bg-white/10 hover:border-[#C5A880]/50 transition-all">
+          <div>
+            <span class="text-4xl font-serif font-bold text-[#C5A880] block mb-4">03</span>
+            <span class="block text-xs uppercase tracking-wider text-[#C5A880] font-semibold mb-1">Serinamar Hospitality (Guesty)</span>
+            <h3 class="text-xl font-serif font-bold mb-3 text-white">Explotación y Rentabilidad</h3>
+            <p class="text-xs md:text-sm text-[#EAE3D9]/75 leading-relaxed">
+              Gestión integral de alquiler vacacional: publicación en canales internacionales, fijación dinámica de precios, reservas directas, recepción de huéspedes y limpieza profesional.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 text-xs text-[#C5A880] font-medium">Fase 3 · Alquiler Turístico</div>
+        </div>
+
+        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-7 flex flex-col justify-between hover:bg-white/10 hover:border-[#C5A880]/50 transition-all">
+          <div>
+            <span class="text-4xl font-serif font-bold text-[#C5A880] block mb-4">04</span>
+            <span class="block text-xs uppercase tracking-wider text-[#C5A880] font-semibold mb-1">Just Banús & Iberian Sun</span>
+            <h3 class="text-xl font-serif font-bold mb-3 text-white">Cuidado y Fiscalidad</h3>
+            <p class="text-xs md:text-sm text-[#EAE3D9]/75 leading-relaxed">
+              Inspecciones periódicas de viviendas cerradas, resolución de incidencias 24/7, custodia de llaves, trasteros seguros y tramitación tributaria para no residentes (Modelo 210).
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 text-xs text-[#C5A880] font-medium">Fase 4 · Cuidado Patrimonial</div>
+        </div>
+
+      </div>
+
+      <!-- CTA para Propietarios -->
+      <div class="mt-14 p-8 rounded-3xl bg-gradient-to-r from-white/10 via-white/5 to-white/10 border border-[#C5A880]/30 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+        <div>
+          <h4 class="text-xl font-serif font-bold text-white mb-1">
+            ¿Tiene una vivienda en Marbella y desea despreocuparse por completo?
+          </h4>
+          <p class="text-sm text-[#EAE3D9]/80">
+            Solicite una auditoría gratuita de su propiedad y conozca su potencial de ingresos y ahorro en mantenimiento.
+          </p>
+        </div>
+        <a 
+          href="#contacto" 
+          class="shrink-0 inline-flex items-center gap-2 bg-[#C5A880] hover:bg-[#B8986C] text-[#132238] font-semibold text-sm uppercase tracking-wider px-6 py-3.5 rounded-full shadow-lg transition-all"
+        >
+          <span>Auditoría Gratuita de mi Vivienda</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 8. ALOJAMIENTOS DESTACADOS GUESTY -->
+  <section class="py-20 md:py-28 bg-[#F4F0E8] border-y border-[#EAE3D9]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+        <div>
+          <span class="inline-block text-xs uppercase tracking-widest text-[#132238] font-bold bg-[#EAE3D9] px-3.5 py-1.5 rounded-full mb-3">
+            Colección Selecta en Los Naranjos
+          </span>
+          <h2 class="text-3xl md:text-5xl font-serif text-[#132238] leading-tight mb-3">
+            Alojamientos & Propiedades Destacadas
+          </h2>
+          <p class="text-[#64748B] text-base md:text-lg">
+            Reserve directamente con el motor oficial de Guesty para acceder a las mejores condiciones y tarifas de Marbella.
+          </p>
+        </div>
+
+        <a 
+          href="https://serinamar.guestybookings.com" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="shrink-0 inline-flex items-center gap-2 text-sm font-semibold text-[#132238] hover:text-[#C5A880] transition-colors"
+        >
+          <span>Ver catálogo completo en Guesty</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Propiedad 1 -->
+        <div class="bg-white rounded-2xl overflow-hidden border border-[#EAE3D9] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="relative h-60 w-full overflow-hidden bg-gray-100">
+              <img 
+                src="https://storage.googleapis.com/static.inmoweb.es/clients/2683/property/1778052/image/thumb/585_335/wrsrkmhbwptbjtixjxfa4qnbd58yo2viy8jid3dsjvktmkhbqm5mzmibyolozusbwxd6c3clghclbncgcaz3gpf3egy-yhnlaa-1.jpg" 
+                alt="Apartamento con Jardín" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+                <span class="bg-[#132238]/85 text-white text-[10.5px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-md">Jardín Privado</span>
+                <span class="bg-[#132238]/85 text-white text-[10.5px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-md">Piscina</span>
+              </div>
+              <div class="absolute bottom-3 right-3 bg-white/90 text-[#132238] text-[11px] font-semibold px-2 py-0.5 rounded">
+                Ref: AP0129
+              </div>
+            </div>
+
+            <div class="p-6">
+              <p class="text-xs uppercase tracking-wider text-[#C5A880] font-bold mb-1">Los Naranjos de Marbella · Nueva Andalucía</p>
+              <h3 class="text-xl font-serif font-bold text-[#132238] mb-3 leading-snug group-hover:text-[#C5A880] transition-colors">
+                Apartamento Planta Baja con Jardín Privado
+              </h3>
+
+              <div class="flex items-center gap-4 py-3 border-y border-[#EAE3D9]/60 text-xs text-[#64748B] font-medium">
+                <span>2 Dormitorios</span>
+                <span>•</span>
+                <span>2 Baños</span>
+                <span>•</span>
+                <span>120 m²</span>
+              </div>
+
+              <div class="mt-4 flex items-baseline justify-between">
+                <div>
+                  <span class="block text-[11px] text-[#64748B] uppercase tracking-wider">Vacacional</span>
+                  <span class="text-base font-bold text-[#132238]">Desde 800€ / sem.</span>
+                </div>
+                <div class="text-right">
+                  <span class="block text-[11px] text-[#64748B] uppercase tracking-wider">Venta</span>
+                  <span class="text-sm font-semibold text-[#C5A880]">435.000 €</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-6 pt-0">
+            <a 
+              href="https://serinamar.guestybookings.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="w-full inline-flex items-center justify-center gap-2 bg-[#132238] hover:bg-[#1E3557] text-white text-xs md:text-sm font-semibold uppercase tracking-wider py-3.5 px-4 rounded-xl transition-all"
+            >
+              <span>Reservar en Guesty</span>
+              <svg class="w-4 h-4 text-[#C5A880]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Propiedad 2 -->
+        <div class="bg-white rounded-2xl overflow-hidden border border-[#EAE3D9] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="relative h-60 w-full overflow-hidden bg-gray-100">
+              <img 
+                src="https://storage.googleapis.com/static.inmoweb.es/clients/2683/property/1789741/image/thumb/585_335/adosada-los-naranjos--019.jpg" 
+                alt="Casa Adosada Los Naranjos" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+                <span class="bg-[#C5A880] text-[#132238] text-[10.5px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-md">Exclusiva</span>
+                <span class="bg-[#132238]/85 text-white text-[10.5px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-md">Gran Terraza</span>
+              </div>
+              <div class="absolute bottom-3 right-3 bg-white/90 text-[#132238] text-[11px] font-semibold px-2 py-0.5 rounded">
+                Ref: AS/M4JASMINE
+              </div>
+            </div>
+
+            <div class="p-6">
+              <p class="text-xs uppercase tracking-wider text-[#C5A880] font-bold mb-1">Los Naranjos de Marbella · Milla de Oro</p>
+              <h3 class="text-xl font-serif font-bold text-[#132238] mb-3 leading-snug group-hover:text-[#C5A880] transition-colors">
+                Casa Adosada Exclusiva de 4 Dormitorios
+              </h3>
+
+              <div class="flex items-center gap-4 py-3 border-y border-[#EAE3D9]/60 text-xs text-[#64748B] font-medium">
+                <span>4 Dormitorios</span>
+                <span>•</span>
+                <span>3 Baños</span>
+                <span>•</span>
+                <span>165 m²</span>
+              </div>
+
+              <div class="mt-4 flex items-baseline justify-between">
+                <div>
+                  <span class="block text-[11px] text-[#64748B] uppercase tracking-wider">Vacacional</span>
+                  <span class="text-base font-bold text-[#132238]">Desde 2.300€ / sem.</span>
+                </div>
+                <div class="text-right">
+                  <span class="block text-[11px] text-[#64748B] uppercase tracking-wider">Disponibilidad</span>
+                  <span class="text-sm font-semibold text-[#C5A880]">Consultar</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-6 pt-0">
+            <a 
+              href="https://serinamar.guestybookings.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="w-full inline-flex items-center justify-center gap-2 bg-[#132238] hover:bg-[#1E3557] text-white text-xs md:text-sm font-semibold uppercase tracking-wider py-3.5 px-4 rounded-xl transition-all"
+            >
+              <span>Reservar en Guesty</span>
+              <svg class="w-4 h-4 text-[#C5A880]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Propiedad 3 -->
+        <div class="bg-white rounded-2xl overflow-hidden border border-[#EAE3D9] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="relative h-60 w-full overflow-hidden bg-gray-100">
+              <img 
+                src="https://storage.googleapis.com/static.inmoweb.es/clients/2683/property/1787416/image/thumb/585_335/d3723dca-3351-41c0-b445-011b9403ca25.jpg" 
+                alt="Ático Dúplex Golf" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+                <span class="bg-[#132238]/85 text-white text-[10.5px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-md">Solárium</span>
+                <span class="bg-[#132238]/85 text-white text-[10.5px] uppercase font-bold tracking-wider px-2.5 py-1 rounded-md">Vistas Golf</span>
+              </div>
+              <div class="absolute bottom-3 right-3 bg-white/90 text-[#132238] text-[11px] font-semibold px-2 py-0.5 rounded">
+                Ref: AP0134
+              </div>
+            </div>
+
+            <div class="p-6">
+              <p class="text-xs uppercase tracking-wider text-[#C5A880] font-bold mb-1">Los Naranjos de Marbella · Golf Valley</p>
+              <h3 class="text-xl font-serif font-bold text-[#132238] mb-3 leading-snug group-hover:text-[#C5A880] transition-colors">
+                Ático Dúplex con Solárium Panorámico
+              </h3>
+
+              <div class="flex items-center gap-4 py-3 border-y border-[#EAE3D9]/60 text-xs text-[#64748B] font-medium">
+                <span>2 Dormitorios</span>
+                <span>•</span>
+                <span>2 Baños</span>
+                <span>•</span>
+                <span>130 m²</span>
+              </div>
+
+              <div class="mt-4 flex items-baseline justify-between">
+                <div>
+                  <span class="block text-[11px] text-[#64748B] uppercase tracking-wider">Vacacional</span>
+                  <span class="text-base font-bold text-[#132238]">Desde 1.100€ / sem.</span>
+                </div>
+                <div class="text-right">
+                  <span class="block text-[11px] text-[#64748B] uppercase tracking-wider">Venta</span>
+                  <span class="text-sm font-semibold text-[#C5A880]">480.000 €</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-6 pt-0">
+            <a 
+              href="https://serinamar.guestybookings.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="w-full inline-flex items-center justify-center gap-2 bg-[#132238] hover:bg-[#1E3557] text-white text-xs md:text-sm font-semibold uppercase tracking-wider py-3.5 px-4 rounded-xl transition-all"
+            >
+              <span>Reservar en Guesty</span>
+              <svg class="w-4 h-4 text-[#C5A880]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. SERVICIOS PARA PROPIETARIOS (JUST BANÚS & IBERIAN SUN) -->
+  <section id="propietarios" class="py-20 md:py-28 px-4 sm:px-8 max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EAE3D9] text-[#132238] text-xs font-semibold tracking-wider uppercase mb-3">
+          <span>Just Banús · Property Management</span>
+        </div>
+        <h2 class="text-3xl md:text-5xl font-serif text-[#132238] leading-tight mb-4">
+          Cuidado y Gestión Integral de su Vivienda
+        </h2>
+        <p class="text-[#64748B] text-base md:text-lg">
+          Mantenimiento técnico, reformas, limpieza profesional, custodia de llaves y fiscalidad para propietarios en Marbella y Puerto Banús.
+        </p>
+      </div>
+
+      <div class="shrink-0 flex items-center gap-3">
+        <img src="./recursos/JB LOGO NO BG.png" alt="Just Banús Logo" class="h-12 w-auto object-contain" />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+      
+      <div class="bg-white rounded-2xl p-7 border border-[#EAE3D9] shadow-xs hover:shadow-lg transition-all flex flex-col justify-between">
+        <div>
+          <span class="text-[10.5px] uppercase font-bold tracking-widest text-[#C5A880] bg-[#132238] px-2.5 py-1 rounded-md inline-block mb-4">JUST BANUS</span>
+          <h3 class="text-lg font-serif font-bold text-[#132238] mb-1.5">Inspecciones Periódicas de Viviendas</h3>
+          <p class="text-xs font-semibold text-[#C5A880] uppercase tracking-wider mb-3">Tranquilidad para dueños ausentes</p>
+          <p class="text-xs md:text-sm text-[#64748B] leading-relaxed">
+            Revisiones semanales, quincenales o mensuales de su propiedad: comprobación de cerraduras, ventilación, detección de humedades, fugas y estado general con informe fotográfico.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-[#EAE3D9]/60 flex items-center justify-between text-xs text-[#132238]">
+          <span class="text-[#64748B]">Planes personalizados</span>
+          <a href="#contacto" class="text-[#C5A880] font-semibold hover:underline">Solicitar plan →</a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-7 border border-[#EAE3D9] shadow-xs hover:shadow-lg transition-all flex flex-col justify-between">
+        <div>
+          <span class="text-[10.5px] uppercase font-bold tracking-widest text-[#C5A880] bg-[#132238] px-2.5 py-1 rounded-md inline-block mb-4">JUST BANUS</span>
+          <h3 class="text-lg font-serif font-bold text-[#132238] mb-1.5">Mantenimiento Técnico y Averías 24/7</h3>
+          <p class="text-xs font-semibold text-[#C5A880] uppercase tracking-wider mb-3">Electricidad, fontanería y clima</p>
+          <p class="text-xs md:text-sm text-[#64748B] leading-relaxed">
+            Solución rápida de averías con técnicos autorizados y cualificados. Cobertura de cerraduras, desatascos, sistemas eléctricos y bombas de calor sin esperas.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-[#EAE3D9]/60 flex items-center justify-between text-xs text-[#132238]">
+          <span class="text-[#64748B]">Servicio prioritario</span>
+          <a href="#contacto" class="text-[#C5A880] font-semibold hover:underline">Solicitar plan →</a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-7 border border-[#EAE3D9] shadow-xs hover:shadow-lg transition-all flex flex-col justify-between">
+        <div>
+          <span class="text-[10.5px] uppercase font-bold tracking-widest text-[#C5A880] bg-[#132238] px-2.5 py-1 rounded-md inline-block mb-4">JUST BANUS</span>
+          <h3 class="text-lg font-serif font-bold text-[#132238] mb-1.5">Reformas, Albañilería y Decoración</h3>
+          <p class="text-xs font-semibold text-[#C5A880] uppercase tracking-wider mb-3">Revalorización de su patrimonio</p>
+          <p class="text-xs md:text-sm text-[#64748B] leading-relaxed">
+            Proyectos llave en mano de albañilería, modernización de baños y cocinas, pintura, climatización y Home Staging para multiplicar su tarifa de alquiler o precio de venta.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-[#EAE3D9]/60 flex items-center justify-between text-xs text-[#132238]">
+          <span class="text-[#64748B]">Presupuesto sin compromiso</span>
+          <a href="#contacto" class="text-[#C5A880] font-semibold hover:underline">Pedir presupuesto →</a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-7 border border-[#EAE3D9] shadow-xs hover:shadow-lg transition-all flex flex-col justify-between">
+        <div>
+          <span class="text-[10.5px] uppercase font-bold tracking-widest text-[#C5A880] bg-[#132238] px-2.5 py-1 rounded-md inline-block mb-4">IBERIAN SUN</span>
+          <h3 class="text-lg font-serif font-bold text-[#132238] mb-1.5">Fiscalidad No Residentes (Modelo 210)</h3>
+          <p class="text-xs font-semibold text-[#C5A880] uppercase tracking-wider mb-3">Cumplimiento legal y tributario</p>
+          <p class="text-xs md:text-sm text-[#64748B] leading-relaxed">
+            Asesoramiento y presentación del Impuesto sobre la Renta de No Residentes ante la AEAT en España, con interlocutor de confianza nativo desde el Reino Unido.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-[#EAE3D9]/60 flex items-center justify-between text-xs text-[#132238]">
+          <span class="text-[#64748B]">Atención en inglés y español</span>
+          <a href="#contacto" class="text-[#C5A880] font-semibold hover:underline">Consultar fiscalidad →</a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-7 border border-[#EAE3D9] shadow-xs hover:shadow-lg transition-all flex flex-col justify-between">
+        <div>
+          <span class="text-[10.5px] uppercase font-bold tracking-widest text-[#C5A880] bg-[#132238] px-2.5 py-1 rounded-md inline-block mb-4">JUST BANUS ADMIN</span>
+          <h3 class="text-lg font-serif font-bold text-[#132238] mb-1.5">Licencias Turísticas y Eficiencia</h3>
+          <p class="text-xs font-semibold text-[#C5A880] uppercase tracking-wider mb-3">Legalización VFT en Andalucía</p>
+          <p class="text-xs md:text-sm text-[#64748B] leading-relaxed">
+            Tramitación de la declaración responsable para vivienda turística ante la Junta de Andalucía, certificados energéticos oficiales y adecuación técnica a la normativa vigente.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-[#EAE3D9]/60 flex items-center justify-between text-xs text-[#132238]">
+          <span class="text-[#64748B]">Gestión documental completa</span>
+          <a href="#contacto" class="text-[#C5A880] font-semibold hover:underline">Gestionar licencia →</a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-7 border border-[#EAE3D9] shadow-xs hover:shadow-lg transition-all flex flex-col justify-between">
+        <div>
+          <span class="text-[10.5px] uppercase font-bold tracking-widest text-[#C5A880] bg-[#132238] px-2.5 py-1 rounded-md inline-block mb-4">JUST BANUS</span>
+          <h3 class="text-lg font-serif font-bold text-[#132238] mb-1.5">Alquiler de Trasteros (Storage Rooms)</h3>
+          <p class="text-xs font-semibold text-[#C5A880] uppercase tracking-wider mb-3">Almacenamiento seguro en Marbella</p>
+          <p class="text-xs md:text-sm text-[#64748B] leading-relaxed">
+            Espacios privados, limpios y vigilados para guardar enseres personales, lencería propia o material deportivo mientras su vivienda está alquilada a turistas.
+          </p>
+        </div>
+        <div class="mt-6 pt-4 border-t border-[#EAE3D9]/60 flex items-center justify-between text-xs text-[#132238]">
+          <span class="text-[#64748B]">Disponibilidad inmediata</span>
+          <a href="#contacto" class="text-[#C5A880] font-semibold hover:underline">Ver trasteros →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 10. FOOTER CORPORATIVO -->
+  <Footer slot="footer" />
+
+  <!-- SCRIPTS DE INTERACCIÓN -->
+  <script>
+    function switchSearchTab(type) {
+      const btnVac = document.getElementById('btn-tab-vacational');
+      const btnReal = document.getElementById('btn-tab-realestate');
+      const viewVac = document.getElementById('view-vacational');
+      const viewReal = document.getElementById('view-realestate');
+
+      if (type === 'vacational') {
+        btnVac.className = "flex-1 py-4 px-6 text-center font-medium text-sm md:text-base flex items-center justify-center gap-2 border-b-2 border-[#132238] bg-white text-[#132238]";
+        btnReal.className = "flex-1 py-4 px-6 text-center font-medium text-sm md:text-base flex items-center justify-center gap-2 text-[#64748B] hover:text-[#132238]";
+        viewVac.classList.remove('hidden');
+        viewReal.classList.add('hidden');
+      } else {
+        btnReal.className = "flex-1 py-4 px-6 text-center font-medium text-sm md:text-base flex items-center justify-center gap-2 border-b-2 border-[#132238] bg-white text-[#132238]";
+        btnVac.className = "flex-1 py-4 px-6 text-center font-medium text-sm md:text-base flex items-center justify-center gap-2 text-[#64748B] hover:text-[#132238]";
+        viewReal.classList.remove('hidden');
+        viewVac.classList.add('hidden');
+      }
+    }
+
+    function submitGuesty(e) {
+      e.preventDefault();
+      const checkIn = document.getElementById('inp-checkin').value;
+      const checkOut = document.getElementById('inp-checkout').value;
+      const guests = document.getElementById('inp-guests').value;
+
+      let targetUrl = 'https://serinamar.guestybookings.com/properties?';
+      const params = new URLSearchParams();
+      if (guests) params.append('minOccupancy', guests);
+      if (checkIn) params.append('checkIn', checkIn);
+      if (checkOut) params.append('checkOut', checkOut);
+
+      window.open(targetUrl + params.toString(), '_blank');
+    }
+
+    function submitInmoweb(e) {
+      e.preventDefault();
+      const op = document.getElementById('inp-operation').value;
+      if (op === 'sell') {
+        window.open('https://www.serinamar.com/form_captacion/', '_blank');
+      } else {
+        window.open('https://www.serinamar.com/results?id_tipo_operacion=' + op, '_blank');
+      }
+    }
+
+    // Exponer funciones al scope global para los onclick inline
+    window.switchSearchTab = switchSearchTab;
+    window.submitGuesty = submitGuesty;
+    window.submitInmoweb = submitInmoweb;
+  </script>
+
+</body>
+</html>

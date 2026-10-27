@@ -1,0 +1,33 @@
+:root { --site-ink:#132238; --site-muted:#52616b; --site-paper:#fdfbf7; --site-sand:#eee8dc; --site-line:#dfd9ce; --site-accent:#987448; }
+body { line-height:1.65; }
+html { scroll-padding-top:110px; }
+img { max-width:100%; }
+a,button,input,select,textarea,summary { -webkit-tap-highlight-color:transparent; }
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible { outline:3px solid #9c7643;outline-offset:4px; }
+.site-shell { width:min(1240px, calc(100% - 96px));margin-inline:auto; }
+.site-eyebrow {font-size:11px;letter-spacing:.18em;line-height:1.6;font-weight:600;text-transform:uppercase;color:#826340;}
+.site-button {display:inline-flex;align-items:center;justify-content:center;gap:24px;padding:14px 23px;min-height:48px;background:#132238;color:#fff;border:1px solid #132238;border-radius:4px;font-size:13px;font-weight:600;text-decoration:none;line-height:1.4;transition:background .2s,color .2s;}
+.site-button:hover {background:#29425a;}
+.site-button--light {background:#fffaf1;color:#132238;border-color:#fffaf1;}
+.site-button--light:hover {background:#eadcc5;border-color:#eadcc5;}
+.site-button--outline {background:transparent;color:#132238;border-color:#bdb2a2;}
+.site-button--outline:hover {background:#eee8dc;}
+.site-link {display:inline-flex;align-items:center;gap:18px;padding-block:9px;font-size:13px;font-weight:600;color:#132238;border-bottom:1px solid #bdb2a2;}
+.site-link:hover {color:#826340;}
+.site-section {padding-block:80px;}
+/* Readable content stays visible without JavaScript. */
+.reveal-on-scroll,.reveal-fade,.reveal-scale {opacity:1;transform:none;will-change:auto;}
+.interactive-tilt-card {transform:none!important;}
+main .font-light {font-weight:400;}
+main .shadow-2xl {box-shadow:0 12px 30px -20px #13223835;}
+main .shadow-xl {box-shadow:0 8px 22px -17px #13223835;}
+main .rounded-3xl {border-radius:12px;}
+@media(min-width:768px){main .md\:py-28{padding-block:80px;}}
+@media(max-width:767px){
+  .site-shell{width:calc(100% - 40px);}
+  .site-section{padding-block:48px;}
+  html{scroll-padding-top:95px;}
+  main .py-20{padding-block:48px;}
+  main h2{letter-spacing:-.025em;}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important;}*,*::before,*::after{animation:none!important;transition:none!important;}}

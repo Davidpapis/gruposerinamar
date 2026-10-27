@@ -1,0 +1,177 @@
+---
+interface Props { currentLang?: 'es' | 'en'; }
+const { currentLang = 'es' } = Astro.props;
+const en = currentLang === 'en';
+const labels = en
+  ? { stays: 'Holiday stays', owners: 'Owners', property: 'Buy & sell', group: 'Our group', about: 'About us', contact: 'Contact', book: 'Book', portal: 'Owner portal', menu: 'Open navigation', close: 'Close navigation', navigation: 'Main navigation', language: 'Language', home: 'Grupo Serinamar home' }
+  : { stays: 'Alojamientos', owners: 'Propietarios', property: 'Comprar y vender', group: 'El grupo', about: 'Sobre nosotros', contact: 'Contacto', book: 'Reservar', portal: 'Acceso propietarios', menu: 'Abrir navegación', close: 'Cerrar navegación', navigation: 'Navegación principal', language: 'Idioma', home: 'Inicio de Grupo Serinamar' };
+const brands = [
+  { name: 'Serinamar', href: '/divisiones/serinamar/', detail: en ? 'Holiday stays & real estate' : 'Alojamientos e inmobiliaria' },
+  { name: 'Just Banús', href: '/divisiones/just-banus/', detail: en ? 'Property management & care' : 'Gestión y cuidado de viviendas' },
+  { name: 'Iberian Sun', href: '/divisiones/iberian-sun/', detail: en ? 'Services for non-residents' : 'Servicios para no residentes' },
+  { name: 'Los Naranjos de Marbella', href: '/divisiones/los-naranjos/', detail: en ? 'Your stay in Marbella' : 'Tu estancia en Marbella' },
+];
+const isCurrent = (path: string) => Astro.url.pathname.replace(/\/$/, '') === path.replace(/\/$/, '');
+---
+<header class="site-header" data-site-header>
+  <div class="header-top">
+    <div class="header-top-inner">
+      <span class="location">Marbella · Puerto Banús</span>
+      <div class="top-contact">
+        <a href="tel:+34952813362">+34 952 81 33 62</a>
+        <a class="owner-portal" href="https://serinamar.guestyowners.com" target="_blank" rel="noopener noreferrer">{labels.portal} <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </div>
+  <div class="header-main">
+    <a class="brand" href={en ? '/en/' : '/'} aria-label={labels.home}>
+      <img src="/images/logos/serinamar-logo-header.png" width="66" height="33" alt="" />
+      <span class="brand-name"><span>Grupo</span>Serinamar</span>
+    </a>
+    <nav class="main-navigation" id="primary-navigation" aria-label={labels.navigation}>
+      <a href="/alojamientos/" aria-current={isCurrent('/alojamientos/') ? 'page' : undefined}>{labels.stays}</a>
+      <a href="/propietarios/" aria-current={isCurrent('/propietarios/') ? 'page' : undefined}>{labels.owners}</a>
+      <a href="/divisiones/serinamar/" aria-current={isCurrent('/divisiones/serinamar/') ? 'page' : undefined}>{labels.property}</a>
+      <div class="group-navigation" data-group-navigation>
+        <button class="group-toggle" type="button" aria-expanded="false" aria-controls="group-navigation-panel" data-group-toggle>
+          {labels.group}<svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5" /></svg>
+        </button>
+        <div class="group-panel" id="group-navigation-panel" hidden>
+          {brands.map(brand => (<a href={brand.href}><span>{brand.name}</span><small>{brand.detail}</small></a>))}
+          <a class="about-link" href="/sobre-nosotros/">{labels.about}<span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <a href="/contacto/" aria-current={isCurrent('/contacto/') ? 'page' : undefined}>{labels.contact}</a>
+    </nav>
+    <div class="header-actions">
+      <div class="languages" role="group" aria-label={labels.language}>
+        <a href="/" lang="es" aria-label="Español" aria-current={!en ? 'true' : undefined}>ES</a><span aria-hidden="true">/</span>
+        <a href="/en/" lang="en" aria-label="English" aria-current={en ? 'true' : undefined}>EN</a>
+      </div>
+      <a class="book-link" href="/alojamientos/">{labels.book}<span aria-hidden="true">↗</span></a>
+      <button class="mobile-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label={labels.menu} data-nav-toggle data-open-label={labels.menu} data-close-label={labels.close}><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<style>
+  .site-header { position: sticky; top: 0; z-index: 60; width: 100%; color: #132238; background: #fdfbf7; border-bottom: 1px solid #e8e3da; }
+  .site-header a { color: inherit; text-decoration: none; }
+  .site-header a, .site-header button { -webkit-tap-highlight-color: transparent; }
+  .site-header :is(a, button):focus-visible { outline: 2px solid #9b7744; outline-offset: 5px; }
+  .header-top { background: #132238; color: #f5f1e9; font-size: 11px; }
+  .header-top-inner { max-width: 1328px; min-height: 32px; padding: 0 32px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .location { letter-spacing: .13em; text-transform: uppercase; }
+  .top-contact { display: flex; align-items: center; gap: 26px; }
+  .top-contact a { white-space: nowrap; }
+  .owner-portal { color: #dec7a7 !important; }
+  .owner-portal span { margin-left: 5px; }
+  .header-main { position: relative; max-width: 1328px; height: 78px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .brand { display: flex; align-items: center; gap: 11px; flex-shrink: 0; }
+  .brand img { display: block; width: 66px; height: auto; }
+  .brand-name { display: flex; flex-direction: column; font-size: 16px; line-height: 1.2; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; }
+  .brand-name > span { font-size: 9px; letter-spacing: .26em; font-weight: 400; margin-bottom: 4px; }
+  .main-navigation { display: flex; align-items: center; gap: 25px; font-size: 13px; line-height: 1.4; }
+  .main-navigation > a { padding: 12px 0; white-space: nowrap; }
+  .main-navigation :is(a, button):hover, .main-navigation > a[aria-current="page"] { color: #8a693d; }
+  .group-navigation { position: relative; }
+  .group-toggle { border: 0; background: transparent; padding: 12px 0; display: flex; align-items: center; gap: 7px; font: inherit; color: inherit; white-space: nowrap; cursor: pointer; }
+  .group-toggle svg { transition: transform .2s ease; }
+  .group-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
+  .group-panel { position: absolute; top: calc(100% + 8px); right: -30px; width: 296px; padding: 12px 18px; background: #fdfbf7; border: 1px solid #e8e3da; box-shadow: 0 14px 28px #1322380c; }
+  .group-panel[hidden] { display: none; }
+  .group-panel a { display: block; padding: 11px 4px; }
+  .group-panel a > span { display: block; font-size: 14px; font-weight: 500; }
+  .group-panel small { display: block; margin-top: 3px; font-size: 11px; color: #6d747c; }
+  .group-panel .about-link { margin-top: 7px; border-top: 1px solid #e8e3da; display: flex; justify-content: space-between; align-items: center; }
+  .header-actions { display: flex; align-items: center; gap: 22px; flex-shrink: 0; }
+  .languages { display: flex; align-items: center; gap: 7px; font-size: 11px; }
+  .languages a { padding: 7px 0; color: #767a80; }
+  .languages a[aria-current] { color: #132238; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
+  .languages > span { color: #c8c2b7; }
+  .book-link { display: inline-flex; align-items: center; justify-content: center; gap: 14px; min-height: 42px; padding: 0 21px; background: #132238; color: #fff !important; font-size: 12px; border-radius: 3px; transition: background .2s ease; }
+  .book-link:hover { background: #2b4058; }
+  .book-link span { color: #d9c09d; font-size: 16px; }
+  .mobile-toggle { display: none; }
+  @media (max-width: 1279px) { .main-navigation { gap: 19px; } .header-main { gap: 20px; } .header-actions { gap: 16px; } .brand img { width: 55px; } .brand-name { font-size: 14px; } }
+  @media (max-width: 1179px) {
+    .header-main { height: 70px; }
+    .main-navigation { display: none; position: absolute; top: 100%; left: 0; right: 0; max-height: calc(100dvh - 103px); overflow-y: auto; padding: 18px 32px 26px; background: #fdfbf7; border-top: 1px solid #e8e3da; border-bottom: 1px solid #e8e3da; flex-direction: column; align-items: stretch; gap: 0; font-size: 16px; }
+    .main-navigation.is-open { display: flex; }
+    .main-navigation > a { padding: 13px 0; border-bottom: 1px solid #e8e3da; }
+    .group-toggle { width: 100%; padding: 16px 0; justify-content: space-between; }
+    .group-panel { position: static; width: 100%; padding: 0 0 8px 16px; border: 0; border-left: 1px solid #c5a880; margin-bottom: 12px; box-shadow: none; }
+    .group-panel a { padding: 10px 8px; }
+    .mobile-toggle { display: flex; width: 36px; height: 42px; padding: 11px 5px; border: 0; background: transparent; flex-direction: column; align-items: center; justify-content: center; gap: 6px; cursor: pointer; }
+    .mobile-toggle span { display: block; width: 24px; height: 1.5px; background: #132238; transition: transform .2s ease; }
+    .mobile-toggle[aria-expanded="true"] span:first-child { transform: translateY(3.75px) rotate(45deg); }
+    .mobile-toggle[aria-expanded="true"] span:last-child { transform: translateY(-3.75px) rotate(-45deg); }
+  }
+  @media (max-width: 767px) {
+    .header-top-inner { min-height: 29px; padding: 0 18px; }
+    .header-top { font-size: 9px; }
+    .location { letter-spacing: .08em; }
+    .owner-portal { display: none; }
+    .header-main { height: 64px; padding: 0 18px; gap: 12px; }
+    .brand { gap: 7px; }
+    .brand img { width: 42px; }
+    .brand-name { font-size: 11px; letter-spacing: .07em; }
+    .brand-name > span { font-size: 7px; letter-spacing: .22em; margin-bottom: 3px; }
+    .header-actions { gap: 11px; }
+    .languages { gap: 5px; font-size: 10px; }
+    .book-link { padding: 0 12px; min-height: 36px; font-size: 11px; }
+    .book-link span { display: none; }
+    .mobile-toggle { width: 26px; padding-left: 0; padding-right: 0; }
+    .mobile-toggle span { width: 22px; }
+    .main-navigation { padding: 14px 22px 24px; max-height: calc(100dvh - 94px); }
+  }
+  @media (prefers-reduced-motion: reduce) { .site-header * { transition: none !important; } }
+</style>
+<script>
+  function initializeHeader() {
+    const header = document.querySelector<HTMLElement>('[data-site-header]');
+    if (!header || header.dataset.initialized) return;
+    header.dataset.initialized = 'true';
+    const toggle = header.querySelector<HTMLButtonElement>('[data-nav-toggle]');
+    const navigation = header.querySelector<HTMLElement>('#primary-navigation');
+    const group = header.querySelector<HTMLElement>('[data-group-navigation]');
+    const groupToggle = header.querySelector<HTMLButtonElement>('[data-group-toggle]');
+    const groupPanel = header.querySelector<HTMLElement>('#group-navigation-panel');
+    if (!toggle || !navigation || !group || !groupToggle || !groupPanel) return;
+    const setGroupOpen = (open: boolean) => {
+      groupToggle.setAttribute('aria-expanded', String(open));
+      groupPanel.hidden = !open;
+    };
+    const setMenuOpen = (open: boolean) => {
+      navigation.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', (open ? toggle.dataset.closeLabel : toggle.dataset.openLabel) || 'Menu');
+      if (!open) setGroupOpen(false);
+    };
+    toggle.addEventListener('click', () => setMenuOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+    groupToggle.addEventListener('click', () => setGroupOpen(groupPanel.hidden));
+    groupToggle.addEventListener('keydown', (event) => {
+      if (event.key !== 'ArrowDown') return;
+      event.preventDefault();
+      setGroupOpen(true);
+      groupPanel.querySelector<HTMLAnchorElement>('a')?.focus();
+    });
+    navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenuOpen(false)));
+    document.addEventListener('click', (event) => {
+      if (!(event.target instanceof Node)) return;
+      if (!group.contains(event.target)) setGroupOpen(false);
+      if (!header.contains(event.target)) setMenuOpen(false);
+    });
+    header.addEventListener('focusout', (event) => {
+      if (!(event.relatedTarget instanceof Node) || !group.contains(event.relatedTarget)) setGroupOpen(false);
+      if (event.relatedTarget instanceof Node && !header.contains(event.relatedTarget)) setMenuOpen(false);
+    });
+    header.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      if (!groupPanel.hidden) { setGroupOpen(false); groupToggle.focus(); }
+      else if (toggle.getAttribute('aria-expanded') === 'true') { setMenuOpen(false); toggle.focus(); }
+    });
+    window.matchMedia('(min-width: 1180px)').addEventListener('change', () => setMenuOpen(false));
+  }
+  initializeHeader();
+  document.addEventListener('astro:page-load', initializeHeader);
+</script>

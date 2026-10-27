@@ -1,0 +1,233 @@
+---
+interface Props {
+  className?: string;
+}
+
+const { className = "" } = Astro.props;
+---
+
+<div id="buscador" class={`w-full max-w-5xl mx-auto rounded-2xl bg-white shadow-2xl border border-[#EAE3D9] overflow-hidden ${className}`}>
+  <!-- Tabs Superiores -->
+  <div class="flex border-b border-[#EAE3D9] bg-[#F4F0E8]">
+    <button 
+      id="tab-vacational" 
+      class="flex-1 py-4 px-6 text-center font-medium text-sm md:text-base flex items-center justify-center gap-2 border-b-2 border-[#132238] bg-white text-[#132238] transition-colors"
+      type="button"
+    >
+      <svg class="w-5 h-5 text-[#C5A880]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      <span>Alquiler Vacacional Directo <strong class="text-xs font-semibold px-2 py-0.5 rounded-full bg-[#EAE3D9] text-[#132238] hidden sm:inline">Guesty PMS</strong></span>
+    </button>
+    
+    <button 
+      id="tab-realestate" 
+      class="flex-1 py-4 px-6 text-center font-medium text-sm md:text-base flex items-center justify-center gap-2 text-[#64748B] hover:text-[#132238] transition-colors"
+      type="button"
+    >
+      <svg class="w-5 h-5 text-[#C5A880]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+      <span>Compraventa e Inversión <strong class="text-xs font-semibold px-2 py-0.5 rounded-full bg-[#EAE3D9] text-[#132238] hidden sm:inline">Serinamar MLS</strong></span>
+    </button>
+  </div>
+
+  <!-- Formulario 1: Alquiler Vacacional Guesty -->
+  <form id="form-vacational" class="p-5 md:p-7 block">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+      
+      <!-- Entrada -->
+      <div>
+        <label for="checkin-date" class="block text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1.5">Llegada</label>
+        <div class="relative">
+          <input 
+            type="date" 
+            id="checkin-date" 
+            name="checkIn" 
+            class="w-full bg-[#F9F8F6] border border-[#EAE3D9] rounded-xl px-3.5 py-3 text-sm text-[#132238] font-medium focus:outline-none focus:ring-2 focus:ring-[#C5A880]" 
+          />
+        </div>
+      </div>
+
+      <!-- Salida -->
+      <div>
+        <label for="checkout-date" class="block text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1.5">Salida</label>
+        <div class="relative">
+          <input 
+            type="date" 
+            id="checkout-date" 
+            name="checkOut" 
+            class="w-full bg-[#F9F8F6] border border-[#EAE3D9] rounded-xl px-3.5 py-3 text-sm text-[#132238] font-medium focus:outline-none focus:ring-2 focus:ring-[#C5A880]" 
+          />
+        </div>
+      </div>
+
+      <!-- Huéspedes -->
+      <div>
+        <label for="guests-count" class="block text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1.5">Huéspedes</label>
+        <select 
+          id="guests-count" 
+          name="guests" 
+          class="w-full bg-[#F9F8F6] border border-[#EAE3D9] rounded-xl px-3.5 py-3 text-sm text-[#132238] font-medium focus:outline-none focus:ring-2 focus:ring-[#C5A880]"
+        >
+          <option value="1">1 Huésped</option>
+          <option value="2" selected>2 Huéspedes</option>
+          <option value="3">3 Huéspedes</option>
+          <option value="4">4 Huéspedes</option>
+          <option value="5">5 Huéspedes</option>
+          <option value="6">6+ Huéspedes</option>
+        </select>
+      </div>
+
+      <!-- Botón Submit a Guesty -->
+      <div>
+        <button 
+          type="submit" 
+          class="w-full bg-[#132238] hover:bg-[#1E3557] text-[#FFFFFF] font-medium text-sm md:text-[15px] py-3.5 px-6 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 border border-[#C5A880]/30"
+        >
+          <svg class="w-4 h-4 text-[#C5A880]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <span>Buscar Alojamiento</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Micro-beneficios de reserva directa -->
+    <div class="mt-4 pt-3.5 border-t border-[#EAE3D9]/60 flex flex-wrap items-center justify-between text-xs text-[#64748B] gap-2">
+      <div class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-[#C5A880]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+        <span>Mejor precio garantizado (Sin comisiones Airbnb/Booking)</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-[#C5A880]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+        <span>Gestión directa en Recepción Los Naranjos</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-[#C5A880]" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+        <span>Transfers y Late Check-out disponible</span>
+      </div>
+    </div>
+  </form>
+
+  <!-- Formulario 2: Inmobiliaria & Compraventa -->
+  <form id="form-realestate" class="p-5 md:p-7 hidden">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
+      
+      <!-- Operación -->
+      <div>
+        <label for="operation-type" class="block text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1.5">Operación</label>
+        <select 
+          id="operation-type" 
+          name="id_tipo_operacion" 
+          class="w-full bg-[#F9F8F6] border border-[#EAE3D9] rounded-xl px-3.5 py-3 text-sm text-[#132238] font-medium focus:outline-none focus:ring-2 focus:ring-[#C5A880]"
+        >
+          <option value="1" selected>Comprar (Venta)</option>
+          <option value="2">Alquiler Larga Temporada</option>
+          <option value="sell">Quiero Vender mi Vivienda</option>
+        </select>
+      </div>
+
+      <!-- Zona -->
+      <div>
+        <label for="location-zone" class="block text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1.5">Zona</label>
+        <select 
+          id="location-zone" 
+          name="zone" 
+          class="w-full bg-[#F9F8F6] border border-[#EAE3D9] rounded-xl px-3.5 py-3 text-sm text-[#132238] font-medium focus:outline-none focus:ring-2 focus:ring-[#C5A880]"
+        >
+          <option value="marbella">Marbella (Todas las zonas)</option>
+          <option value="los-naranjos" selected>Los Naranjos de Marbella</option>
+          <option value="nueva-andalucia">Nueva Andalucía / Golf Valley</option>
+          <option value="puerto-banus">Puerto Banús</option>
+          <option value="milla-de-oro">Milla de Oro</option>
+          <option value="estepona">Estepona / Cancelada</option>
+          <option value="casares">Casares / Finca Cortesin</option>
+        </select>
+      </div>
+
+      <!-- Tipología -->
+      <div>
+        <label for="property-type" class="block text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1.5">Tipología</label>
+        <select 
+          id="property-type" 
+          name="type" 
+          class="w-full bg-[#F9F8F6] border border-[#EAE3D9] rounded-xl px-3.5 py-3 text-sm text-[#132238] font-medium focus:outline-none focus:ring-2 focus:ring-[#C5A880]"
+        >
+          <option value="all">Todas las tipologías</option>
+          <option value="1">Apartamentos</option>
+          <option value="18">Áticos / Duplex</option>
+          <option value="21">Casas Adosadas</option>
+          <option value="3">Villas Exclusivas</option>
+        </select>
+      </div>
+
+      <!-- Botón Submit Inmobiliaria -->
+      <div>
+        <button 
+          type="submit" 
+          class="w-full bg-[#132238] hover:bg-[#1E3557] text-[#FFFFFF] font-medium text-sm md:text-[15px] py-3.5 px-6 rounded-xl shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 border border-[#C5A880]/30"
+        >
+          <svg class="w-4 h-4 text-[#C5A880]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          <span>Ver Inmuebles</span>
+        </button>
+      </div>
+
+    </div>
+
+    <div class="mt-4 pt-3.5 border-t border-[#EAE3D9]/60 flex flex-wrap items-center justify-between text-xs text-[#64748B] gap-2">
+      <span>Valoraciones gratuitas y asesoramiento integral por Serinamar Properties</span>
+      <a href="tel:678487594" class="text-[#C5A880] hover:underline font-medium">Asesor directo: 678 48 75 94</a>
+    </div>
+  </form>
+</div>
+
+<script>
+  // Manejo de tabs
+  const tabVacational = document.getElementById('tab-vacational');
+  const tabRealEstate = document.getElementById('tab-realestate');
+  const formVacational = document.getElementById('form-vacational') as HTMLFormElement;
+  const formRealEstate = document.getElementById('form-realestate') as HTMLFormElement;
+
+  if (tabVacational && tabRealEstate && formVacational && formRealEstate) {
+    tabVacational.addEventListener('click', () => {
+      tabVacational.classList.add('border-b-2', 'border-[#132238]', 'bg-white', 'text-[#132238]');
+      tabVacational.classList.remove('text-[#64748B]');
+      tabRealEstate.classList.remove('border-b-2', 'border-[#132238]', 'bg-white', 'text-[#132238]');
+      tabRealEstate.classList.add('text-[#64748B]');
+      formVacational.classList.remove('hidden');
+      formRealEstate.classList.add('hidden');
+    });
+
+    tabRealEstate.addEventListener('click', () => {
+      tabRealEstate.classList.add('border-b-2', 'border-[#132238]', 'bg-white', 'text-[#132238]');
+      tabRealEstate.classList.remove('text-[#64748B]');
+      tabVacational.classList.remove('border-b-2', 'border-[#132238]', 'bg-white', 'text-[#132238]');
+      tabVacational.classList.add('text-[#64748B]');
+      formRealEstate.classList.remove('hidden');
+      formVacational.classList.add('hidden');
+    });
+
+    // Envío inteligente al motor de Guesty
+    formVacational.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const checkIn = (document.getElementById('checkin-date') as HTMLInputElement).value;
+      const checkOut = (document.getElementById('checkout-date') as HTMLInputElement).value;
+      const guests = (document.getElementById('guests-count') as HTMLSelectElement).value;
+
+      let targetUrl = 'https://serinamar.guestybookings.com/properties?';
+      const params = new URLSearchParams();
+      if (guests) params.append('minOccupancy', guests);
+      if (checkIn) params.append('checkIn', checkIn);
+      if (checkOut) params.append('checkOut', checkOut);
+
+      window.open(targetUrl + params.toString(), '_blank');
+    });
+
+    // Envío inteligente a Serinamar Real Estate
+    formRealEstate.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const op = (document.getElementById('operation-type') as HTMLSelectElement).value;
+      if (op === 'sell') {
+        window.location.href = 'https://www.serinamar.com/form_captacion/';
+      } else {
+        window.open('https://www.serinamar.com/results?id_tipo_operacion=' + op, '_blank');
+      }
+    });
+  }
+</script>

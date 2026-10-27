@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import Hero from '../../components/ui/Hero.astro';
+
+const services = [
+  { title: 'Fiscalidad para no residentes', description: 'Coordinamos las gestiones fiscales relacionadas con tu propiedad.', items: ['Preparación y presentación del Modelo 210', 'Revisión de documentación', 'Seguimiento de obligaciones según tu situación'] },
+  { title: 'Atención en español e inglés', description: 'Un interlocutor para entender y coordinar cada trámite.', items: ['Comunicación por teléfono, WhatsApp y correo', 'Coordinación con el equipo en Reino Unido', 'Asistencia con documentación y traducciones'] },
+  { title: 'NIE y trámites bancarios', description: 'Te acompañamos en las gestiones iniciales en España.', items: ['Gestión del NIE y citas', 'Asistencia con cuentas y domiciliaciones', 'Coordinación de poderes y certificado digital'] },
+  { title: 'Suministros y comunidad', description: 'Apoyo con los recibos y servicios de tu vivienda.', items: ['Cambios de titularidad de suministros', 'Gestión de recibos municipales', 'Representación y coordinación con la comunidad'] }
+];
+
+---
+
+<BaseLayout title="Iberian Sun · Servicios para propietarios no residentes | Grupo Serinamar" description="Atención a propietarios no residentes en Marbella: gestión administrativa, fiscalidad, suministros y asistencia en español e inglés." canonicalURL="https://gruposerinamar.com/divisiones/iberian-sun/">
+  <Header slot="header" currentLang="es" />
+  <Hero eyebrow="Iberian Sun · Propietarios internacionales" title="Estés donde estés, estamos cerca." description="Atención en español e inglés para gestionar los trámites y las necesidades de tu vivienda en Marbella." image="/images/hero/puerto-banus-panorama.webp" imageAlt="Vista panorámica del puerto y los edificios de Puerto Banús" actionLabel="Consultar con el equipo" actionHref="#consulta-fiscal" secondaryLabel="Ver servicios" secondaryHref="#servicios-uk" />
+
+  <section class="page-section intro-grid">
+    <div><img class="brand-mark" src="/images/logos/iberian-sun-logo.png" alt="Iberian Sun" loading="lazy" /><p class="eyebrow">Un contacto local</p><h2>Tu vivienda en España, con apoyo cercano.</h2><div class="body-copy"><p>Si vives fuera de España, Iberian Sun te ayuda a coordinar los trámites de tu propiedad y la relación con administraciones, suministros y comunidad de propietarios.</p><p>Formamos parte de Grupo Serinamar y atendemos en español e inglés, con coordinación entre Marbella y Reino Unido.</p></div><div class="actions"><a class="text-link" href="https://wa.me/34678487594?text=Hola,%20soy%20propietario%20no%20residente%20y%20necesito%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer">Hablar por WhatsApp ↗</a></div></div>
+    <aside class="card"><p class="eyebrow">Asistencia para no residentes</p><h3>Una consulta adaptada a tu caso.</h3><p>El uso de la vivienda y tu situación de residencia pueden afectar a los trámites necesarios. Cuéntanos tu situación para que el equipo pueda orientarte.</p><ul><li>Gestión del Modelo 210 y coordinación fiscal.</li><li>Revisión de documentación y recibos.</li><li>Atención en tu idioma y seguimiento de las gestiones.</li></ul><a class="text-link" href="#consulta-fiscal">Preparar mi consulta →</a></aside>
+  </section>
+  <section id="servicios-uk" class="section-tint"><div class="page-section"><div class="section-heading"><p class="eyebrow">Cómo podemos ayudarte</p><h2>Los trámites, más claros.</h2></div><div class="cards two">{services.map((service, i) => <article class="card"><span class="card-number">0{i + 1}</span><h3>{service.title}</h3><p>{service.description}</p><ul>{service.items.map(item => <li>{item}</li>)}</ul><a class="text-link" href="#consulta-fiscal">Consultar este servicio →</a></article>)}</div></div></section>
+  <section id="consulta-fiscal" class="page-section intro-grid" style="align-items:start">
+    <div><p class="eyebrow">Hablemos</p><h2>Cuéntanos qué necesitas.</h2><p class="body-copy">Puedes escribir tu consulta en español o en inglés. Indica el servicio que te interesa y el equipo de Iberian Sun te orientará.</p><div class="actions"><a class="text-link" href="mailto:uk@gruposerinamar.com">uk@gruposerinamar.com</a></div></div>
+    <form id="international-form" class="contact-form card" action="mailto:uk@gruposerinamar.com" method="post" enctype="text/plain">
+      <div><label for="international-name">Nombre y apellidos</label><input id="international-name" name="nombre" autocomplete="name" required /></div>
+      <div><label for="international-email">Correo electrónico</label><input id="international-email" name="email" type="email" autocomplete="email" required /></div>
+      <div><label for="international-phone">Teléfono con prefijo</label><input id="international-phone" name="telefono" type="tel" autocomplete="tel" /></div>
+      <div><label for="international-service">Servicio de interés</label><select id="international-service" name="servicio"><option>Fiscalidad y Modelo 210</option><option>NIE y trámites bancarios</option><option>Suministros y comunidad</option><option>Asistencia en compraventa</option><option>Otra consulta</option></select></div>
+      <div class="full"><label for="international-message">Tu consulta</label><textarea id="international-message" name="mensaje" rows="4" placeholder="Ubicación de la vivienda y detalles de tu consulta." required></textarea></div>
+      <div class="full"><button class="button" type="submit">Preparar correo de consulta →</button><p class="form-note">Se abrirá tu aplicación de correo para revisar y enviar el mensaje a uk@gruposerinamar.com.</p></div>
+    </form>
+  </section>
+  <script>
+    const internationalForm = document.querySelector<HTMLFormElement>('#international-form');
+    internationalForm?.addEventListener('submit', event => {
+      event.preventDefault();
+      const values = new FormData(internationalForm);
+      const subject = `Consulta Iberian Sun: ${values.get('servicio')}`;
+      const body = `Nombre: ${values.get('nombre')}
+Email: ${values.get('email')}
+Teléfono: ${values.get('telefono')}
+Servicio: ${values.get('servicio')}
+
+${values.get('mensaje')}`;
+      window.location.href = `mailto:uk@gruposerinamar.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+  </script>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .page-section { max-width: 1200px; margin: 0 auto; padding: 64px 28px; }
+  .section-tint { background: #f3efe7; }
+  .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .section-heading { max-width: 680px; margin-bottom: 32px; }
+  .eyebrow { color: #796546; font-size: 12px; letter-spacing: .15em; text-transform: uppercase; font-weight: 700; margin-bottom: 14px; }
+  h2 { font-family: var(--font-serif, Georgia, serif); font-size: clamp(30px, 3.4vw, 44px); line-height: 1.12; color: #132238; margin-bottom: 20px; }
+  h3 { font-family: var(--font-serif, Georgia, serif); font-size: 25px; line-height: 1.2; color: #132238; margin-bottom: 14px; }
+  .body-copy { color: #596575; font-size: 16px; line-height: 1.8; }
+  .body-copy p + p { margin-top: 16px; }
+  .brand-mark { width: auto; max-width: 180px; height: 60px; object-fit: contain; object-position: left; margin-bottom: 24px; }
+  .feature-photo { width: 100%; height: 430px; object-fit: cover; border-radius: 16px; }
+  .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+  .cards.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .card { padding: 30px; background: #fff; border: 1px solid #e5dfd4; border-radius: 16px; }
+  .card p, .card li { color: #596575; font-size: 15px; line-height: 1.7; }
+  .card ul { padding-left: 18px; margin: 20px 0; list-style: disc; }
+  .card li + li { margin-top: 8px; }
+  .card-number { display: block; color: #9c865f; font-size: 14px; margin-bottom: 20px; }
+  .text-link { display: inline-block; color: #132238; font-size: 14px; font-weight: 700; border-bottom: 1px solid #b89c72; padding-bottom: 3px; }
+  .text-link:hover { color: #796546; }
+  .button { display: inline-flex; justify-content: center; align-items: center; min-height: 48px; padding: 13px 22px; background: #132238; color: white; border: 1px solid #132238; border-radius: 7px; font-size: 14px; font-weight: 600; text-align: center; }
+  .button:hover { background: #25415d; }
+  .button.sand { background: #e5d6bc; color: #132238; border-color: #e5d6bc; }
+  .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 26px; align-items: center; }
+  .callout { background: #132238; color: white; border-radius: 16px; padding: 40px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+  .callout h2 { color: white; font-size: clamp(28px, 3vw, 38px); }
+  .callout p { color: #d5dce2; max-width: 640px; line-height: 1.7; }
+  .callout .button { flex-shrink: 0; }
+  .contact-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+  .contact-form .full { grid-column: 1 / -1; }
+  label { display: block; font-size: 14px; color: #132238; font-weight: 600; margin-bottom: 9px; }
+  input, select, textarea { width: 100%; border: 1px solid #cfd4d9; border-radius: 7px; padding: 13px 14px; color: #132238; background: white; font: inherit; font-size: 16px; }
+  input:focus, select:focus, textarea:focus { outline: 2px solid #9c865f; outline-offset: 2px; }
+  .form-note { color: #596575; font-size: 13px; line-height: 1.6; margin-top: 12px; }
+  @media (max-width: 800px) {
+    .page-section { padding: 44px 20px; }
+    .intro-grid { grid-template-columns: 1fr; gap: 30px; }
+    .cards, .cards.two { grid-template-columns: 1fr; }
+    .feature-photo { height: 300px; }
+    .card { padding: 25px; }
+    .callout { padding: 28px; align-items: flex-start; flex-direction: column; }
+    .contact-form { grid-template-columns: 1fr; }
+  }
+</style>

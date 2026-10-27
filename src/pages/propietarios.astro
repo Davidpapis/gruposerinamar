@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import Hero from '../components/ui/Hero.astro';
+
+const services = [
+  { title: 'Alquilar tu vivienda', brand: 'Serinamar', description: 'Gestión de reservas, atención a huéspedes y coordinación de las estancias de principio a fin.', href: '/divisiones/serinamar/' },
+  { title: 'Cuidar la casa', brand: 'Just Banús', description: 'Inspecciones, custodia de llaves, limpieza y mantenimiento cuando no estás en Marbella.', href: '/divisiones/just-banus/#servicios' },
+  { title: 'Reformar y preparar', brand: 'Just Banús', description: 'Puesta a punto, reformas y amueblamiento para disfrutar de tu vivienda o prepararla para alquilar.', href: '/divisiones/just-banus/#servicios' },
+  { title: 'Gestionar los trámites', brand: 'Iberian Sun', description: 'Asistencia administrativa y fiscal para propietarios no residentes, con atención en español e inglés.', href: '/divisiones/iberian-sun/' },
+  { title: 'Comprar una propiedad', brand: 'Serinamar', description: 'Búsqueda de vivienda y acompañamiento durante la compraventa en Marbella y Puerto Banús.', href: 'https://www.serinamar.com/' },
+  { title: 'Vender tu vivienda', brand: 'Serinamar', description: 'Valoración, comercialización y seguimiento de la venta con un equipo que conoce la zona.', href: '/divisiones/serinamar/#valoracion' }
+];
+
+---
+
+<BaseLayout title="Servicios para propietarios en Marbella | Grupo Serinamar" description="Gestión del alquiler vacacional, cuidado de viviendas, compraventa y asistencia para no residentes en Marbella. Un equipo cerca de tu propiedad." canonicalURL="https://gruposerinamar.com/propietarios/">
+  <Header slot="header" currentLang="es" />
+  <Hero eyebrow="Servicios para propietarios" title="Tu propiedad, en buenas manos." description="Alquiler vacacional, mantenimiento y gestión de tu vivienda en Marbella. Un equipo local para acompañarte en lo que necesitas." image="/images/hero/naranjos-gardens.jpg" imageAlt="Terraza amueblada de una vivienda en Los Naranjos de Marbella" actionLabel="Solicitar una valoración" actionHref="/divisiones/serinamar/#valoracion" secondaryLabel="Acceso de propietarios" secondaryHref="https://serinamar.guestyowners.com" />
+
+  <section class="page-section">
+    <div class="section-heading"><p class="eyebrow">Un equipo para tu vivienda</p><h2>Elige lo que necesitas.<br />Nosotros lo coordinamos.</h2><p class="body-copy">Desde preparar tu casa para alquilar hasta mantenerla durante tu ausencia, cada servicio tiene un equipo al que acudir.</p></div>
+    <div class="cards">{services.map((service, i) => <article class="card"><span class="card-number">0{i + 1} · {service.brand}</span><h3>{service.title}</h3><p>{service.description}</p><div class="actions"><a class="text-link" href={service.href}>Conocer el servicio →</a></div></article>)}</div>
+  </section>
+  <section id="calculadora" class="section-tint"><div class="page-section">
+    <div class="section-heading"><p class="eyebrow">Antes de alquilar</p><h2>Haz una simulación orientativa.</h2><p class="body-copy">Prueba tus propios supuestos de precio y noches alquiladas. Los valores iniciales son un ejemplo ilustrativo; no proceden de una valoración de tu vivienda.</p></div>
+    <div class="simulation">
+      <div class="card">
+        <div><label for="nightly-rate">Precio medio por noche (€)</label><input id="nightly-rate" type="number" value="120" min="0" step="1" inputmode="decimal" /></div>
+        <div style="margin-top:22px"><label for="rented-nights">Noches alquiladas al año</label><input id="rented-nights" type="number" value="180" min="0" max="365" step="1" inputmode="numeric" /></div>
+        <p class="form-note">El cálculo multiplica el precio medio por las noches que indiques. No estima la ocupación ni el precio de mercado.</p>
+      </div>
+      <div class="simulation-result"><p class="eyebrow">Ingresos brutos del ejemplo</p><output id="est-income" for="nightly-rate rented-nights" aria-live="polite">21.600 €</output><p>Antes de gastos, impuestos y comisiones. Es una simulación, no una garantía de ingresos.</p><a class="button sand" href="/divisiones/serinamar/#valoracion">Solicitar un estudio de mi vivienda →</a></div>
+    </div>
+  </div></section>
+  <section class="page-section"><div class="callout"><div><h2>¿Ya gestionamos tu vivienda?</h2><p>Accede a tu área privada de propietario o contacta con nuestro equipo.</p></div><div class="actions" style="margin-top:0"><a class="button sand" href="https://serinamar.guestyowners.com" target="_blank" rel="noopener noreferrer">Área de propietarios ↗</a><a class="button" href="/contacto/">Contactar</a></div></div></section>
+  <script>
+    const priceInput = document.querySelector<HTMLInputElement>('#nightly-rate');
+    const nightsInput = document.querySelector<HTMLInputElement>('#rented-nights');
+    const incomeOutput = document.querySelector<HTMLOutputElement>('#est-income');
+    function updateEstimate() {
+      if (!priceInput || !nightsInput || !incomeOutput) return;
+      const price = priceInput.valueAsNumber;
+      const nights = nightsInput.valueAsNumber;
+      if (!priceInput.validity.valid || !nightsInput.validity.valid || !Number.isFinite(price) || !Number.isFinite(nights)) {
+        incomeOutput.value = '—';
+        return;
+      }
+      incomeOutput.value = (price * nights).toLocaleString('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+    }
+    priceInput?.addEventListener('input', updateEstimate);
+    nightsInput?.addEventListener('input', updateEstimate);
+    updateEstimate();
+  </script>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .page-section { max-width: 1200px; margin: 0 auto; padding: 64px 28px; }
+  .section-tint { background: #f3efe7; }
+  .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .section-heading { max-width: 680px; margin-bottom: 32px; }
+  .eyebrow { color: #796546; font-size: 12px; letter-spacing: .15em; text-transform: uppercase; font-weight: 700; margin-bottom: 14px; }
+  h2 { font-family: var(--font-serif, Georgia, serif); font-size: clamp(30px, 3.4vw, 44px); line-height: 1.12; color: #132238; margin-bottom: 20px; }
+  h3 { font-family: var(--font-serif, Georgia, serif); font-size: 25px; line-height: 1.2; color: #132238; margin-bottom: 14px; }
+  .body-copy { color: #596575; font-size: 16px; line-height: 1.8; }
+  .body-copy p + p { margin-top: 16px; }
+  .brand-mark { width: auto; max-width: 180px; height: 60px; object-fit: contain; object-position: left; margin-bottom: 24px; }
+  .feature-photo { width: 100%; height: 430px; object-fit: cover; border-radius: 16px; }
+  .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+  .cards.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .card { padding: 30px; background: #fff; border: 1px solid #e5dfd4; border-radius: 16px; }
+  .card p, .card li { color: #596575; font-size: 15px; line-height: 1.7; }
+  .card ul { padding-left: 18px; margin: 20px 0; list-style: disc; }
+  .card li + li { margin-top: 8px; }
+  .card-number { display: block; color: #9c865f; font-size: 14px; margin-bottom: 20px; }
+  .text-link { display: inline-block; color: #132238; font-size: 14px; font-weight: 700; border-bottom: 1px solid #b89c72; padding-bottom: 3px; }
+  .text-link:hover { color: #796546; }
+  .button { display: inline-flex; justify-content: center; align-items: center; min-height: 48px; padding: 13px 22px; background: #132238; color: white; border: 1px solid #132238; border-radius: 7px; font-size: 14px; font-weight: 600; text-align: center; }
+  .button:hover { background: #25415d; }
+  .button.sand { background: #e5d6bc; color: #132238; border-color: #e5d6bc; }
+  .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 26px; align-items: center; }
+  .callout { background: #132238; color: white; border-radius: 16px; padding: 40px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+  .callout h2 { color: white; font-size: clamp(28px, 3vw, 38px); }
+  .callout p { color: #d5dce2; max-width: 640px; line-height: 1.7; }
+  .callout .button { flex-shrink: 0; }
+  .contact-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+  .contact-form .full { grid-column: 1 / -1; }
+  label { display: block; font-size: 14px; color: #132238; font-weight: 600; margin-bottom: 9px; }
+  input, select, textarea { width: 100%; border: 1px solid #cfd4d9; border-radius: 7px; padding: 13px 14px; color: #132238; background: white; font: inherit; font-size: 16px; }
+  input:focus, select:focus, textarea:focus { outline: 2px solid #9c865f; outline-offset: 2px; }
+  .form-note { color: #596575; font-size: 13px; line-height: 1.6; margin-top: 12px; }
+  @media (max-width: 800px) {
+    .page-section { padding: 44px 20px; }
+    .intro-grid { grid-template-columns: 1fr; gap: 30px; }
+    .cards, .cards.two { grid-template-columns: 1fr; }
+    .feature-photo { height: 300px; }
+    .card { padding: 25px; }
+    .callout { padding: 28px; align-items: flex-start; flex-direction: column; }
+    .contact-form { grid-template-columns: 1fr; }
+  }
+</style>
+<style>.simulation { display:grid; grid-template-columns:1fr 1fr; gap:24px; }.simulation-result { background:#132238; color:white; padding:36px; border-radius:16px; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; }.simulation-result .eyebrow { color:#ddc7a4; } output { display:block; font-family:Georgia,serif; font-size:clamp(38px,5vw,60px); line-height:1.1; margin-bottom:20px; }.simulation-result p:not(.eyebrow) { color:#d5dce2; line-height:1.6; margin-bottom:26px; font-size:14px; }@media(max-width:700px) { .simulation { grid-template-columns:1fr; }.simulation-result { padding:28px; } }</style>

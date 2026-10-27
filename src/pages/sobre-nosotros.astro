@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import Hero from '../components/ui/Hero.astro';
+
+const brands = [
+  { name: 'Serinamar', title: 'Alojamientos y compraventa', description: 'Reservas vacacionales y acompañamiento en la compra, venta o alquiler de una propiedad.', logo: '/images/logos/serinamar-logo.png', href: '/divisiones/serinamar/' },
+  { name: 'Just Banús', title: 'Cuidado de viviendas', description: 'Mantenimiento, reformas, limpieza y atención a propietarios en Marbella y Puerto Banús.', logo: '/images/logos/just-banus-logo.png', href: '/divisiones/just-banus/' },
+  { name: 'Iberian Sun', title: 'Atención a no residentes', description: 'Apoyo administrativo y fiscal, con atención en español e inglés para propietarios internacionales.', logo: '/images/logos/iberian-sun-logo.png', href: '/divisiones/iberian-sun/' }
+];
+
+---
+
+<BaseLayout title="Sobre nosotros · Un equipo local desde 2000 | Grupo Serinamar" description="Conoce Grupo Serinamar. Un equipo en Marbella desde 2000 para alojamientos, compraventa, mantenimiento y atención a propietarios." canonicalURL="https://gruposerinamar.com/sobre-nosotros/">
+  <Header slot="header" currentLang="es" />
+  <Hero eyebrow="Grupo Serinamar · Desde 2000" title="Marbella es nuestra casa." description="Un equipo local que conoce la zona y acompaña a huéspedes y propietarios con una atención cercana." image="/images/hero/puerto-banus-panorama.webp" imageAlt="Puerto Banús y su entorno urbano junto al Mediterráneo" actionLabel="Hablar con el equipo" actionHref="/contacto/" />
+
+  <section class="page-section intro-grid">
+    <div><p class="eyebrow">Nuestra forma de trabajar</p><h2>Conocer a las personas.<br />Cuidar cada propiedad.</h2><div class="body-copy"><p>Desde el año 2000, Serinamar acompaña a quienes eligen Marbella para sus vacaciones, su casa o su inversión inmobiliaria.</p><p>Con el tiempo, reunimos los servicios que necesita una propiedad: alquiler vacacional y compraventa, mantenimiento y reformas, y asistencia a propietarios no residentes.</p><p>Nos encontrarás en el Centro Comercial Los Naranjos de Marbella, Local 5. Un lugar al que acudir y un equipo con el que hablar.</p></div><div class="actions"><a class="text-link" href="/contacto/#oficina">Ven a conocernos →</a></div></div>
+    <img class="feature-photo" src="/images/hero/naranjos-pool.jpg" alt="Edificios blancos y palmeras en Los Naranjos de Marbella" loading="lazy" />
+  </section>
+  <section class="section-tint"><div class="page-section"><div class="section-heading"><p class="eyebrow">Un grupo, equipos especializados</p><h2>Cada necesidad tiene su equipo.</h2></div><div class="cards">{brands.map(brand => <article class="card"><img class="brand-mark" src={brand.logo} alt={brand.name} loading="lazy" /><h3>{brand.title}</h3><p>{brand.description}</p><div class="actions"><a class="text-link" href={brand.href}>Conocer {brand.name} →</a></div></article>)}</div></div></section>
+  <section class="page-section"><div class="intro-grid"><div><p class="eyebrow">Desde 2000, en Marbella</p><h2>Cercanía que continúa después de la primera visita.</h2></div><div class="body-copy"><p>Creemos en una relación duradera: atender una estancia, acompañar una compraventa y seguir cuidando la casa cuando su propietario está lejos.</p><p>Nuestras divisiones trabajan de forma coordinada para que puedas encontrar el servicio que necesitas dentro del mismo grupo.</p><div class="actions"><a class="button" href="/propietarios/">Servicios para propietarios →</a></div></div></div></section>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .page-section { max-width: 1200px; margin: 0 auto; padding: 64px 28px; }
+  .section-tint { background: #f3efe7; }
+  .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .section-heading { max-width: 680px; margin-bottom: 32px; }
+  .eyebrow { color: #796546; font-size: 12px; letter-spacing: .15em; text-transform: uppercase; font-weight: 700; margin-bottom: 14px; }
+  h2 { font-family: var(--font-serif, Georgia, serif); font-size: clamp(30px, 3.4vw, 44px); line-height: 1.12; color: #132238; margin-bottom: 20px; }
+  h3 { font-family: var(--font-serif, Georgia, serif); font-size: 25px; line-height: 1.2; color: #132238; margin-bottom: 14px; }
+  .body-copy { color: #596575; font-size: 16px; line-height: 1.8; }
+  .body-copy p + p { margin-top: 16px; }
+  .brand-mark { width: auto; max-width: 180px; height: 60px; object-fit: contain; object-position: left; margin-bottom: 24px; }
+  .feature-photo { width: 100%; height: 430px; object-fit: cover; border-radius: 16px; }
+  .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+  .cards.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .card { padding: 30px; background: #fff; border: 1px solid #e5dfd4; border-radius: 16px; }
+  .card p, .card li { color: #596575; font-size: 15px; line-height: 1.7; }
+  .card ul { padding-left: 18px; margin: 20px 0; list-style: disc; }
+  .card li + li { margin-top: 8px; }
+  .card-number { display: block; color: #9c865f; font-size: 14px; margin-bottom: 20px; }
+  .text-link { display: inline-block; color: #132238; font-size: 14px; font-weight: 700; border-bottom: 1px solid #b89c72; padding-bottom: 3px; }
+  .text-link:hover { color: #796546; }
+  .button { display: inline-flex; justify-content: center; align-items: center; min-height: 48px; padding: 13px 22px; background: #132238; color: white; border: 1px solid #132238; border-radius: 7px; font-size: 14px; font-weight: 600; text-align: center; }
+  .button:hover { background: #25415d; }
+  .button.sand { background: #e5d6bc; color: #132238; border-color: #e5d6bc; }
+  .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 26px; align-items: center; }
+  .callout { background: #132238; color: white; border-radius: 16px; padding: 40px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+  .callout h2 { color: white; font-size: clamp(28px, 3vw, 38px); }
+  .callout p { color: #d5dce2; max-width: 640px; line-height: 1.7; }
+  .callout .button { flex-shrink: 0; }
+  .contact-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+  .contact-form .full { grid-column: 1 / -1; }
+  label { display: block; font-size: 14px; color: #132238; font-weight: 600; margin-bottom: 9px; }
+  input, select, textarea { width: 100%; border: 1px solid #cfd4d9; border-radius: 7px; padding: 13px 14px; color: #132238; background: white; font: inherit; font-size: 16px; }
+  input:focus, select:focus, textarea:focus { outline: 2px solid #9c865f; outline-offset: 2px; }
+  .form-note { color: #596575; font-size: 13px; line-height: 1.6; margin-top: 12px; }
+  @media (max-width: 800px) {
+    .page-section { padding: 44px 20px; }
+    .intro-grid { grid-template-columns: 1fr; gap: 30px; }
+    .cards, .cards.two { grid-template-columns: 1fr; }
+    .feature-photo { height: 300px; }
+    .card { padding: 25px; }
+    .callout { padding: 28px; align-items: flex-start; flex-direction: column; }
+    .contact-form { grid-template-columns: 1fr; }
+  }
+</style>
