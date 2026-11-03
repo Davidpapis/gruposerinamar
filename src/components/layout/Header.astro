@@ -3,20 +3,23 @@ interface Props { currentLang?: 'es' | 'en'; }
 const { currentLang = 'es' } = Astro.props;
 const en = currentLang === 'en';
 const labels = en
-  ? { stays: 'Holiday stays', owners: 'Owners', property: 'Buy & sell', group: 'Our group', about: 'About us', contact: 'Contact', book: 'Book', portal: 'Owner portal', menu: 'Open navigation', close: 'Close navigation', navigation: 'Main navigation', language: 'Language', home: 'Grupo Serinamar home' }
-  : { stays: 'Alojamientos', owners: 'Propietarios', property: 'Comprar y vender', group: 'El grupo', about: 'Sobre nosotros', contact: 'Contacto', book: 'Reservar', portal: 'Acceso propietarios', menu: 'Abrir navegación', close: 'Cerrar navegación', navigation: 'Navegación principal', language: 'Idioma', home: 'Inicio de Grupo Serinamar' };
+  ? { home: 'Home', stays: 'Holiday stays', owners: 'Owners', property: 'Buy & sell', group: 'Our group', about: 'About us', faq: 'Help & FAQ', contact: 'Contact', book: 'Book', portal: 'Owner portal', menu: 'Open navigation', close: 'Close navigation', navigation: 'Main navigation', language: 'Language', brandHome: 'Grupo Serinamar home' }
+  : { home: 'Inicio', stays: 'Alojamientos', owners: 'Propietarios', property: 'Comprar y vender', group: 'El grupo', about: 'Sobre nosotros', faq: 'Ayuda & FAQ', contact: 'Contacto', book: 'Reservar', portal: 'Acceso propietarios', menu: 'Abrir navegación', close: 'Cerrar navegación', navigation: 'Navegación principal', language: 'Idioma', brandHome: 'Inicio de Grupo Serinamar' };
 const brands = [
   { name: 'Serinamar', href: '/divisiones/serinamar/', detail: en ? 'Holiday stays & real estate' : 'Alojamientos e inmobiliaria' },
-  { name: 'Just Banús', href: '/divisiones/just-banus/', detail: en ? 'Property management & care' : 'Gestión y cuidado de viviendas' },
-  { name: 'Iberian Sun', href: '/divisiones/iberian-sun/', detail: en ? 'Services for non-residents' : 'Servicios para no residentes' },
-  { name: 'Los Naranjos de Marbella', href: '/divisiones/los-naranjos/', detail: en ? 'Your stay in Marbella' : 'Tu estancia en Marbella' },
+  { name: 'Just Banús', href: '/divisiones/just-banus/', detail: en ? 'Services & property management' : 'Servicios y property management' },
+  { name: 'Iberian Sun', href: '/divisiones/iberian-sun/', detail: en ? 'UK & non-resident services' : 'Servicios para no residentes y UK' },
 ];
 const isCurrent = (path: string) => Astro.url.pathname.replace(/\/$/, '') === path.replace(/\/$/, '');
 ---
 <header class="site-header" data-site-header>
   <div class="header-top">
     <div class="header-top-inner">
-      <span class="location">Marbella · Puerto Banús</span>
+      <div class="top-location-group">
+        <span class="top-group-label">GRUPO SERINAMAR</span>
+        <span class="top-sep">·</span>
+        <span class="location">Marbella · Puerto Banús</span>
+      </div>
       <div class="top-contact">
         <a href="tel:+34952813362">+34 952 81 33 62</a>
         <a class="owner-portal" href="https://serinamar.guestyowners.com" target="_blank" rel="noopener noreferrer">{labels.portal} <span aria-hidden="true">↗</span></a>
@@ -24,11 +27,11 @@ const isCurrent = (path: string) => Astro.url.pathname.replace(/\/$/, '') === pa
     </div>
   </div>
   <div class="header-main">
-    <a class="brand" href={en ? '/en/' : '/'} aria-label={labels.home}>
-      <img src="/images/logos/serinamar-logo-header.png" width="66" height="33" alt="" />
-      <span class="brand-name"><span>Grupo</span>Serinamar</span>
+    <a class="brand" href={en ? '/en/' : '/'} aria-label={labels.brandHome}>
+      <img src="/images/logos/serinamar-logo.png" alt="Grupo Serinamar" class="brand-logo" width="160" height="42" />
     </a>
     <nav class="main-navigation" id="primary-navigation" aria-label={labels.navigation}>
+      <a href={en ? '/en/' : '/'} aria-current={isCurrent(en ? '/en/' : '/') ? 'page' : undefined}>{labels.home}</a>
       <a href="/alojamientos/" aria-current={isCurrent('/alojamientos/') ? 'page' : undefined}>{labels.stays}</a>
       <a href="/propietarios/" aria-current={isCurrent('/propietarios/') ? 'page' : undefined}>{labels.owners}</a>
       <a href="/divisiones/serinamar/" aria-current={isCurrent('/divisiones/serinamar/') ? 'page' : undefined}>{labels.property}</a>
@@ -41,6 +44,7 @@ const isCurrent = (path: string) => Astro.url.pathname.replace(/\/$/, '') === pa
           <a class="about-link" href="/sobre-nosotros/">{labels.about}<span aria-hidden="true">↗</span></a>
         </div>
       </div>
+      <a href={en ? '/en/faq/' : '/faq/'} aria-current={isCurrent(en ? '/en/faq/' : '/faq/') ? 'page' : undefined}>{labels.faq}</a>
       <a href="/contacto/" aria-current={isCurrent('/contacto/') ? 'page' : undefined}>{labels.contact}</a>
     </nav>
     <div class="header-actions">
@@ -60,16 +64,17 @@ const isCurrent = (path: string) => Astro.url.pathname.replace(/\/$/, '') === pa
   .site-header :is(a, button):focus-visible { outline: 2px solid #9b7744; outline-offset: 5px; }
   .header-top { background: #132238; color: #f5f1e9; font-size: 11px; }
   .header-top-inner { max-width: 1328px; min-height: 32px; padding: 0 32px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .top-location-group { display: flex; align-items: center; gap: 8px; }
+  .top-group-label { font-size: 11px; font-weight: 700; letter-spacing: .15em; color: #dec7a7; }
+  .top-sep { color: rgba(255, 255, 255, 0.35); }
   .location { letter-spacing: .13em; text-transform: uppercase; }
   .top-contact { display: flex; align-items: center; gap: 26px; }
   .top-contact a { white-space: nowrap; }
   .owner-portal { color: #dec7a7 !important; }
   .owner-portal span { margin-left: 5px; }
   .header-main { position: relative; max-width: 1328px; height: 78px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-  .brand { display: flex; align-items: center; gap: 11px; flex-shrink: 0; }
-  .brand img { display: block; width: 66px; height: auto; }
-  .brand-name { display: flex; flex-direction: column; font-size: 16px; line-height: 1.2; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; }
-  .brand-name > span { font-size: 9px; letter-spacing: .26em; font-weight: 400; margin-bottom: 4px; }
+  .brand { display: flex; align-items: center; flex-shrink: 0; }
+  .brand-logo { display: block; height: 40px; width: auto; max-width: 170px; object-fit: contain; }
   .main-navigation { display: flex; align-items: center; gap: 25px; font-size: 13px; line-height: 1.4; }
   .main-navigation > a { padding: 12px 0; white-space: nowrap; }
   .main-navigation :is(a, button):hover, .main-navigation > a[aria-current="page"] { color: #8a693d; }

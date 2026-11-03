@@ -1,0 +1,386 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import faqs from '../../data/freshdesk_faq.json';
+
+const title = "Centro de Ayuda, Soporte & Preguntas Frecuentes (SAC) | Grupo Serinamar";
+const description = "Atención al cliente y base de conocimiento de Grupo Serinamar: alquiler vacacional, check-in, servicios para propietarios Just Banús y fiscalidad de no residentes Iberian Sun. Abra su ticket de soporte.";
+const canonicalURL = "https://gruposerinamar.com/faq/";
+
+// JSON-LD para SEO y Rastreadores de Inteligencia Artificial (Schema.org FAQPage)
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.title,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.content
+    }
+  }))
+};
+
+// Categorías enriquecidas con iconos y contadores reales
+const categoryList = [
+  { id: 'Todas', name: 'Todas las preguntas', count: faqs.length, icon: '📋' },
+  { id: 'Huéspedes & Alojamientos', name: 'Huéspedes & Vacacional', count: faqs.filter(f => f.category === 'Huéspedes & Alojamientos').length, icon: '🏖️' },
+  { id: 'Servicios para Propietarios', name: 'Propietarios & Mantenimiento (Just Banús)', count: faqs.filter(f => f.category === 'Servicios para Propietarios').length, icon: '🔑' },
+  { id: 'Asesoría Fiscal & No Residentes', name: 'Fiscal & No Residentes (Iberian Sun)', count: faqs.filter(f => f.category === 'Asesoría Fiscal & No Residentes').length, icon: '🇬🇧' },
+  { id: 'Compraventa e Inversión', name: 'Compraventa e Inversión', count: faqs.filter(f => f.category === 'Compraventa e Inversión').length, icon: '🏡' },
+  { id: 'Guía del Apartamento', name: 'Guía del Apartamento', count: faqs.filter(f => f.category === 'Guía del Apartamento').length, icon: '📖' },
+  { id: 'Gestión de Alquiler y Custodia', name: 'Custodia & Gestión', count: faqs.filter(f => f.category === 'Gestión de Alquiler y Custodia').length, icon: '🛡️' }
+];
+
+const divisionLogos: Record<string, string> = {
+  'Serinamar': '/images/logos/serin-logo-trimmed.png',
+  'Just Banús': '/images/logos/jb-logo-trimmed.png',
+  'Iberian Sun': '/images/logos/iberian-logo-trimmed.png'
+};
+---
+
+<BaseLayout title={title} description={description} canonicalURL={canonicalURL} lang="es">
+  <Header slot="header" currentLang="es" />
+
+  <!-- Script Schema.org FAQPage in head -->
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <!-- HERO SECTION SAC -->
+  <section class="bg-gradient-to-b from-[#132238] via-[#1a2d47] to-[#132238] text-white pt-16 pb-20 px-4 sm:px-6 lg:px-8 border-b border-[#2a3f5f]">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/15 text-xs text-[#dec7a7] uppercase tracking-widest font-medium mb-4">
+        <span>Servicio de Atención al Cliente (SAC)</span>
+        <span class="w-1.5 h-1.5 rounded-full bg-[#25D366]"></span>
+        <span>Base de Conocimiento</span>
+      </div>
+      
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight mb-4 leading-tight">
+        ¿Cómo podemos ayudarte hoy?
+      </h1>
+      
+      <p class="text-sm sm:text-base text-[#c7d2e0] max-w-2xl mx-auto leading-relaxed mb-8">
+        Encuentra respuestas rápidas sobre tu estancia vacacional, los servicios de mantenimiento y custodia de <strong class="text-white">Just Banús</strong> o la gestión fiscal para no residentes de <strong class="text-white">Iberian Sun</strong>.
+      </p>
+
+      <!-- Buscador en tiempo real integrado -->
+      <div class="relative max-w-2xl mx-auto text-left">
+        <div class="faq-search-box relative flex items-center shadow-2xl rounded-2xl bg-white border border-[#EAE3D9] focus-within:border-[#C5A880] focus-within:ring-4 focus-within:ring-[#C5A880]/20 transition-all min-h-[58px] px-4">
+          <span class="text-slate-400 shrink-0 mr-2.5 flex items-center">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+          </span>
+          <input 
+            type="text" 
+            id="faq-search-input" 
+            placeholder="Buscar por palabra clave: check-in, llaves, Modelo 210, trasteros, taxi, limpieza..."
+            class="w-full h-8 py-0 pl-1 pr-10 text-[#132238] text-sm sm:text-base placeholder:text-slate-400 bg-transparent border-0 outline-none focus:outline-none focus:ring-0 leading-normal"
+            autocomplete="off"
+          />
+          <button 
+            type="button" 
+            id="faq-search-clear" 
+            class="hidden absolute right-3 p-1.5 text-slate-400 hover:text-slate-600 rounded-full text-xs cursor-pointer"
+            aria-label="Limpiar búsqueda"
+          >
+            ✕
+          </button>
+        </div>
+        <div class="flex items-center justify-between text-xs text-[#94a3b8] mt-2.5 px-2">
+          <span id="faq-counter">Mostrando todas las {faqs.length} respuestas oficiales</span>
+          <span class="hidden sm:inline">Actualizado en tiempo real</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER DESTACADO DE TICKETS FRESHDESK -->
+  <section class="max-w-5xl mx-auto px-4 -mt-8 relative z-20">
+    <div class="bg-white rounded-2xl border border-[#EAE3D9] shadow-xl p-5 sm:p-6 flex flex-col md:flex-row items-center justify-between gap-5">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-xl bg-[#FAF8F5] border border-[#EAE3D9] flex items-center justify-center text-2xl shrink-0">
+          🎫
+        </div>
+        <div>
+          <h2 class="text-base font-bold text-[#132238] flex items-center gap-2">
+            Portal de Tickets Freshdesk SAC
+            <span class="text-[10px] bg-[#132238]/5 text-[#132238] px-2 py-0.5 rounded font-mono uppercase">Oficial</span>
+          </h2>
+          <p class="text-xs text-[#5c6570] mt-0.5">
+            ¿Tienes una incidencia específica o necesitas que nuestro equipo gestione un caso particular?
+          </p>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-3 w-full md:w-auto shrink-0">
+        <a 
+          href="https://solutionsserinamar.freshdesk.com/support/tickets/new" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="flex-1 md:flex-none inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-[#132238] hover:bg-[#203654] text-white text-xs sm:text-sm font-semibold rounded-xl shadow-md transition-all duration-200"
+        >
+          <span>Abrir nuevo ticket de ayuda</span>
+          <span>↗</span>
+        </a>
+        <a 
+          href="https://solutionsserinamar.freshdesk.com/support/tickets" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="flex-1 md:flex-none inline-flex items-center justify-center gap-1.5 px-4 py-2.5 bg-[#FAF8F5] hover:bg-[#EAE3D9] text-[#132238] border border-[#EAE3D9] text-xs sm:text-sm font-medium rounded-xl transition-colors"
+        >
+          <span>Revisar estado</span>
+          <span>↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENIDO PRINCIPAL: CATEGORÍAS Y ACORDEÓN DE PREGUNTAS -->
+  <section class="max-w-5xl mx-auto px-4 py-12">
+    
+    <!-- Filtros por categoría / división (Envueltos en flex-wrap para que nunca se corten) -->
+    <div class="flex flex-wrap items-center gap-2.5 mb-8" id="category-filters">
+      {categoryList.map((cat, idx) => (
+        <button 
+          type="button" 
+          data-category={cat.id}
+          class={`cat-filter-btn inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer border shadow-2xs ${idx === 0 ? 'bg-[#132238] text-white border-[#132238] shadow-sm' : 'bg-white text-[#5c6570] border-[#EAE3D9] hover:border-[#C5A880] hover:text-[#132238]'}`}
+        >
+          <span>{cat.icon}</span>
+          <span>{cat.name}</span>
+          <span class={`text-[10.5px] px-1.5 py-0.2 rounded-full ${idx === 0 ? 'bg-white/20 text-white' : 'bg-[#FAF8F5] text-[#806847]'}`}>
+            {cat.count}
+          </span>
+        </button>
+      ))}
+    </div>
+
+    <!-- Lista de Preguntas / Acordeón -->
+    <div class="space-y-4" id="faq-list">
+      {faqs.map((faq, index) => (
+        <details 
+          class="faq-item group bg-white rounded-2xl border border-[#EAE3D9] hover:border-[#C5A880]/70 transition-all duration-200 overflow-hidden shadow-xs hover:shadow-md"
+          data-title={faq.title.toLowerCase()}
+          data-category={faq.category}
+          data-division={faq.division}
+          data-content={faq.content.toLowerCase()}
+        >
+          <summary class="flex items-center justify-between p-5 sm:p-6 cursor-pointer list-none select-none">
+            <div class="flex items-start sm:items-center gap-3.5 pr-4">
+              <div class="w-8 h-8 rounded-lg bg-[#FAF8F5] border border-[#EAE3D9] flex items-center justify-center shrink-0 p-1">
+                <img 
+                  src={divisionLogos[faq.division] || '/images/logos/casita-logo-no-bg.png'} 
+                  alt={faq.division} 
+                  class="max-h-5 max-w-full object-contain" 
+                  loading="lazy"
+                />
+              </div>
+              <div>
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-[#806847] bg-[#FAF8F5] px-2 py-0.5 rounded border border-[#EAE3D9]">
+                    {faq.division} · {faq.category}
+                  </span>
+                </div>
+                <h3 class="text-sm sm:text-base font-serif font-bold text-[#132238] group-hover:text-[#806847] transition-colors leading-snug">
+                  {faq.title}
+                </h3>
+              </div>
+            </div>
+            
+            <span class="w-7 h-7 rounded-full bg-[#FAF8F5] border border-[#EAE3D9] flex items-center justify-center text-[#132238] group-open:rotate-180 transition-transform duration-200 shrink-0 text-xs">
+              ▼
+            </span>
+          </summary>
+
+          <div class="px-5 sm:px-6 pb-6 pt-2 border-t border-[#FAF8F5] text-xs sm:text-sm text-[#475569] leading-relaxed">
+            <div class="whitespace-pre-line bg-[#FDFBF7] p-4 rounded-xl border border-[#EAE3D9]/60 mb-4 font-sans text-[13px]">
+              {faq.content}
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-2 text-xs">
+              <span class="text-[#64748b]">
+                Publicado en el Centro de Ayuda Oficial de Grupo Serinamar
+              </span>
+              <a 
+                href={faq.url} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="inline-flex items-center gap-1.5 text-[#806847] hover:text-[#132238] font-semibold hover:underline"
+              >
+                <span>Ver artículo original en Freshdesk</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </details>
+      ))}
+
+      <!-- Estado vacío cuando no hay resultados de búsqueda -->
+      <div id="faq-no-results" class="hidden text-center py-16 bg-white rounded-2xl border border-dashed border-[#EAE3D9] p-8">
+        <span class="text-4xl mb-3 block">🔍</span>
+        <h3 class="text-base font-bold text-[#132238] mb-1">No se encontraron respuestas para tu búsqueda</h3>
+        <p class="text-xs sm:text-sm text-[#64748b] max-w-md mx-auto mb-6">
+          Prueba con otras palabras o crea directamente un nuevo ticket de soporte en Freshdesk para que nuestro equipo te responda personalmente.
+        </p>
+        <a 
+          href="https://solutionsserinamar.freshdesk.com/support/tickets/new" 
+          target="_blank" 
+          class="inline-flex items-center gap-2 px-5 py-2.5 bg-[#132238] text-white text-xs font-semibold rounded-xl hover:bg-[#203654] transition-colors"
+        >
+          <span>Abrir ticket en Freshdesk</span>
+          <span>↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CANALES DE CONTACTO ALTERNATIVOS -->
+  <section class="bg-[#FAF8F5] border-t border-[#EAE3D9] py-14 px-4">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center max-w-xl mx-auto mb-10">
+        <p class="text-xs font-semibold text-[#806847] uppercase tracking-widest mb-1.5">Atención Multicanal</p>
+        <h2 class="text-2xl font-serif font-bold text-[#132238]">¿Prefieres comunicarte directamente?</h2>
+        <p class="text-xs sm:text-sm text-[#5c6570] mt-2">
+          Nuestro equipo atiende en español e inglés desde la recepción de Los Naranjos de Marbella.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-2xl border border-[#EAE3D9] text-center shadow-xs">
+          <span class="text-3xl block mb-3">💬</span>
+          <h3 class="font-bold text-[#132238] text-sm mb-1">WhatsApp Inmediato</h3>
+          <p class="text-xs text-[#64748b] mb-4">Respuesta rápida para dudas de estancias, averías o consultas generales.</p>
+          <a 
+            href="https://wa.me/34678487594?text=Hola,%20tengo%20una%20consulta%20para%20el%20SAC%20de%20Grupo%20Serinamar." 
+            target="_blank" 
+            class="text-xs font-bold text-[#25D366] hover:underline inline-flex items-center gap-1"
+          >
+            <span>+34 678 48 75 94</span>
+            <span>↗</span>
+          </a>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-[#EAE3D9] text-center shadow-xs">
+          <span class="text-3xl block mb-3">📞</span>
+          <h3 class="font-bold text-[#132238] text-sm mb-1">Teléfono Recepción</h3>
+          <p class="text-xs text-[#64748b] mb-4">Atención telefónica de Lunes a Viernes de 08:00 a 16:00.</p>
+          <a href="tel:+34952813362" class="text-xs font-bold text-[#132238] hover:text-[#806847] hover:underline">
+            +34 952 81 33 62
+          </a>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-[#EAE3D9] text-center shadow-xs">
+          <span class="text-3xl block mb-3">🏢</span>
+          <h3 class="font-bold text-[#132238] text-sm mb-1">Recepción Presencial</h3>
+          <p class="text-xs text-[#64748b] mb-4">Centro Comercial Los Naranjos, Local 5, 29660 Marbella.</p>
+          <a href="/contacto/#oficina" class="text-xs font-bold text-[#806847] hover:underline inline-flex items-center gap-1">
+            <span>Ver mapa y horarios</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" currentLang="es" />
+</BaseLayout>
+
+<style>
+  /* Desactiva cualquier línea / outline indeseado del selector global input:focus-visible */
+  #faq-search-input,
+  #faq-search-input:focus,
+  #faq-search-input:focus-visible {
+    outline: none !important;
+    outline-offset: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+</style>
+
+<script>
+  function setupFaqSearch() {
+    const searchInput = document.getElementById('faq-search-input') as HTMLInputElement | null;
+    const clearBtn = document.getElementById('faq-search-clear');
+    const faqItems = document.querySelectorAll<HTMLElement>('.faq-item');
+    const counter = document.getElementById('faq-counter');
+    const noResults = document.getElementById('faq-no-results');
+    const filterBtns = document.querySelectorAll<HTMLButtonElement>('.cat-filter-btn');
+
+    let currentCategory = 'Todas';
+
+    function filterFaqs() {
+      const query = (searchInput?.value || '').trim().toLowerCase();
+      let visibleCount = 0;
+
+      if (clearBtn) {
+        if (query.length > 0) {
+          clearBtn.classList.remove('hidden');
+        } else {
+          clearBtn.classList.add('hidden');
+        }
+      }
+
+      faqItems.forEach((item) => {
+        const title = item.dataset.title || '';
+        const cat = item.dataset.category || '';
+        const div = item.dataset.division || '';
+        const content = item.dataset.content || '';
+
+        const matchesQuery = !query || 
+          title.includes(query) || 
+          cat.toLowerCase().includes(query) || 
+          div.toLowerCase().includes(query) || 
+          content.includes(query);
+
+        const matchesCategory = currentCategory === 'Todas' || cat === currentCategory;
+
+        if (matchesQuery && matchesCategory) {
+          item.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+
+      if (counter) {
+        counter.textContent = `Mostrando ${visibleCount} de ${faqItems.length} respuestas`;
+      }
+
+      if (noResults) {
+        if (visibleCount === 0) {
+          noResults.classList.remove('hidden');
+        } else {
+          noResults.classList.add('hidden');
+        }
+      }
+    }
+
+    searchInput?.addEventListener('input', filterFaqs);
+
+    clearBtn?.addEventListener('click', () => {
+      if (searchInput) {
+        searchInput.value = '';
+        searchInput.focus();
+        filterFaqs();
+      }
+    });
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.className = 'cat-filter-btn inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer border shadow-2xs bg-white text-[#5c6570] border-[#EAE3D9] hover:border-[#C5A880] hover:text-[#132238]';
+          const countSpan = b.querySelector('span:last-child');
+          if (countSpan) countSpan.className = 'text-[10.5px] px-1.5 py-0.2 rounded-full bg-[#FAF8F5] text-[#806847]';
+        });
+        btn.className = 'cat-filter-btn inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer border shadow-sm bg-[#132238] text-white border-[#132238]';
+        const activeCount = btn.querySelector('span:last-child');
+        if (activeCount) activeCount.className = 'text-[10.5px] px-1.5 py-0.2 rounded-full bg-white/20 text-white';
+        currentCategory = btn.dataset.category || 'Todas';
+        filterFaqs();
+      });
+    });
+  }
+
+  setupFaqSearch();
+  document.addEventListener('astro:page-load', setupFaqSearch);
+</script>
+

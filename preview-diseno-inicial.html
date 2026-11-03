@@ -6,6 +6,11 @@
   <title>Grupo Serinamar | Prototipo de Diseño Inicial (Marbella Luxury)</title>
   <meta name="description" content="Diseño inicial corporativo para Grupo Serinamar. Centralización de Serinamar Hospitality, Just Banús, Iberian Sun y Los Naranjos de Marbella.">
 
+  <!-- Favicon para pestañas del navegador -->
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/favicon.png">
+
   <!-- Tipografía Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,6 +54,45 @@
     h1, h2, h3, .font-serif {
       font-family: 'Playfair Display', Georgia, serif;
     }
+    :root {
+      --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes heroFadeDown { 0% { opacity: 0; transform: translateY(-16px); } 100% { opacity: 1; transform: translateY(0); } }
+    @keyframes heroFadeUp { 0% { opacity: 0; transform: translateY(24px); } 100% { opacity: 1; transform: translateY(0); } }
+    @keyframes heroTitleReveal { 0% { opacity: 0; transform: translateY(32px) scale(0.98); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+    @keyframes heroSearchLift { 0% { opacity: 0; transform: translateY(36px); } 100% { opacity: 1; transform: translateY(0); } }
+    .animate-hero-eyebrow { animation: heroFadeDown 0.8s var(--ease-luxury) forwards; }
+    .animate-hero-title { animation: heroTitleReveal 1s var(--ease-luxury) 0.15s backwards; }
+    .animate-hero-copy { animation: heroFadeUp 0.9s var(--ease-luxury) 0.3s backwards; }
+    .animate-hero-stats { animation: heroFadeUp 0.9s var(--ease-luxury) 0.45s backwards; }
+    .animate-hero-search { animation: heroSearchLift 1s var(--ease-luxury) 0.6s backwards; }
+
+    html.js-ready .reveal-on-scroll { opacity: 0; transform: translateY(32px); transition: opacity 0.85s var(--ease-luxury), transform 0.85s var(--ease-luxury); will-change: opacity, transform; }
+    html.js-ready .reveal-title { opacity: 0; transform: translateY(40px); transition: opacity 0.95s var(--ease-luxury), transform 0.95s var(--ease-luxury); will-change: opacity, transform; }
+    html.js-ready .reveal-scale { opacity: 0; transform: scale(0.94); transition: opacity 0.85s var(--ease-luxury), transform 0.85s var(--ease-luxury); will-change: opacity, transform; }
+    html.js-ready .reveal-fade { opacity: 0; transition: opacity 0.9s var(--ease-luxury); }
+    .reveal-on-scroll.is-revealed, .reveal-title.is-revealed, .reveal-scale.is-revealed, .reveal-fade.is-revealed { opacity: 1 !important; transform: translateY(0) scale(1) !important; }
+    .stagger-1 { transition-delay: 80ms !important; }
+    .stagger-2 { transition-delay: 160ms !important; }
+    .stagger-3 { transition-delay: 240ms !important; }
+
+    .btn-shine { position: relative; overflow: hidden; transition: transform 0.28s var(--ease-luxury), box-shadow 0.28s var(--ease-luxury); }
+    .btn-shine::after { content: ''; position: absolute; top: -60%; left: -70%; width: 45%; height: 220%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent); transform: rotate(25deg); pointer-events: none; transition: left 0.75s ease; }
+    @media (hover: hover) and (pointer: fine) {
+      .btn-shine:hover::after { left: 140%; }
+      .btn-shine:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -6px rgba(19, 34, 56, 0.22), 0 0 14px rgba(197, 168, 128, 0.22); }
+      .holding-card:hover { transform: translateY(-8px); box-shadow: 0 24px 48px -15px rgba(19, 34, 56, 0.14), 0 0 20px rgba(197, 168, 128, 0.18); border-color: #C5A880 !important; }
+      .holding-card:hover .holding-card-logo { transform: scale(1.06); }
+      .holding-card:hover .holding-card-arrow { transform: translateX(5px); color: #806847; }
+      .stay-card:hover { transform: translateY(-8px); box-shadow: 0 20px 35px -10px rgba(19, 34, 56, 0.12); border-color: #C5A880; }
+      .stay-card:hover figure img { transform: scale(1.06); }
+    }
+    .holding-card { transition: transform 0.35s var(--ease-luxury), box-shadow 0.35s var(--ease-luxury), border-color 0.3s ease; }
+    .holding-card-logo { transition: transform 0.4s var(--ease-luxury); }
+    .holding-card-arrow { transition: transform 0.3s var(--ease-luxury), color 0.3s ease; }
+    .stay-card { transition: transform 0.35s var(--ease-luxury), box-shadow 0.35s var(--ease-luxury), border-color 0.3s ease; }
+    .stay-card figure img { transition: transform 800ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+    .stat-counter { display: inline-block; font-variant-numeric: tabular-nums; }
     .interactive-card {
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -68,13 +112,17 @@
   <!-- 1. TOP BAR INSTITUCIONAL -->
   <div class="bg-[#0B1524] text-[#EAE3D9] text-xs py-2 px-4 sm:px-8 border-b border-white/10">
     <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
-      <div class="flex items-center gap-3">
-        <span class="inline-flex items-center gap-1.5 text-[#C5A880] font-medium tracking-wide">
-          <span class="w-1.5 h-1.5 rounded-full bg-[#C5A880] animate-pulse"></span>
+      <div class="flex items-center gap-2.5">
+        <span class="inline-flex items-center gap-2 text-white font-semibold tracking-widest text-xs uppercase">
+          <span class="w-2 h-2 rounded-full bg-[#C5A880]"></span>
+          <span>GRUPO SERINAMAR</span>
+        </span>
+        <span class="text-white/40">·</span>
+        <span class="text-[#C5A880] font-medium tracking-wider text-xs uppercase">
           MARBELLA & PUERTO BANÚS
         </span>
         <span class="hidden md:inline text-white/40">|</span>
-        <span class="hidden md:inline text-white/70">Más de 25 años de experiencia y gestión patrimonial (Est. 2000)</span>
+        <span class="hidden md:inline text-white/70 text-xs">Gestión Patrimonial · Est. 2000</span>
       </div>
       <div class="flex items-center gap-4 text-white/80">
         <a href="tel:952813362" class="hover:text-[#C5A880] flex items-center gap-1 transition-colors">
@@ -95,25 +143,22 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between">
       
       <!-- Logo Oficial Grupo Serinamar -->
-      <a href="#" class="flex items-center gap-3 group">
+      <a href="#" class="flex items-center group shrink-0">
         <img 
-          src="./recursos/serinamar-logo-no-bg.png" 
-          alt="Grupo Serinamar Logo Oficial" 
-          class="h-10 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+          src="/images/logos/serinamar-logo.png" 
+          alt="Grupo Serinamar" 
+          class="h-9 md:h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
         />
-        <div class="border-l border-[#132238]/20 pl-3 py-0.5 hidden sm:block">
-          <span class="block text-[11px] font-semibold tracking-[0.2em] uppercase text-[#132238]">GRUPO SERINAMAR</span>
-          <span class="block text-[9.5px] tracking-wider text-[#C5A880] font-medium uppercase">Marbella · Est. 2000</span>
-        </div>
       </a>
 
       <!-- Menú Desktop -->
       <nav class="hidden lg:flex items-center gap-7 text-[13.5px] font-medium tracking-wide text-[#132238]">
+        <a href="#" class="text-[#806847] font-semibold py-1">Inicio</a>
         <a href="#buscador" class="hover:text-[#C5A880] transition-colors py-1">Alojamientos</a>
-        <a href="#divisiones" class="hover:text-[#C5A880] transition-colors py-1">Divisiones</a>
-        <a href="#ciclo-vida" class="hover:text-[#C5A880] transition-colors py-1">Ciclo 360°</a>
+        <a href="#divisiones-top" class="hover:text-[#C5A880] transition-colors py-1">Divisiones</a>
         <a href="#propietarios" class="hover:text-[#C5A880] transition-colors py-1">Propietarios & Care</a>
         <a href="#sobre-nosotros" class="hover:text-[#C5A880] transition-colors py-1">Sobre Nosotros</a>
+        <a href="/faq/" class="hover:text-[#C5A880] transition-colors py-1">Ayuda & FAQ</a>
         <a href="#contacto" class="hover:text-[#C5A880] transition-colors py-1">Contacto</a>
       </nav>
 
@@ -136,8 +181,8 @@
     </div>
   </header>
 
-  <!-- 3. HERO SECTION CINEMATOGRÁFICO MARBELLA -->
-  <section class="relative pt-12 pb-24 md:pt-20 md:pb-36 px-4 sm:px-8 bg-gradient-to-b from-[#132238] via-[#1B2F4C] to-[#F9F8F6] text-white overflow-hidden">
+  <!-- 3. HERO SECTION CINEMATOGRÁFICO MARBELLA (FULL VIEWPORT) -->
+  <section class="relative min-h-[calc(100vh-110px)] min-h-[calc(100dvh-110px)] flex flex-col justify-center px-4 sm:px-8 py-6 sm:py-8 lg:py-10 bg-gradient-to-b from-[#132238] via-[#1B2F4C] to-[#132238] text-white overflow-hidden">
     
     <!-- Imagen de fondo con opacidad elegante -->
     <div class="absolute inset-0 z-0 opacity-25 mix-blend-luminosity scale-105 filter blur-[1px]">
@@ -148,63 +193,66 @@
       />
     </div>
     
-    <div class="max-w-7xl mx-auto relative z-10">
+    <div class="max-w-6xl mx-auto w-full relative z-10 flex flex-col justify-center my-auto">
       
-      <div class="text-center max-w-4xl mx-auto mb-12">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-[#C5A880]/40 text-[#C5A880] text-xs font-semibold uppercase tracking-widest mb-6">
-          <span class="w-2 h-2 rounded-full bg-[#C5A880]"></span>
+      <div class="text-center max-w-3xl mx-auto mb-5 sm:mb-6">
+        <div class="animate-hero-eyebrow inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-[#C5A880]/40 text-[#C5A880] text-xs font-semibold uppercase tracking-widest mb-3 shadow-xs">
+          <span class="w-2 h-2 rounded-full bg-[#C5A880] animate-pulse"></span>
           <span>Holding Corporativo · Marbella & Puerto Banús</span>
         </div>
 
-        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-white leading-[1.15] mb-6 tracking-tight">
+        <h1 class="animate-hero-title text-2xl sm:text-4xl lg:text-[44px] font-serif font-bold text-white leading-[1.18] mb-3 tracking-tight">
           Un Solo Grupo. Todas las Necesidades de su Propiedad en Marbella.
         </h1>
 
-        <p class="text-base sm:text-lg md:text-xl text-[#EAE3D9] font-light leading-relaxed max-w-3xl mx-auto mb-8">
+        <p class="animate-hero-copy text-xs sm:text-sm md:text-[15px] text-[#EAE3D9] font-light leading-relaxed max-w-2xl mx-auto mb-3.5">
           Desde el año 2000, <strong>Grupo Serinamar</strong> reúne empresas líderes para acompañarle en todo el ciclo del inmueble: compraventa, alquiler vacacional con motor Guesty, cuidado diario con <strong>Just Banús</strong> y asesoría tributaria a no residentes con <strong>Iberian Sun</strong>.
         </p>
 
-        <!-- Métricas Comprobadas -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto pt-4 border-t border-white/15 text-center">
-          <div>
-            <span class="block text-2xl md:text-3xl font-serif font-bold text-[#C5A880]">+25 Años</span>
-            <span class="text-xs uppercase tracking-wider text-[#EAE3D9]/70 font-medium">Trayectoria (2000)</span>
+        <!-- Métricas Comprobadas Compactas con Contadores Animados -->
+        <div class="animate-hero-stats inline-flex flex-wrap items-center justify-center gap-3 sm:gap-6 py-1.5 px-5 rounded-full bg-white/5 border border-white/10 text-center backdrop-blur-xs">
+          <div class="flex items-center gap-1.5">
+            <span class="stat-counter text-sm sm:text-base font-serif font-bold text-[#C5A880]" data-target="25" data-prefix="+">+25 Años</span>
+            <span class="text-[10px] sm:text-[11px] uppercase tracking-wider text-[#EAE3D9]/70 font-medium">Trayectoria</span>
           </div>
-          <div>
-            <span class="block text-2xl md:text-3xl font-serif font-bold text-[#C5A880]">+150</span>
-            <span class="text-xs uppercase tracking-wider text-[#EAE3D9]/70 font-medium">Propiedades Activas</span>
+          <span class="text-white/20 hidden sm:inline">·</span>
+          <div class="flex items-center gap-1.5">
+            <span class="stat-counter text-sm sm:text-base font-serif font-bold text-[#C5A880]" data-target="150" data-prefix="+">+150</span>
+            <span class="text-[10px] sm:text-[11px] uppercase tracking-wider text-[#EAE3D9]/70 font-medium">Propiedades</span>
           </div>
-          <div>
-            <span class="block text-2xl md:text-3xl font-serif font-bold text-[#C5A880]">4.8 ★</span>
-            <span class="text-xs uppercase tracking-wider text-[#EAE3D9]/70 font-medium">Satisfacción Huéspedes</span>
+          <span class="text-white/20 hidden sm:inline">·</span>
+          <div class="flex items-center gap-1.5">
+            <span class="stat-counter text-sm sm:text-base font-serif font-bold text-[#C5A880]" data-target="4.8" data-suffix=" ★">4.8 ★</span>
+            <span class="text-[10px] sm:text-[11px] uppercase tracking-wider text-[#EAE3D9]/70 font-medium">Huéspedes</span>
           </div>
-          <div>
-            <span class="block text-2xl md:text-3xl font-serif font-bold text-[#C5A880]">360°</span>
-            <span class="text-xs uppercase tracking-wider text-[#EAE3D9]/70 font-medium">Gestión Patrimonial</span>
+          <span class="text-white/20 hidden sm:inline">·</span>
+          <div class="flex items-center gap-1.5">
+            <span class="stat-counter text-sm sm:text-base font-serif font-bold text-[#C5A880]" data-target="360" data-suffix="°">360°</span>
+            <span class="text-[10px] sm:text-[11px] uppercase tracking-wider text-[#EAE3D9]/70 font-medium">Gestión</span>
           </div>
         </div>
       </div>
 
-      <!-- 4. BUSCADOR DUAL FLOTANTE (GUESTY VACACIONAL + INMOWEB VENTA) -->
-      <div id="buscador" class="relative z-20 -mb-28 md:-mb-36 w-full max-w-5xl mx-auto rounded-2xl bg-white shadow-2xl border border-[#EAE3D9] overflow-hidden text-[#132238]">
+      <!-- 4. BUSCADOR DUAL (GUESTY VACACIONAL + INMOWEB VENTA) -->
+      <div id="buscador" class="animate-hero-search relative z-20 w-full max-w-5xl mx-auto rounded-2xl bg-white shadow-2xl border border-[#EAE3D9] overflow-hidden text-[#132238]">
         
         <!-- Pestañas -->
         <div class="flex border-b border-[#EAE3D9] bg-[#F4F0E8]">
           <button 
             id="btn-tab-vacational" 
             onclick="switchSearchTab('vacational')" 
-            class="flex-1 py-4 px-6 text-center font-medium text-sm md:text-base flex items-center justify-center gap-2 border-b-2 border-[#132238] bg-white text-[#132238]"
+            class="flex-1 py-4 px-6 text-center font-medium text-sm md:text-base flex items-center justify-center gap-2.5 border-b-2 border-[#132238] bg-white text-[#132238] transition-colors"
           >
-            <svg class="w-5 h-5 text-[#C5A880]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <img src="/images/logos/casita logo NO BG.png" alt="" class="w-5 h-5 object-contain shrink-0" />
             <span>Alquiler Vacacional Directo <strong class="text-xs font-semibold px-2 py-0.5 rounded-full bg-[#EAE3D9] text-[#132238] hidden sm:inline">Guesty PMS</strong></span>
           </button>
           
           <button 
             id="btn-tab-realestate" 
             onclick="switchSearchTab('realestate')" 
-            class="flex-1 py-4 px-6 text-center font-medium text-sm md:text-base flex items-center justify-center gap-2 text-[#64748B] hover:text-[#132238]"
+            class="flex-1 py-4 px-6 text-center font-medium text-sm md:text-base flex items-center justify-center gap-2.5 text-[#64748B] hover:text-[#132238] transition-colors"
           >
-            <svg class="w-5 h-5 text-[#C5A880]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+            <img src="/images/logos/casita logo NO BG.png" alt="" class="w-5 h-5 object-contain shrink-0 opacity-70" />
             <span>Compraventa e Inversión <strong class="text-xs font-semibold px-2 py-0.5 rounded-full bg-[#EAE3D9] text-[#132238] hidden sm:inline">Serinamar MLS</strong></span>
           </button>
         </div>
@@ -244,57 +292,174 @@
           </div>
         </form>
 
-        <!-- Formulario Inmobiliario (Inmoweb) -->
-        <form id="view-realestate" onsubmit="submitInmoweb(event)" class="p-5 md:p-7 hidden">
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
-            <div>
-              <label class="block text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1.5">Operación</label>
-              <select id="inp-operation" class="w-full bg-[#F9F8F6] border border-[#EAE3D9] rounded-xl px-3.5 py-3 text-sm text-[#132238] font-medium focus:ring-2 focus:ring-[#C5A880] outline-none">
-                <option value="1" selected>Comprar (Venta)</option>
-                <option value="2">Alquiler Larga Temporada</option>
-                <option value="sell">Quiero Vender mi Vivienda</option>
-              </select>
+        <!-- Formulario Inmobiliario: Sólo Botón de Catálogo -->
+        <div id="view-realestate" class="p-5 md:p-7 hidden">
+          <div class="flex flex-col md:flex-row items-center justify-between gap-6 py-2">
+            <div class="max-w-xl text-center md:text-left">
+              <span class="inline-block text-xs font-semibold uppercase tracking-wider text-[#806847] mb-1">
+                Serinamar · Hospitality & Real Estate
+              </span>
+              <h3 class="text-lg sm:text-xl font-serif font-semibold text-[#132238]">
+                Cartera de Inmuebles e Inversión Inmobiliaria en Marbella
+              </h3>
+              <p class="text-xs sm:text-sm text-[#5c6570] mt-1 leading-relaxed">
+                Apartamentos, áticos dúplex y villas exclusivas en venta y alquiler de larga temporada en Los Naranjos, Puerto Banús y Nueva Andalucía.
+              </p>
             </div>
-            <div>
-              <label class="block text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1.5">Zona de Marbella</label>
-              <select class="w-full bg-[#F9F8F6] border border-[#EAE3D9] rounded-xl px-3.5 py-3 text-sm text-[#132238] font-medium focus:ring-2 focus:ring-[#C5A880] outline-none">
-                <option selected>Los Naranjos de Marbella</option>
-                <option>Nueva Andalucía / Golf Valley</option>
-                <option>Puerto Banús</option>
-                <option>Milla de Oro</option>
-                <option>Estepona / Cancelada</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1.5">Tipología</label>
-              <select class="w-full bg-[#F9F8F6] border border-[#EAE3D9] rounded-xl px-3.5 py-3 text-sm text-[#132238] font-medium focus:ring-2 focus:ring-[#C5A880] outline-none">
-                <option selected>Todas las tipologías</option>
-                <option>Apartamentos y Plantas Bajas</option>
-                <option>Áticos Dúplex</option>
-                <option>Casas Adosadas</option>
-                <option>Villas Exclusivas</option>
-              </select>
-            </div>
-            <div>
-              <button type="submit" class="w-full bg-[#132238] hover:bg-[#1E3557] text-white font-medium text-sm md:text-[15px] py-3.5 px-6 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 border border-[#C5A880]/30">
-                <svg class="w-4 h-4 text-[#C5A880]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-                <span>Ver Catálogo Inmuebles</span>
-              </button>
+            <div class="w-full md:w-auto flex-shrink-0">
+              <a 
+                href="https://www.serinamar.com/results?id_tipo_operacion=1" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="w-full md:w-auto inline-flex items-center justify-center gap-2.5 bg-[#132238] hover:bg-[#1E3557] text-white font-medium text-sm sm:text-base py-3.5 px-8 rounded-xl shadow-md transition-all border border-[#C5A880]/30 hover:shadow-lg group"
+              >
+                <svg class="w-5 h-5 text-[#C5A880]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                <span>Ver Catálogo de Inmuebles</span>
+                <span aria-hidden="true" class="text-[#C5A880] transition-transform group-hover:translate-x-1">↗</span>
+              </a>
             </div>
           </div>
           <div class="mt-4 pt-3.5 border-t border-[#EAE3D9]/60 flex flex-wrap items-center justify-between text-xs text-[#64748B] gap-2">
-            <span>Valoraciones oficiales de inmuebles por Serinamar Properties</span>
-            <a href="tel:678487594" class="text-[#C5A880] font-semibold hover:underline">Asesor personal: 678 48 75 94</a>
+            <span>✓ Inmuebles verificados y valoraciones oficiales de mercado</span>
+            <span>✓ Asesoramiento integral en compraventa e inversión</span>
+            <a href="tel:+34952813362" class="text-[#C5A880] font-semibold hover:underline">Asesor directo: +34 952 81 33 62</a>
           </div>
-        </form>
+        </div>
 
       </div>
 
     </div>
   </section>
 
-  <!-- ESPACIO DE SEPARACIÓN -->
-  <div class="h-16 md:h-24"></div>
+  <!-- SECCIÓN 3 DIVISIONES ESTRUCTURALES: SERINAMAR, JUST BANÚS, IBERIAN SUN -->
+  <section class="pt-36 sm:pt-44 md:pt-48 pb-16 px-4 sm:px-8 bg-[#FDFBF7]" id="divisiones-top">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="reveal-title text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#132238]/5 border border-[#C5A880]/30 text-[#806847] text-xs font-semibold uppercase tracking-widest mb-4">
+          <span class="w-2 h-2 rounded-full bg-[#C5A880]"></span>
+          <span>CONJUNTO SERINAMAR · ESTRUCTURA EN 3 BLOQUES</span>
+        </div>
+        <h2 class="text-2xl sm:text-4xl lg:text-[40px] font-serif font-normal text-[#132238] tracking-tight leading-[1.2]">
+          Tres empresas complementarias. Un solo equipo de confianza.
+        </h2>
+        <p class="text-sm sm:text-base text-[#5c6570] mt-3 max-w-2xl mx-auto leading-relaxed">
+          Acompañamos todo el ciclo de su vivienda en Marbella: desde la comercialización y alquiler vacacional hasta los servicios integrales y la asesoría fiscal internacional.
+        </p>
+      </div>
+
+      <!-- 3 Tarjetas Estáticas con micro-interacciones de lujo -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+        
+        <!-- Tarjeta 1: Serinamar -->
+        <div class="holding-card reveal-on-scroll stagger-1 group flex flex-col bg-white border border-[#EAE3D9] hover:border-[#C5A880] rounded-2xl p-7 lg:p-8 shadow-sm hover:shadow-xl transition-all duration-300 relative text-[#132238]">
+          <div class="h-24 flex items-center justify-center p-3 mb-6 bg-[#FAF8F5] rounded-xl border border-[#EAE3D9]/60 group-hover:border-[#C5A880]/40 transition-colors">
+            <img src="/images/logos/serinamar-logo.png" alt="Serinamar" class="holding-card-logo max-h-16 max-w-[200px] w-auto object-contain transition-transform duration-300" loading="lazy" />
+          </div>
+          <div class="inline-flex items-center gap-1.5 self-start px-3 py-1 rounded-full bg-[#132238]/5 text-[#132238] text-xs font-semibold uppercase tracking-wider mb-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#C5A880]"></span>
+            <span>Hospitality & Inmobiliaria</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-serif font-semibold text-[#132238] mb-2.5">
+            Serinamar
+          </h3>
+          <p class="text-xs sm:text-sm text-[#5c6570] leading-relaxed mb-6 flex-grow">
+            Alquiler vacacional directo con motor Guesty (absorbe y representa lo que era Los Naranjos de Marbella) y compraventa e intermediación inmobiliaria selecta.
+          </p>
+          <ul class="space-y-2 pt-4 border-t border-[#EAE3D9] text-xs text-[#5c6570] mb-6">
+            <li class="flex items-center gap-2"><span class="text-[#C5A880] font-bold">✓</span> Alquiler vacacional directo (Guesty PMS)</li>
+            <li class="flex items-center gap-2"><span class="text-[#C5A880] font-bold">✓</span> Compraventa de inmuebles y larga temporada</li>
+            <li class="flex items-center gap-2"><span class="text-[#C5A880] font-bold">✓</span> Recepción física y atención al huésped</li>
+          </ul>
+          <div class="pt-5 border-t border-[#EAE3D9] mt-auto flex flex-col gap-2.5">
+            <a href="#contacto" class="btn-shine w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-[#132238] hover:bg-[#203654] text-white text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-xs group/btn">
+              <span>Conocer Serinamar</span>
+              <span class="text-base text-[#C5A880] group-hover/btn:translate-x-1 transition-transform">→</span>
+            </a>
+            <div class="flex items-center justify-between px-1 text-[11px]">
+              <span class="text-[#8A94A0]">Acceso directo:</span>
+              <a href="#buscador" class="text-[#806847] hover:text-[#132238] hover:underline font-semibold flex items-center gap-1">
+                <span>Ver Alojamientos</span>
+                <span class="text-[10px]">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 2: Just Banús -->
+        <div class="holding-card reveal-on-scroll stagger-2 group flex flex-col bg-white border border-[#EAE3D9] hover:border-[#C5A880] rounded-2xl p-7 lg:p-8 shadow-sm hover:shadow-xl transition-all duration-300 relative text-[#132238]">
+          <div class="h-24 flex items-center justify-center p-3 mb-6 bg-[#FAF8F5] rounded-xl border border-[#EAE3D9]/60 group-hover:border-[#C5A880]/40 transition-colors">
+            <img src="/images/logos/just-banus-logo.png" alt="Just Banús" class="holding-card-logo max-h-16 max-w-[200px] w-auto object-contain transition-transform duration-300" loading="lazy" />
+          </div>
+          <div class="inline-flex items-center gap-1.5 self-start px-3 py-1 rounded-full bg-[#132238]/5 text-[#132238] text-xs font-semibold uppercase tracking-wider mb-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#C5A880]"></span>
+            <span>Servicios & Property Management</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-serif font-semibold text-[#132238] mb-2.5">
+            Just Banús
+          </h3>
+          <p class="text-xs sm:text-sm text-[#5c6570] leading-relaxed mb-6 flex-grow">
+            Dedicado íntegramente a los servicios para la vivienda: limpieza profesional, lavandería propia, mantenimiento técnico preventivo, reformas llave en mano y custodia de llaves.
+          </p>
+          <ul class="space-y-2 pt-4 border-t border-[#EAE3D9] text-xs text-[#5c6570] mb-6">
+            <li class="flex items-center gap-2"><span class="text-[#C5A880] font-bold">✓</span> Limpieza profesional y lavandería propia</li>
+            <li class="flex items-center gap-2"><span class="text-[#C5A880] font-bold">✓</span> Mantenimiento, revisiones e incidencias</li>
+            <li class="flex items-center gap-2"><span class="text-[#C5A880] font-bold">✓</span> Reformas integrales y modernización</li>
+          </ul>
+          <div class="pt-5 border-t border-[#EAE3D9] mt-auto flex flex-col gap-2.5">
+            <a href="#contacto" class="btn-shine w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-[#132238] hover:bg-[#203654] text-white text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-xs group/btn">
+              <span>Conocer Just Banús</span>
+              <span class="text-base text-[#C5A880] group-hover/btn:translate-x-1 transition-transform">→</span>
+            </a>
+            <div class="flex items-center justify-between px-1 text-[11px]">
+              <span class="text-[#8A94A0]">Acceso directo:</span>
+              <a href="#propietarios" class="text-[#806847] hover:text-[#132238] hover:underline font-semibold flex items-center gap-1">
+                <span>Servicios Propietarios</span>
+                <span class="text-[10px]">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 3: Iberian Sun -->
+        <div class="holding-card reveal-on-scroll stagger-3 group flex flex-col bg-white border border-[#EAE3D9] hover:border-[#C5A880] rounded-2xl p-7 lg:p-8 shadow-sm hover:shadow-xl transition-all duration-300 relative text-[#132238]">
+          <div class="h-24 flex items-center justify-center p-3 mb-6 bg-[#FAF8F5] rounded-xl border border-[#EAE3D9]/60 group-hover:border-[#C5A880]/40 transition-colors">
+            <img src="/images/logos/iberian-sun-logo.png" alt="Iberian Sun" class="holding-card-logo max-h-16 max-w-[200px] w-auto object-contain transition-transform duration-300" loading="lazy" />
+          </div>
+          <div class="inline-flex items-center gap-1.5 self-start px-3 py-1 rounded-full bg-[#132238]/5 text-[#132238] text-xs font-semibold uppercase tracking-wider mb-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#C5A880]"></span>
+            <span>No Residentes & Clientes UK</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-serif font-semibold text-[#132238] mb-2.5">
+            Iberian Sun
+          </h3>
+          <p class="text-xs sm:text-sm text-[#5c6570] leading-relaxed mb-6 flex-grow">
+            Enfocado a la captación y gestión integral de clientes y propietarios fuera de la UE, con especial dedicación a clientes británicos (Reino Unido).
+          </p>
+          <ul class="space-y-2 pt-4 border-t border-[#EAE3D9] text-xs text-[#5c6570] mb-6">
+            <li class="flex items-center gap-2"><span class="text-[#C5A880] font-bold">✓</span> Gestión y liquidación fiscal (Modelo 210 IRNR)</li>
+            <li class="flex items-center gap-2"><span class="text-[#C5A880] font-bold">✓</span> Atención en inglés y enlace directo con UK</li>
+            <li class="flex items-center gap-2"><span class="text-[#C5A880] font-bold">✓</span> Trámites de IBI, suministros y representación</li>
+          </ul>
+          <div class="pt-5 border-t border-[#EAE3D9] mt-auto flex flex-col gap-2.5">
+            <a href="#contacto" class="btn-shine w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-[#132238] hover:bg-[#203654] text-white text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-xs group/btn">
+              <span>Conocer Iberian Sun</span>
+              <span class="text-base text-[#C5A880] group-hover/btn:translate-x-1 transition-transform">→</span>
+            </a>
+            <div class="flex items-center justify-between px-1 text-[11px]">
+              <span class="text-[#8A94A0]">Acceso directo:</span>
+              <a href="#contacto" class="text-[#806847] hover:text-[#132238] hover:underline font-semibold flex items-center gap-1">
+                <span>Consulta Fiscal</span>
+                <span class="text-[10px]">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
 
   <!-- 5. SECCIÓN EDITORIAL: 25 AÑOS DE EXPERIENCIA -->
   <section id="sobre-nosotros" class="py-20 md:py-28 px-4 sm:px-8 max-w-7xl mx-auto">
@@ -359,24 +524,24 @@
     </div>
   </section>
 
-  <!-- 6. CUATRO DIVISIONES CON LOGOS OFICIALES -->
+  <!-- 6. TRES DIVISIONES CON LOGOS OFICIALES -->
   <section id="divisiones" class="py-20 md:py-28 px-4 sm:px-8 max-w-7xl mx-auto border-t border-[#EAE3D9]">
     <div class="text-center max-w-3xl mx-auto mb-16">
       <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EAE3D9] text-[#132238] text-xs font-semibold tracking-wider uppercase mb-3.5">
-        <span>Ecosistema de Marcas Especializadas</span>
+        <span>Ecosistema Corporativo · Estructura en 3 Pilares</span>
       </div>
       <h2 class="text-3xl md:text-5xl font-serif text-[#132238] leading-tight mb-5">
-        Cuatro Divisiones. Un Solo Grupo de Confianza.
+        Tres Divisiones Especializadas. Un Solo Grupo de Confianza.
       </h2>
       <p class="text-[#64748B] text-base md:text-lg">
-        Cada división de Grupo Serinamar responde con la máxima especialización a una etapa concreta de la propiedad.
+        Cada empresa de Grupo Serinamar responde con la máxima especialización a una etapa concreta de la propiedad. Serinamar integra y gestiona los alojamientos de Los Naranjos y la comercialización inmobiliaria.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
       
       <!-- División 1: Serinamar -->
-      <article class="bg-white rounded-3xl p-8 lg:p-10 border border-[#EAE3D9] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:border-[#C5A880]/60 relative overflow-hidden">
+      <article class="bg-white rounded-3xl p-7 lg:p-8 border border-[#EAE3D9] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:border-[#C5A880]/60 relative overflow-hidden">
         <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#132238] via-[#C5A880] to-[#132238] opacity-0 group-hover:opacity-100 transition-opacity"></div>
         <div>
           <div class="flex items-start justify-between gap-4 mb-6">
@@ -385,34 +550,39 @@
                 Est. 2000 · +25 Años
               </span>
               <h3 class="text-2xl font-serif font-bold text-[#132238]">SERINAMAR</h3>
-              <p class="text-xs uppercase tracking-wider text-[#64748B] font-semibold mt-0.5">Hospitality & Real Estate</p>
+              <p class="text-xs uppercase tracking-wider text-[#64748B] font-semibold mt-0.5">Hospitality, Los Naranjos & Real Estate</p>
             </div>
             <div class="h-14 w-28 flex items-center justify-end p-1">
-              <img src="./recursos/serinamar-logo-header.png" alt="Serinamar Logo" class="max-h-full max-w-full object-contain" />
+              <img src="/images/logos/serinamar-logo.png" alt="Serinamar Logo" class="max-h-full max-w-full object-contain" />
             </div>
           </div>
 
-          <p class="text-sm font-semibold text-[#132238] italic mb-2">"Explotación turística y comercialización inmobiliaria"</p>
+          <p class="text-sm font-semibold text-[#132238] italic mb-2">"Hospitality, Los Naranjos y comercialización inmobiliaria"</p>
           <p class="text-sm text-[#64748B] leading-relaxed mb-6">
-            Gestión profesional de apartamentos turísticos y comercialización de propiedades de compraventa y larga estancia en Marbella y Costa del Sol, ofreciendo continuidad y asesoramiento integral.
+            Gestión y explotación directa de apartamentos turísticos con motor Guesty (absorbiendo e integrando la operativa de Los Naranjos de Marbella) y compraventa e intermediación de propiedades exclusivas en la Costa del Sol.
           </p>
 
           <ul class="space-y-2.5 mb-8 border-t border-[#EAE3D9]/70 pt-5 text-xs md:text-sm text-[#132238]">
-            <li class="flex items-center gap-2">✓ Comercialización y compraventa de inmuebles exclusivos</li>
-            <li class="flex items-center gap-2">✓ Explotación de apartamentos turísticos con alta rentabilidad</li>
+            <li class="flex items-center gap-2">✓ Alquiler vacacional directo con motor Guesty PMS</li>
+            <li class="flex items-center gap-2">✓ Recepción y alojamientos en Los Naranjos de Marbella</li>
+            <li class="flex items-center gap-2">✓ Comercialización, compraventa y larga temporada</li>
             <li class="flex items-center gap-2">✓ Acompañamiento postventa continuo al propietario</li>
-            <li class="flex items-center gap-2">✓ Valoraciones oficiales de mercado</li>
           </ul>
         </div>
 
-        <a href="https://www.serinamar.com" target="_blank" rel="noopener noreferrer" class="inline-flex w-full items-center justify-center gap-2 bg-[#F9F8F6] hover:bg-[#132238] text-[#132238] hover:text-white font-medium text-sm py-3.5 px-6 rounded-xl border border-[#EAE3D9] hover:border-[#132238] transition-all">
-          <span>Ver Inmuebles en Serinamar.com</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-        </a>
+        <div class="flex flex-col gap-2 pt-4 border-t border-[#EAE3D9]/70">
+          <a href="#buscador" class="inline-flex w-full items-center justify-center gap-2 bg-[#132238] hover:bg-[#203654] text-white font-medium text-xs uppercase tracking-wider py-3 px-5 rounded-xl transition-all shadow-xs">
+            <span>Reservar Alojamientos (Guesty)</span>
+            <span class="text-base text-[#C5A880]">↗</span>
+          </a>
+          <a href="https://www.serinamar.com" target="_blank" rel="noopener noreferrer" class="inline-flex w-full items-center justify-center gap-2 bg-[#F9F8F6] hover:bg-[#EAE3D9] text-[#132238] font-medium text-xs py-2.5 px-4 rounded-xl border border-[#EAE3D9] transition-all">
+            <span>Portal Inmobiliario Serinamar.com ↗</span>
+          </a>
+        </div>
       </article>
 
       <!-- División 2: Just Banús (LOGO OFICIAL INCORPORADO) -->
-      <article class="bg-white rounded-3xl p-8 lg:p-10 border border-[#EAE3D9] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:border-[#C5A880]/60 relative overflow-hidden">
+      <article class="bg-white rounded-3xl p-7 lg:p-8 border border-[#EAE3D9] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:border-[#C5A880]/60 relative overflow-hidden">
         <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#132238] via-[#C5A880] to-[#132238] opacity-0 group-hover:opacity-100 transition-opacity"></div>
         <div>
           <div class="flex items-start justify-between gap-4 mb-6">
@@ -424,7 +594,7 @@
               <p class="text-xs uppercase tracking-wider text-[#64748B] font-semibold mt-0.5">Property Management & Owner Services</p>
             </div>
             <div class="h-14 w-28 flex items-center justify-end p-1">
-              <img src="./recursos/JB LOGO NO BG.png" alt="Just Banús Logo Oficial" class="max-h-full max-w-full object-contain" />
+              <img src="/images/logos/just-banus-logo.png" alt="Just Banús Logo Oficial" class="max-h-full max-w-full object-contain" />
             </div>
           </div>
 
@@ -434,21 +604,26 @@
           </p>
 
           <ul class="space-y-2.5 mb-8 border-t border-[#EAE3D9]/70 pt-5 text-xs md:text-sm text-[#132238]">
-            <li class="flex items-center gap-2">✓ Mantenimiento técnico, averías 24/7 y fontanería/electricidad</li>
+            <li class="flex items-center gap-2">✓ Mantenimiento técnico, averías 24/7 y revisiones</li>
             <li class="flex items-center gap-2">✓ Reformas integrales, albañilería, decoración y Home Staging</li>
-            <li class="flex items-center gap-2">✓ Housekeeping: inspecciones periódicas y lavandería</li>
-            <li class="flex items-center gap-2">✓ Trasteros seguros y gestión de licencias turísticas</li>
+            <li class="flex items-center gap-2">✓ Housekeeping: inspecciones periódicas y lavandería propia</li>
+            <li class="flex items-center gap-2">✓ Custodia de llaves, trasteros seguros y licencias turísticas</li>
           </ul>
         </div>
 
-        <a href="#propietarios" class="inline-flex w-full items-center justify-center gap-2 bg-[#F9F8F6] hover:bg-[#132238] text-[#132238] hover:text-white font-medium text-sm py-3.5 px-6 rounded-xl border border-[#EAE3D9] hover:border-[#132238] transition-all">
-          <span>Servicios para Propietarios Just Banús</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        </a>
+        <div class="flex flex-col gap-2 pt-4 border-t border-[#EAE3D9]/70">
+          <a href="#propietarios" class="inline-flex w-full items-center justify-center gap-2 bg-[#132238] hover:bg-[#203654] text-white font-medium text-xs uppercase tracking-wider py-3 px-5 rounded-xl transition-all shadow-xs">
+            <span>Servicios Just Banús</span>
+            <span class="text-base text-[#C5A880]">→</span>
+          </a>
+          <a href="#contacto" class="inline-flex w-full items-center justify-center gap-2 bg-[#F9F8F6] hover:bg-[#EAE3D9] text-[#132238] font-medium text-xs py-2.5 px-4 rounded-xl border border-[#EAE3D9] transition-all">
+            <span>Solicitar Plan de Mantenimiento ↗</span>
+          </a>
+        </div>
       </article>
 
       <!-- División 3: Iberian Sun -->
-      <article class="bg-white rounded-3xl p-8 lg:p-10 border border-[#EAE3D9] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:border-[#C5A880]/60 relative overflow-hidden">
+      <article class="bg-white rounded-3xl p-7 lg:p-8 border border-[#EAE3D9] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:border-[#C5A880]/60 relative overflow-hidden">
         <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#132238] via-[#C5A880] to-[#132238] opacity-0 group-hover:opacity-100 transition-opacity"></div>
         <div>
           <div class="flex items-start justify-between gap-4 mb-6">
@@ -459,8 +634,8 @@
               <h3 class="text-2xl font-serif font-bold text-[#132238]">IBERIAN SUN</h3>
               <p class="text-xs uppercase tracking-wider text-[#64748B] font-semibold mt-0.5">International Property Services</p>
             </div>
-            <div class="h-10 px-3 bg-[#EAE3D9] rounded-lg flex items-center justify-center text-xs font-bold text-[#132238]">
-              UK DESK
+            <div class="h-14 w-28 flex items-center justify-end p-1">
+              <img src="/images/logos/iberian-sun-logo.png" alt="Iberian Sun Logo Oficial" class="max-h-full max-w-full object-contain" />
             </div>
           </div>
 
@@ -477,46 +652,15 @@
           </ul>
         </div>
 
-        <a href="#contacto" class="inline-flex w-full items-center justify-center gap-2 bg-[#F9F8F6] hover:bg-[#132238] text-[#132238] hover:text-white font-medium text-sm py-3.5 px-6 rounded-xl border border-[#EAE3D9] hover:border-[#132238] transition-all">
-          <span>Solicitar Asesoría No Residentes</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        </a>
-      </article>
-
-      <!-- División 4: Los Naranjos de Marbella -->
-      <article class="bg-white rounded-3xl p-8 lg:p-10 border border-[#EAE3D9] shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:border-[#C5A880]/60 relative overflow-hidden">
-        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#132238] via-[#C5A880] to-[#132238] opacity-0 group-hover:opacity-100 transition-opacity"></div>
-        <div>
-          <div class="flex items-start justify-between gap-4 mb-6">
-            <div>
-              <span class="inline-block text-[11px] font-semibold uppercase tracking-widest text-[#C5A880] bg-[#132238] px-3 py-1 rounded-full mb-3">
-                Motor Guesty Directo
-              </span>
-              <h3 class="text-2xl font-serif font-bold text-[#132238]">LOS NARANJOS</h3>
-              <p class="text-xs uppercase tracking-wider text-[#64748B] font-semibold mt-0.5">Vacation Rentals & Direct Stays</p>
-            </div>
-            <div class="h-14 w-28 flex items-center justify-end p-1">
-              <img src="./recursos/naranjos-logo-no-bg.png" alt="Naranjos de Marbella Logo" class="max-h-full max-w-full object-contain" />
-            </div>
-          </div>
-
-          <p class="text-sm font-semibold text-[#132238] italic mb-2">"Alquiler vacacional directo sin comisiones"</p>
-          <p class="text-sm text-[#64748B] leading-relaxed mb-6">
-            Complejo residencial emblemático en Nueva Andalucía con apartamentos y adosadas premium, recepción presencial, piscinas comunitarias, jardines y transfers al aeropuerto de Málaga.
-          </p>
-
-          <ul class="space-y-2.5 mb-8 border-t border-[#EAE3D9]/70 pt-5 text-xs md:text-sm text-[#132238]">
-            <li class="flex items-center gap-2">✓ Reserva directa sin comisiones de intermediarios (OTAs)</li>
-            <li class="flex items-center gap-2">✓ Apartamentos de 1, 2, 3 dormitorios, áticos y villas</li>
-            <li class="flex items-center gap-2">✓ Transfers puerta a puerta Aeropuerto de Málaga</li>
-            <li class="flex items-center gap-2">✓ Recepción presencial en Centro Comercial Los Naranjos</li>
-          </ul>
+        <div class="flex flex-col gap-2 pt-4 border-t border-[#EAE3D9]/70">
+          <a href="#contacto" class="inline-flex w-full items-center justify-center gap-2 bg-[#132238] hover:bg-[#203654] text-white font-medium text-xs uppercase tracking-wider py-3 px-5 rounded-xl transition-all shadow-xs">
+            <span>Consulta Fiscal No Residentes</span>
+            <span class="text-base text-[#C5A880]">→</span>
+          </a>
+          <a href="https://solutionsserinamar.freshdesk.com/support/solutions/folders/25000021394" target="_blank" rel="noopener noreferrer" class="inline-flex w-full items-center justify-center gap-2 bg-[#F9F8F6] hover:bg-[#EAE3D9] text-[#132238] font-medium text-xs py-2.5 px-4 rounded-xl border border-[#EAE3D9] transition-all">
+            <span>Guía Fiscal Modelo 210 (Freshdesk) ↗</span>
+          </a>
         </div>
-
-        <a href="#buscador" class="inline-flex w-full items-center justify-center gap-2 bg-[#F9F8F6] hover:bg-[#132238] text-[#132238] hover:text-white font-medium text-sm py-3.5 px-6 rounded-xl border border-[#EAE3D9] hover:border-[#132238] transition-all">
-          <span>Reservar en Motor Guesty</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        </a>
       </article>
 
     </div>
@@ -835,7 +979,7 @@
       </div>
 
       <div class="shrink-0 flex items-center gap-3">
-        <img src="./recursos/JB LOGO NO BG.png" alt="Just Banús Logo" class="h-12 w-auto object-contain" />
+        <img src="/images/logos/just-banus-logo.png" alt="Just Banús Logo" class="h-12 w-auto object-contain" />
       </div>
     </div>
 
@@ -934,11 +1078,187 @@
     </div>
   </section>
 
+  <!-- 9.5. CENTRO DE AYUDA, SOPORTE & FAQ (SAC FRESHDESK) -->
+  <section class="py-16 bg-[#FAF8F5] border-t border-[#EAE3D9]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col md:flex-row items-center justify-between gap-8">
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#132238]/5 text-xs font-semibold uppercase tracking-wider text-[#132238] mb-3">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#25D366]"></span>
+          <span>Atención al Cliente · SAC</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-[#132238] mb-3">
+          ¿Tienes dudas? Base de Conocimiento y Preguntas Frecuentes
+        </h2>
+        <p class="text-xs sm:text-sm text-[#5c6570] leading-relaxed mb-4">
+          Respuestas inmediatas sobre check-in, recogida de llaves, climatización, servicios de custodia y mantenimiento Just Banús, y fiscalidad de no residentes (Modelo 210 IRNR) de Iberian Sun.
+        </p>
+        <div class="flex flex-wrap items-center gap-4 text-xs font-semibold text-[#806847]">
+          <span>✓ 37 Artículos Oficiales</span>
+          <span>✓ Buscador Integrado</span>
+          <span>✓ Tickets Directos Freshdesk</span>
+        </div>
+      </div>
+      <div class="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full md:w-auto">
+        <a href="/faq/" class="w-full sm:w-auto text-center px-6 py-3 bg-[#132238] hover:bg-[#203654] text-white text-xs font-semibold rounded-xl shadow-md transition-all">
+          <span>Ver Centro de Ayuda & FAQ</span>
+          <span class="ml-1">→</span>
+        </a>
+        <a href="https://solutionsserinamar.freshdesk.com/support/tickets/new" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto text-center px-5 py-3 border border-[#EAE3D9] hover:border-[#C5A880] rounded-xl bg-white text-xs font-semibold text-[#132238] transition-colors">
+          <span>Abrir Ticket (Freshdesk) ↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- 10. FOOTER CORPORATIVO -->
-  <Footer slot="footer" />
+  <footer class="bg-[#132238] text-[#E8E7E3] pt-16 pb-8 border-t border-[#1e3456]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 pb-12 border-b border-[#223652]">
+        <div>
+          <a href="#" class="inline-flex items-center gap-3 mb-4">
+            <img src="/images/logos/casita-logo-white-no-bg.png" width="52" height="26" alt="Grupo Serinamar" class="h-8 w-auto" />
+            <span class="flex flex-col">
+              <strong class="text-sm font-semibold tracking-wider uppercase text-white">Grupo Serinamar</strong>
+              <small class="text-[11px] text-[#dec7a7]">Marbella · Desde 2000</small>
+            </span>
+          </a>
+          <p class="text-xs text-[#94a3b8] leading-relaxed mb-4 max-w-sm">
+            Alojamientos, inmobiliaria y cuidado integral de propiedades. Un equipo local de confianza para acompañarle en Marbella.
+          </p>
+          <p class="text-xs text-[#cbd5e1] mb-2">Urb. Los Naranjos de Marbella, Centro Comercial, Local 5, 29660 Marbella</p>
+          <div class="text-xs text-[#dec7a7] flex gap-3">
+            <a href="tel:+34952813362" class="hover:underline">+34 952 81 33 62</a>
+            <span>·</span>
+            <a href="mailto:info@serinamar.com" class="hover:underline">info@serinamar.com</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-semibold uppercase tracking-widest text-[#dec7a7] mb-4">Divisiones del Holding</h4>
+          <ul class="space-y-2 text-xs text-[#94a3b8]">
+            <li><strong class="text-white">Serinamar:</strong> Hospitality, reservas directas Guesty e inmobiliaria selecta.</li>
+            <li><strong class="text-white">Just Banús:</strong> Mantenimiento técnico 24/7, lavandería propia y reformas.</li>
+            <li><strong class="text-white">Iberian Sun:</strong> Asesoría fiscal Modelo 210, gestión legal y clientes del Reino Unido.</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-semibold uppercase tracking-widest text-[#dec7a7] mb-4">Enlaces Rápidos</h4>
+          <ul class="space-y-2 text-xs text-[#94a3b8]">
+            <li><a href="https://serinamar.guestybookings.com" target="_blank" class="hover:text-white transition-colors">Reserva Online Directa ↗</a></li>
+            <li><a href="https://serinamar.guestyowners.com" target="_blank" class="hover:text-white transition-colors">Portal de Propietarios (Guesty Owners) ↗</a></li>
+            <li><a href="https://www.serinamar.com/results?id_tipo_operacion=1" target="_blank" class="hover:text-white transition-colors">Catálogo de Compraventa ↗</a></li>
+            <li><a href="https://wa.me/34678487594" target="_blank" class="hover:text-white transition-colors">Atención Inmediata WhatsApp ↗</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#64748b] gap-3">
+        <p>© 2026 Grupo Serinamar · Solutions Serinamar S.L. · CIF B-92164478</p>
+        <p>Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WIDGET FLOTANTE DE WHATSAPP CONTRAÍDO CON EXPANSIÓN ANIMADA -->
+  <div class="whatsapp-floating-widget fixed bottom-6 right-6 z-50 font-sans" id="wa-widget">
+    
+    <!-- Globo flotante animado llamativo sobre el botón -->
+    <div 
+      id="wa-bubble" 
+      class="wa-bubble absolute bottom-16 right-0 mb-2 bg-white text-[#132238] px-4 py-2.5 rounded-2xl shadow-xl border border-[#EAE3D9] flex items-center gap-3 transition-all duration-400 origin-bottom-right whitespace-nowrap opacity-100 scale-100 translate-y-0"
+      role="status"
+    >
+      <span class="inline-block w-2.5 h-2.5 rounded-full bg-[#25D366] animate-pulse shrink-0"></span>
+      
+      <a 
+        href="https://wa.me/34678487594?text=Hola,%20me%20pongo%20en%20contacto%20a%20trav%C3%A9s%20de%20la%20web%20para%20consultar%20sobre%20los%20servicios%20de%20Grupo%20Serinamar." 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="text-xs font-semibold text-[#132238] hover:text-[#25D366] transition-colors flex items-center gap-1.5"
+      >
+        <span>👋 ¿Tienes dudas? Contacta con nosotros</span>
+        <span class="text-[#25D366] font-bold text-sm">→</span>
+      </a>
+
+      <button 
+        type="button" 
+        id="wa-bubble-close" 
+        class="text-slate-400 hover:text-[#132238] text-xs p-1 ml-0.5 rounded-md transition-colors cursor-pointer leading-none"
+        aria-label="Cerrar aviso"
+      >
+        ✕
+      </button>
+      
+      <div class="absolute -bottom-1.5 right-6 w-3 h-3 bg-white border-b border-r border-[#EAE3D9] transform rotate-45"></div>
+    </div>
+
+    <!-- Botón contraído de WhatsApp que se expande elegantemente con animación -->
+    <a
+      href="https://wa.me/34678487594?text=Hola,%20me%20pongo%20en%20contacto%20a%20trav%C3%A9s%20de%20la%20web%20para%20consultar%20sobre%20los%20servicios%20de%20Grupo%20Serinamar."
+      target="_blank"
+      rel="noopener noreferrer"
+      id="wa-trigger-btn"
+      class="wa-trigger group flex items-center bg-[#25D366] hover:bg-[#20ba5a] text-white p-3.5 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 ease-out transform hover:scale-105 cursor-pointer no-underline"
+      aria-label="Contacta con nosotros por WhatsApp"
+    >
+      <div class="relative flex items-center justify-center shrink-0">
+        <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-white animate-ping opacity-75"></span>
+        <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#132238] border-2 border-white"></span>
+        <svg class="w-7 h-7 fill-white" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.158.571 4.183 1.564 5.938l-1.564 5.822 6.007-1.575c1.704.939 3.666 1.475 5.753 1.475 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z"/>
+        </svg>
+      </div>
+      
+      <div class="wa-text-expand max-w-0 opacity-0 group-hover:max-w-xs group-hover:opacity-100 group-hover:ml-3 overflow-hidden transition-all duration-300 ease-out whitespace-nowrap flex flex-col justify-center">
+        <span class="text-sm font-bold tracking-tight text-white leading-tight">
+          Contacta con nosotros
+        </span>
+        <span class="text-[10px] text-white/90 leading-tight mt-0.5">
+          Atención directa por WhatsApp
+        </span>
+      </div>
+    </a>
+  </div>
+
+  <style>
+    @keyframes floatBubble {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-4px);
+      }
+    }
+    .wa-bubble {
+      animation: floatBubble 3s ease-in-out infinite;
+    }
+    .wa-bubble.is-hidden {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transform: translateY(8px) scale(0.95) !important;
+    }
+    .wa-trigger:hover .wa-text-expand,
+    .wa-trigger:focus .wa-text-expand {
+      max-width: 220px;
+      opacity: 1;
+      margin-left: 0.75rem;
+      padding-right: 0.5rem;
+    }
+  </style>
 
   <!-- SCRIPTS DE INTERACCIÓN -->
   <script>
+    function setupWhatsAppBubble() {
+      const bubble = document.getElementById('wa-bubble');
+      const closeBtn = document.getElementById('wa-bubble-close');
+      if (!bubble || !closeBtn) return;
+      closeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        bubble.classList.add('is-hidden');
+      });
+    }
+    setupWhatsAppBubble();
     function switchSearchTab(type) {
       const btnVac = document.getElementById('btn-tab-vacational');
       const btnReal = document.getElementById('btn-tab-realestate');
@@ -987,6 +1307,77 @@
     window.switchSearchTab = switchSearchTab;
     window.submitGuesty = submitGuesty;
     window.submitInmoweb = submitInmoweb;
+
+    // MOTOR DE ANIMACIONES & INTERACCIÓN DE LUJO
+    function initLuxuryAnimations() {
+      document.documentElement.classList.add('js-ready');
+
+      const revealSelector = '.reveal-on-scroll, .reveal-title, .reveal-scale, .reveal-fade, .reveal-image';
+      const revealElements = document.querySelectorAll(revealSelector);
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(function(entries, obs) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-revealed');
+              obs.unobserve(entry.target);
+            }
+          });
+        }, {
+          root: null,
+          threshold: 0.08,
+          rootMargin: '0px 0px -30px 0px'
+        });
+
+        revealElements.forEach(function(el) { observer.observe(el); });
+      } else {
+        revealElements.forEach(function(el) { el.classList.add('is-revealed'); });
+      }
+
+      // Animación dinámica de contadores numéricos
+      const counterElements = document.querySelectorAll('.stat-counter[data-target]');
+      if (counterElements.length > 0 && 'IntersectionObserver' in window) {
+        const counterObserver = new IntersectionObserver(function(entries, obs) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              const el = entry.target;
+              const target = parseFloat(el.getAttribute('data-target') || '0');
+              const prefix = el.getAttribute('data-prefix') || '';
+              const suffix = el.getAttribute('data-suffix') || '';
+              const isDecimal = target % 1 !== 0;
+              const duration = 1500;
+              const start = performance.now();
+
+              function step(now) {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+                const currentVal = target * ease;
+
+                el.textContent = prefix + (isDecimal ? currentVal.toFixed(1) : Math.round(currentVal)) + suffix;
+
+                if (progress < 1) {
+                  requestAnimationFrame(step);
+                } else {
+                  el.textContent = prefix + (isDecimal ? target.toFixed(1) : target) + suffix;
+                }
+              }
+
+              requestAnimationFrame(step);
+              obs.unobserve(el);
+            }
+          });
+        }, { threshold: 0.2 });
+
+        counterElements.forEach(function(c) { counterObserver.observe(c); });
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLuxuryAnimations);
+    } else {
+      initLuxuryAnimations();
+    }
   </script>
 
 </body>

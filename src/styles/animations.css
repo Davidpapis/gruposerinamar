@@ -1,0 +1,341 @@
+/* ==========================================================================
+   SISTEMA DE ANIMACIONES & MICRO-INTERACCIONES DE LUJO (GRUPO SERINAMAR)
+   Inspirado en marcas de hospitalidad de alto standing (Aman, Belmond, Ritz-Carlton)
+   60fps GPU-Accelerated · Cubic-Bezier Luxury Curves · Progressive Enhancement
+   ========================================================================== */
+
+:root {
+  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-soft: cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* --------------------------------------------------------------------------
+   1. KEYFRAMES DE ENTRADA DINÁMICA (HERO & LOAD)
+   -------------------------------------------------------------------------- */
+@keyframes heroFadeDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroTitleReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(32px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes heroSearchLift {
+  0% {
+    opacity: 0;
+    transform: translateY(36px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes goldPulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(197, 168, 128, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(197, 168, 128, 0);
+  }
+}
+
+@keyframes btnShineGlide {
+  0% {
+    left: -70%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Clases de animación inicial aplicadas en Hero */
+.animate-hero-eyebrow {
+  animation: heroFadeDown 0.8s var(--ease-luxury) forwards;
+}
+
+.animate-hero-title {
+  animation: heroTitleReveal 1s var(--ease-luxury) 0.15s backwards;
+}
+
+.animate-hero-copy {
+  animation: heroFadeUp 0.9s var(--ease-luxury) 0.3s backwards;
+}
+
+.animate-hero-stats {
+  animation: heroFadeUp 0.9s var(--ease-luxury) 0.45s backwards;
+}
+
+.animate-hero-search {
+  animation: heroSearchLift 1s var(--ease-luxury) 0.6s backwards;
+}
+
+/* --------------------------------------------------------------------------
+   2. SCROLL REVEALS (PROGRESSIVE ENHANCEMENT CON JS)
+   -------------------------------------------------------------------------- */
+/* Solo se ocultan inicialmente si JS está activo (clase js-ready en <html>) */
+html.js-ready .reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.85s var(--ease-luxury), transform 0.85s var(--ease-luxury);
+  will-change: opacity, transform;
+}
+
+html.js-ready .reveal-title {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.95s var(--ease-luxury), transform 0.95s var(--ease-luxury);
+  will-change: opacity, transform;
+}
+
+html.js-ready .reveal-scale {
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity 0.85s var(--ease-luxury), transform 0.85s var(--ease-luxury);
+  will-change: opacity, transform;
+}
+
+html.js-ready .reveal-fade {
+  opacity: 0;
+  transition: opacity 0.9s var(--ease-luxury);
+  will-change: opacity;
+}
+
+html.js-ready .reveal-image {
+  opacity: 0;
+  transform: scale(1.06);
+  filter: blur(6px);
+  transition: opacity 1s var(--ease-luxury), transform 1.2s var(--ease-luxury), filter 0.8s ease;
+  will-change: opacity, transform, filter;
+}
+
+/* Estado activo tras intersección en pantalla */
+.reveal-on-scroll.is-revealed,
+.reveal-title.is-revealed,
+.reveal-scale.is-revealed,
+.reveal-fade.is-revealed {
+  opacity: 1 !important;
+  transform: translateY(0) scale(1) !important;
+}
+
+.reveal-image.is-revealed {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+  filter: blur(0) !important;
+}
+
+/* Staggers para apariciones en cascada (grid cards, servicios, fotos) */
+.stagger-1 { transition-delay: 80ms !important; }
+.stagger-2 { transition-delay: 160ms !important; }
+.stagger-3 { transition-delay: 240ms !important; }
+.stagger-4 { transition-delay: 320ms !important; }
+.stagger-5 { transition-delay: 400ms !important; }
+
+/* --------------------------------------------------------------------------
+   3. ANIMACIONES EN BOTONES (MICRO-INTERACCIONES & DESTELLO LUXURY)
+   -------------------------------------------------------------------------- */
+.btn-shine,
+.site-button {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.28s var(--ease-luxury), box-shadow 0.28s var(--ease-luxury), background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Efecto de haz de luz diagonal deslizante al pasar el ratón */
+.btn-shine::after,
+.site-button::after {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: -70%;
+  width: 45%;
+  height: 220%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+  transition: left 0.75s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-shine:hover::after,
+  .site-button:hover::after {
+    left: 140%;
+  }
+
+  .btn-shine:hover,
+  .site-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px -6px rgba(19, 34, 56, 0.22), 0 0 14px rgba(197, 168, 128, 0.22);
+  }
+}
+
+.btn-shine:active,
+.site-button:active {
+  transform: translateY(0) scale(0.975);
+}
+
+/* Enlaces con flecha flotante */
+.site-link span[aria-hidden="true"],
+.hover-arrow {
+  display: inline-block;
+  transition: transform 0.25s var(--ease-luxury);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-link:hover span[aria-hidden="true"],
+  .group:hover .hover-arrow {
+    transform: translateX(4px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. ANIMACIONES EN TARJETAS DE LAS 3 DIVISIONES (HOLDING CARDS)
+   -------------------------------------------------------------------------- */
+.holding-card {
+  transition: transform 0.35s var(--ease-luxury), box-shadow 0.35s var(--ease-luxury), border-color 0.3s ease;
+  will-change: transform, box-shadow;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .holding-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 48px -15px rgba(19, 34, 56, 0.14), 0 0 20px rgba(197, 168, 128, 0.18);
+    border-color: #C5A880 !important;
+  }
+  
+  .holding-card:hover .holding-card-logo {
+    transform: scale(1.06);
+  }
+
+  .holding-card:hover .holding-card-arrow {
+    transform: translateX(5px);
+    color: #806847;
+  }
+}
+
+.holding-card-logo {
+  transition: transform 0.4s var(--ease-luxury);
+}
+
+.holding-card-arrow {
+  transition: transform 0.3s var(--ease-luxury), color 0.3s ease;
+}
+
+/* --------------------------------------------------------------------------
+   5. ANIMACIONES EN FOTOGRAFÍAS & IMÁGENES DE MARBELLA
+   -------------------------------------------------------------------------- */
+.luxury-photo-box {
+  position: relative;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.luxury-photo-box img {
+  transition: transform 1.2s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.5s ease;
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .luxury-photo-box:hover img {
+    transform: scale(1.055);
+  }
+}
+
+/* Shimmer overlay sutil para imágenes */
+.luxury-photo-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.9s ease;
+  pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .luxury-photo-shine:hover::after {
+    left: 160%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. CONTADORES NUMÉRICOS ANIMADOS
+   -------------------------------------------------------------------------- */
+.stat-counter {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  transition: transform 0.3s var(--ease-luxury);
+}
+
+/* --------------------------------------------------------------------------
+   7. ACCESIBILIDAD & REDUCED MOTION
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  html.js-ready .reveal-on-scroll,
+  html.js-ready .reveal-title,
+  html.js-ready .reveal-scale,
+  html.js-ready .reveal-fade,
+  html.js-ready .reveal-image {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+

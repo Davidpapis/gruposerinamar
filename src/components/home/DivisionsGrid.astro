@@ -56,25 +56,6 @@ const divisions = [
     ctaUrl: "/divisiones/iberian-sun/",
     accentColor: "border-[#D4AF37]/40",
     staggerClass: "stagger-3"
-  },
-  {
-    id: "los-naranjos",
-    name: "LOS NARANJOS DE MARBELLA",
-    subheading: "Holiday Rentals & Direct Stays",
-    logo: "/images/logos/los-naranjos-logo.png",
-    tagline: "Alquiler vacacional directo sin comisiones",
-    description: "Complejo residencial mediterráneo de referencia en Nueva Andalucía. Apartamentos y villas de lujo con 8 piscinas, jardines subtropicales, transfers privados al aeropuerto y atención personalizada permanente.",
-    badge: "Motor Guesty Integrado",
-    features: [
-      "Reserva directa con mejor tarifa online garantizada",
-      "Apartamentos de 1, 2, 3 dormitorios, áticos y adosadas",
-      "Flota propia de transfers Mercedes al Aeropuerto de Málaga",
-      "Recepción física y atención en Centro Comercial Los Naranjos"
-    ],
-    ctaText: "Explorar Los Naranjos Resort",
-    ctaUrl: "/divisiones/los-naranjos/",
-    accentColor: "border-[#A66236]/40",
-    staggerClass: "stagger-4"
   }
 ];
 ---
@@ -85,14 +66,14 @@ const divisions = [
       <span>Ecosistema de Marcas Especializadas</span>
     </div>
     <h2 class="text-3xl md:text-5xl font-serif text-[#132238] leading-tight mb-5">
-      Cuatro Divisiones. Un Solo Grupo de Confianza.
+      Tres Divisiones. Un Solo Grupo de Confianza.
     </h2>
     <p class="text-[#64748B] text-base md:text-lg leading-relaxed font-light">
       Cada empresa de Grupo Serinamar responde con el máximo nivel de especialización y trayectoria a una etapa concreta de la propiedad en la Costa del Sol. Haga clic en cada división para conocer su propuesta completa.
     </p>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
     {divisions.map((div) => (
       <article class={`reveal-on-scroll ${div.staggerClass} hover-lift interactive-tilt-card bg-white rounded-3xl p-8 lg:p-10 border ${div.accentColor} shadow-sm transition-all duration-300 flex flex-col justify-between group relative overflow-hidden`}>
         

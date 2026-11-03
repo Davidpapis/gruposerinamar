@@ -3,13 +3,12 @@ interface Props { currentLang?: 'es' | 'en'; }
 const { currentLang = 'es' } = Astro.props;
 const en = currentLang === 'en';
 const copy = en
-  ? { since: 'Marbella · Since 2000', intro: 'Holiday stays, real estate and property care. A local team to help you enjoy Marbella.', explore: 'How can we help?', stays: 'Find your holiday stay', owners: 'Services for owners', realestate: 'Buy or sell a property', about: 'About us', contact: 'Contact', group: 'Our brands', serinamar: 'Holiday stays & real estate', justbanus: 'Property management & care', iberian: 'Services for non-residents', naranjos: 'Holiday stays in Marbella', portal: 'Owner portal', availability: 'Check availability', whatsapp: 'Chat on WhatsApp', address: 'Urb. Los Naranjos de Marbella, Shopping Centre, Unit 5, 29660 Marbella (Málaga)', rights: 'All rights reserved.', tax: 'Tax ID', home: 'Grupo Serinamar home' }
-  : { since: 'Marbella · Desde 2000', intro: 'Alojamientos, inmobiliaria y cuidado de propiedades. Un equipo local para ayudarte a disfrutar de Marbella.', explore: '¿Qué necesitas?', stays: 'Buscar alojamiento', owners: 'Servicios para propietarios', realestate: 'Comprar o vender una propiedad', about: 'Sobre nosotros', contact: 'Contacto', group: 'Nuestras marcas', serinamar: 'Alojamientos e inmobiliaria', justbanus: 'Gestión y cuidado de viviendas', iberian: 'Servicios para no residentes', naranjos: 'Estancias en Marbella', portal: 'Acceso propietarios', availability: 'Consultar disponibilidad', whatsapp: 'Hablemos por WhatsApp', address: 'Urb. Los Naranjos de Marbella, Centro Comercial, Local 5, 29660 Marbella (Málaga)', rights: 'Todos los derechos reservados.', tax: 'CIF', home: 'Inicio de Grupo Serinamar' };
+  ? { since: 'Marbella · Since 2000', intro: 'Holiday stays, real estate and property care. A local team to help you enjoy Marbella.', explore: 'How can we help?', stays: 'Find your holiday stay', owners: 'Services for owners', realestate: 'Buy or sell a property', faq: 'Help Center & FAQ (SAC)', ticket: 'Open Support Ticket (SAC)', about: 'About us', contact: 'Contact', group: 'Our brands', serinamar: 'Holiday stays & real estate', justbanus: 'Property management & care', iberian: 'Services for non-residents', naranjos: 'Holiday stays in Marbella', portal: 'Owner portal', availability: 'Check availability', whatsapp: 'Chat on WhatsApp', address: 'Urb. Los Naranjos de Marbella, Shopping Centre, Unit 5, 29660 Marbella (Málaga)', rights: 'All rights reserved.', tax: 'Tax ID', home: 'Grupo Serinamar home' }
+  : { since: 'Marbella · Desde 2000', intro: 'Alojamientos, inmobiliaria y cuidado de propiedades. Un equipo local para ayudarte a disfrutar de Marbella.', explore: '¿Qué necesitas?', stays: 'Buscar alojamiento', owners: 'Servicios para propietarios', realestate: 'Comprar o vender una propiedad', faq: 'Centro de Ayuda & FAQ (SAC)', ticket: 'Abrir Ticket de Ayuda (SAC)', about: 'Sobre nosotros', contact: 'Contacto', group: 'Nuestras marcas', serinamar: 'Alojamientos e inmobiliaria', justbanus: 'Gestión y cuidado de viviendas', iberian: 'Servicios para no residentes', naranjos: 'Estancias en Marbella', portal: 'Acceso propietarios', availability: 'Consultar disponibilidad', whatsapp: 'Hablemos por WhatsApp', address: 'Urb. Los Naranjos de Marbella, Centro Comercial, Local 5, 29660 Marbella (Málaga)', rights: 'Todos los derechos reservados.', tax: 'CIF', home: 'Inicio de Grupo Serinamar' };
 const brands = [
   { name: 'Serinamar', href: '/divisiones/serinamar/', detail: copy.serinamar },
   { name: 'Just Banús', href: '/divisiones/just-banus/', detail: copy.justbanus },
   { name: 'Iberian Sun', href: '/divisiones/iberian-sun/', detail: copy.iberian },
-  { name: 'Los Naranjos de Marbella', href: '/divisiones/los-naranjos/', detail: copy.naranjos },
 ];
 const whatsappMessage = en ? 'Hello, I would like information about Grupo Serinamar.' : 'Hola, me gustaría información sobre Grupo Serinamar.';
 ---
@@ -18,7 +17,7 @@ const whatsappMessage = en ? 'Hello, I would like information about Grupo Serina
     <div class="footer-grid">
       <div class="footer-company">
         <a class="footer-brand" href={en ? '/en/' : '/'} aria-label={copy.home}>
-          <img src="/images/logos/serinamar-logo-header.png" width="64" height="32" alt="" loading="lazy" />
+          <img src="/images/logos/casita-logo-white-no-bg.png" width="52" height="26" alt="" loading="lazy" />
           <span><strong>Grupo Serinamar</strong><small>{copy.since}</small></span>
         </a>
         <p class="footer-intro">{copy.intro}</p>
@@ -35,10 +34,12 @@ const whatsappMessage = en ? 'Hello, I would like information about Grupo Serina
           <li><a href="/alojamientos/">{copy.stays}</a></li>
           <li><a href="/propietarios/">{copy.owners}</a></li>
           <li><a href="/divisiones/serinamar/">{copy.realestate}</a></li>
+          <li><a href={en ? '/en/faq/' : '/faq/'}>{copy.faq}</a></li>
           <li><a href="/sobre-nosotros/">{copy.about}</a></li>
           <li><a href="/contacto/">{copy.contact}</a></li>
         </ul>
         <div class="footer-portals">
+          <a href="https://solutionsserinamar.freshdesk.com/support/tickets/new" target="_blank" rel="noopener noreferrer">{copy.ticket}<span aria-hidden="true">↗</span></a>
           <a href="https://serinamar.guestyowners.com" target="_blank" rel="noopener noreferrer">{copy.portal}<span aria-hidden="true">↗</span></a>
           <a href="https://serinamar.guestybookings.com" target="_blank" rel="noopener noreferrer">{copy.availability}<span aria-hidden="true">↗</span></a>
         </div>
@@ -62,7 +63,7 @@ const whatsappMessage = en ? 'Hello, I would like information about Grupo Serina
   .site-footer a:focus-visible { outline: 2px solid #c5a880; outline-offset: 5px; }
   .footer-grid { display: grid; grid-template-columns: 1.35fr 1fr 1fr; gap: 72px; padding-bottom: 52px; }
   .footer-brand { display: inline-flex; align-items: center; gap: 13px; }
-  .footer-brand img { width: 64px; height: auto; filter: brightness(0) invert(1); opacity: .9; }
+  .footer-brand img { width: 52px; height: auto; opacity: .95; }
   .footer-brand strong { display: block; font-size: 14px; font-weight: 500; letter-spacing: .09em; text-transform: uppercase; }
   .footer-brand small { display: block; margin-top: 5px; font-size: 10px; color: #c5a880; letter-spacing: .1em; text-transform: uppercase; }
   .footer-intro { max-width: 350px; margin: 24px 0 22px; font-size: 13px; line-height: 1.85; color: #c1c6cb; }

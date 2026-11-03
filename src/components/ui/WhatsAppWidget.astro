@@ -1,0 +1,138 @@
+---
+interface Props {
+  lang?: 'es' | 'en';
+}
+
+const { lang = 'es' } = Astro.props;
+const en = lang === 'en';
+
+const phone = '34678487594';
+const defaultMessage = en
+  ? 'Hello, I am contacting you through the website to inquire about Grupo Serinamar services.'
+  : 'Hola, me pongo en contacto a través de la web para consultar sobre los servicios de Grupo Serinamar.';
+
+const waUrl = `https://wa.me/${phone}?text=${encodeURIComponent(defaultMessage)}`;
+---
+
+<div class="whatsapp-floating-widget fixed bottom-6 right-6 z-50 font-sans" id="wa-widget">
+  
+  <!-- Globo flotante animado llamativo sobre el botón -->
+  <div 
+    id="wa-bubble" 
+    class="wa-bubble absolute bottom-16 right-0 mb-2 bg-white text-[#132238] px-4 py-2.5 rounded-2xl shadow-xl border border-[#EAE3D9] flex items-center gap-3 transition-all duration-400 origin-bottom-right whitespace-nowrap opacity-100 scale-100 translate-y-0"
+    role="status"
+    aria-live="polite"
+  >
+    <span class="inline-block w-2.5 h-2.5 rounded-full bg-[#25D366] animate-pulse shrink-0"></span>
+    
+    <a 
+      href={waUrl} 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="text-xs font-semibold text-[#132238] hover:text-[#25D366] transition-colors flex items-center gap-1.5"
+    >
+      <span>{en ? '👋 Questions? Contact us on WhatsApp' : '👋 ¿Tienes dudas? Contacta con nosotros'}</span>
+      <span class="text-[#25D366] font-bold text-sm">→</span>
+    </a>
+
+    <button 
+      type="button" 
+      id="wa-bubble-close" 
+      class="text-slate-400 hover:text-[#132238] text-xs p-1 ml-0.5 rounded-md transition-colors cursor-pointer leading-none"
+      aria-label={en ? 'Close message' : 'Cerrar aviso'}
+    >
+      ✕
+    </button>
+    
+    <!-- Flechita decorativa del bocadillo apuntando al botón -->
+    <div class="absolute -bottom-1.5 right-6 w-3 h-3 bg-white border-b border-r border-[#EAE3D9] transform rotate-45"></div>
+  </div>
+
+  <!-- Botón contraído de WhatsApp que se expande elegantemente al pasar el cursor (hover) -->
+  <a
+    href={waUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    id="wa-trigger-btn"
+    class="wa-trigger group flex items-center bg-[#25D366] hover:bg-[#20ba5a] text-white p-3.5 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 ease-out transform hover:scale-105 cursor-pointer no-underline"
+    aria-label={en ? 'Contact us on WhatsApp' : 'Contacta con nosotros por WhatsApp'}
+  >
+    <!-- Icono oficial de WhatsApp -->
+    <div class="relative flex items-center justify-center shrink-0">
+      <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-white animate-ping opacity-75"></span>
+      <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#132238] border-2 border-white"></span>
+      <svg class="w-7 h-7 fill-white" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.158.571 4.183 1.564 5.938l-1.564 5.822 6.007-1.575c1.704.939 3.666 1.475 5.753 1.475 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z"/>
+      </svg>
+    </div>
+    
+    <!-- Texto que se despliega con animación fluida al hacer hover -->
+    <div class="wa-text-expand max-w-0 opacity-0 group-hover:max-w-xs group-hover:opacity-100 group-hover:ml-3 overflow-hidden transition-all duration-300 ease-out whitespace-nowrap flex flex-col justify-center">
+      <span class="text-sm font-bold tracking-tight text-white leading-tight">
+        {en ? 'Contact us' : 'Contacta con nosotros'}
+      </span>
+      <span class="text-[10px] text-white/90 leading-tight mt-0.5">
+        {en ? 'Direct WhatsApp Chat' : 'Atención directa por WhatsApp'}
+      </span>
+    </div>
+  </a>
+
+</div>
+
+<style>
+  /* Animación suave de entrada para el bocadillo */
+  @keyframes floatBubble {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+
+  .wa-bubble {
+    animation: floatBubble 3s ease-in-out infinite;
+  }
+
+  .wa-bubble.is-hidden {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transform: translateY(8px) scale(0.95) !important;
+  }
+
+  /* Asegura soporte en todos los navegadores para la expansión del texto */
+  .wa-trigger:hover .wa-text-expand,
+  .wa-trigger:focus .wa-text-expand {
+    max-width: 220px;
+    opacity: 1;
+    margin-left: 0.75rem;
+    padding-right: 0.5rem;
+  }
+</style>
+
+<script>
+  function setupWhatsAppBubble() {
+    const bubble = document.getElementById('wa-bubble');
+    const closeBtn = document.getElementById('wa-bubble-close');
+    
+    if (!bubble || !closeBtn) return;
+
+    closeBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      bubble.classList.add('is-hidden');
+      try {
+        sessionStorage.setItem('serinamar_wa_bubble_closed', '1');
+      } catch (err) {}
+    });
+
+    try {
+      if (sessionStorage.getItem('serinamar_wa_bubble_closed') === '1') {
+        bubble.classList.add('is-hidden');
+      }
+    } catch (err) {}
+  }
+
+  setupWhatsAppBubble();
+  document.addEventListener('astro:page-load', setupWhatsAppBubble);
+</script>
