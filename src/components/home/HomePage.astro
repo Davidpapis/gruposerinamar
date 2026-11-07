@@ -25,7 +25,7 @@ const copy = en ? {
   trustEyebrow: 'LOCAL KNOWLEDGE. PERSONAL SERVICE.',trustTitle: 'Here for you, since 2000.',
   trustCopy: 'Our story began in Marbella. Today, we continue to welcome guests and support property owners with the same personal approach.',trustCta: 'Meet the group',
   brandsEyebrow: 'THE SERINAMAR GROUP',brandsTitle: 'Three specialized divisions. One trusted team.',
-  brands: [ ['Serinamar','Holiday stays & real estate (integrating Los Naranjos)','serinamar'],['Just Banús','Dedicated home care, maintenance & renovations','just-banus'],['Iberian Sun','International & UK owner advisory','iberian-sun'] ],
+  brands: [ ['Serinamar','Holiday stays & real estate (integrating Los Naranjos)','serinamar'],['Just Banús','Dedicated home care, maintenance & renovations','just-banus'],['Iberiansun','International & UK owner advisory','iberian-sun'] ],
   contactEyebrow: 'LET’S TALK',contactTitle: 'What brings you to Marbella?',contactCopy: 'Tell us what you need. We will help you take the next step.',contactCta:'Contact our team'
 } : {
   title: 'Alojamientos y gestión en Marbella | Grupo Serinamar',
@@ -46,7 +46,7 @@ const copy = en ? {
   trustEyebrow: 'CERCANÍA Y EXPERIENCIA LOCAL',trustTitle: 'A tu lado, desde 2000.',
   trustCopy: 'Nuestra historia empezó en Marbella. Hoy seguimos recibiendo a huéspedes y acompañando a propietarios con el mismo trato cercano.',trustCta:'Conocer al grupo',
   brandsEyebrow: 'CONJUNTO SERINAMAR',brandsTitle: 'Tres divisiones especializadas. Un solo equipo de confianza.',
-  brands: [ ['Serinamar','Alquiler vacacional (Hospitality) e inmobiliaria (integra Los Naranjos)','serinamar'],['Just Banús','Cuidado integral, mantenimiento, reformas y servicios','just-banus'],['Iberian Sun','Asesoría y gestión internacional para no residentes y UK','iberian-sun'] ],
+  brands: [ ['Serinamar','Alquiler vacacional (Hospitality) e inmobiliaria (integra Los Naranjos)','serinamar'],['Just Banús','Cuidado integral, mantenimiento, reformas y servicios','just-banus'],['Iberiansun','Asesoría y gestión internacional para no residentes y UK','iberian-sun'] ],
   contactEyebrow:'HABLEMOS',contactTitle:'¿Qué te trae a Marbella?',contactCopy:'Cuéntanos qué necesitas. Te ayudamos a dar el siguiente paso.',contactCta:'Contactar con el equipo'
 };
 ---
@@ -113,8 +113,11 @@ const copy = en ? {
             <span>{en ? 'Explore the 3 Divisions' : 'Conocer las 3 Divisiones'}</span>
             <span class="text-[#C5A880] text-base">↓</span>
           </a>
+          <a href="https://www.serinamar.com" target="_blank" rel="noopener noreferrer" class="btn-shine inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#1B2F4C] text-white font-medium text-sm hover:bg-[#203654] transition-all border border-[#C5A880]/40">
+            <span>{en ? 'Property Sales' : 'Venta de Propiedades'}</span>
+            <span class="text-[#C5A880]">↗</span>
+          </a>
           <a href="/alojamientos/" class="btn-shine inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#1B2F4C] text-white font-medium text-sm hover:bg-[#203654] transition-all border border-[#C5A880]/40">
-            <img src="/images/logos/casita logo NO BG.png" alt="" class="w-4 h-4 object-contain" />
             <span>{en ? 'Holiday Stays (Guesty)' : 'Alojamientos Vacacionales'}</span>
             <span class="text-[#C5A880]">↗</span>
           </a>
@@ -164,7 +167,7 @@ const copy = en ? {
             <li class="flex items-center gap-2"><span class="text-[#C5A880] font-bold">✓</span> {en ? 'On-site reception & 24/7 guest support' : 'Recepción física y atención al huésped'}</li>
           </ul>
           <div class="pt-5 border-t border-[#EAE3D9] mt-auto flex flex-col gap-2.5">
-            <a href="/divisiones/serinamar/" class="btn-shine w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-[#132238] hover:bg-[#203654] text-white text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-xs group/btn">
+            <a href={en ? "/en/divisiones/serinamar/" : "/divisiones/serinamar/"} class="btn-shine w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-[#132238] hover:bg-[#203654] text-white text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-xs group/btn">
               <span>{en ? 'Explore Serinamar' : 'Conocer Serinamar'}</span>
               <span class="text-base text-[#C5A880] group-hover/btn:translate-x-1 transition-transform">→</span>
             </a>
@@ -228,7 +231,7 @@ const copy = en ? {
             <li class="flex items-center gap-2"><span class="text-[#C5A880] font-bold">✓</span> {en ? 'Utility management, municipal rates & NIE support' : 'Trámites de IBI, suministros y representación'}</li>
           </ul>
           <div class="pt-5 border-t border-[#EAE3D9] mt-auto flex flex-col gap-2.5">
-            <a href="/divisiones/iberian-sun/" class="btn-shine w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-[#132238] hover:bg-[#203654] text-white text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-xs group/btn">
+            <a href={en ? "/en/divisiones/iberian-sun/" : "/divisiones/iberian-sun/"} class="btn-shine w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-[#132238] hover:bg-[#203654] text-white text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-xs group/btn">
               <span>{en ? 'Explore Iberiansun' : 'Conocer Iberiansun'}</span>
               <span class="text-base text-[#C5A880] group-hover/btn:translate-x-1 transition-transform">→</span>
             </a>

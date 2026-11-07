@@ -5,7 +5,7 @@ import Footer from '../../components/layout/Footer.astro';
 import faqs from '../../data/freshdesk_faq.json';
 
 const title = "Centro de Ayuda, Soporte & Preguntas Frecuentes (SAC) | Grupo Serinamar";
-const description = "Atención al cliente y base de conocimiento de Grupo Serinamar: alquiler vacacional, check-in, servicios para propietarios Just Banús y fiscalidad de no residentes Iberian Sun. Abra su ticket de soporte.";
+const description = "Atención al cliente y base de conocimiento de Grupo Serinamar: alquiler vacacional, check-in, servicios para propietarios Just Banús y fiscalidad de no residentes Iberiansun. Abra su ticket de soporte.";
 const canonicalURL = "https://gruposerinamar.com/faq/";
 
 // JSON-LD para SEO y Rastreadores de Inteligencia Artificial (Schema.org FAQPage)
@@ -27,7 +27,7 @@ const categoryList = [
   { id: 'Todas', name: 'Todas las preguntas', count: faqs.length, icon: '📋' },
   { id: 'Huéspedes & Alojamientos', name: 'Huéspedes & Vacacional', count: faqs.filter(f => f.category === 'Huéspedes & Alojamientos').length, icon: '🏖️' },
   { id: 'Servicios para Propietarios', name: 'Propietarios & Mantenimiento (Just Banús)', count: faqs.filter(f => f.category === 'Servicios para Propietarios').length, icon: '🔑' },
-  { id: 'Asesoría Fiscal & No Residentes', name: 'Fiscal & No Residentes (Iberian Sun)', count: faqs.filter(f => f.category === 'Asesoría Fiscal & No Residentes').length, icon: '🇬🇧' },
+  { id: 'Asesoría Fiscal & No Residentes', name: 'Fiscal & No Residentes (Iberiansun)', count: faqs.filter(f => f.category === 'Asesoría Fiscal & No Residentes').length, icon: '🇬🇧' },
   { id: 'Compraventa e Inversión', name: 'Compraventa e Inversión', count: faqs.filter(f => f.category === 'Compraventa e Inversión').length, icon: '🏡' },
   { id: 'Guía del Apartamento', name: 'Guía del Apartamento', count: faqs.filter(f => f.category === 'Guía del Apartamento').length, icon: '📖' },
   { id: 'Gestión de Alquiler y Custodia', name: 'Custodia & Gestión', count: faqs.filter(f => f.category === 'Gestión de Alquiler y Custodia').length, icon: '🛡️' }
@@ -36,7 +36,7 @@ const categoryList = [
 const divisionLogos: Record<string, string> = {
   'Serinamar': '/images/logos/serin-logo-trimmed.png',
   'Just Banús': '/images/logos/jb-logo-trimmed.png',
-  'Iberian Sun': '/images/logos/iberian-logo-trimmed.png'
+  'Iberiansun': '/images/logos/iberian-logo-trimmed.png'
 };
 ---
 
@@ -60,7 +60,7 @@ const divisionLogos: Record<string, string> = {
       </h1>
       
       <p class="text-sm sm:text-base text-[#c7d2e0] max-w-2xl mx-auto leading-relaxed mb-8">
-        Encuentra respuestas rápidas sobre tu estancia vacacional, los servicios de mantenimiento y custodia de <strong class="text-white">Just Banús</strong> o la gestión fiscal para no residentes de <strong class="text-white">Iberian Sun</strong>.
+        Encuentra respuestas rápidas sobre tu estancia vacacional, los servicios de mantenimiento y custodia de <strong class="text-white">Just Banús</strong> o la gestión fiscal para no residentes de <strong class="text-white">Iberiansun</strong>.
       </p>
 
       <!-- Buscador en tiempo real integrado -->

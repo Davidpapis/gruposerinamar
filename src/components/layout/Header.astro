@@ -6,9 +6,9 @@ const labels = en
   ? { home: 'Home', stays: 'Holiday stays', owners: 'Owners', property: 'Buy & sell', group: 'Our group', about: 'About us', faq: 'Help & FAQ', contact: 'Contact', book: 'Book', portal: 'Owner portal', menu: 'Open navigation', close: 'Close navigation', navigation: 'Main navigation', language: 'Language', brandHome: 'Grupo Serinamar home' }
   : { home: 'Inicio', stays: 'Alojamientos', owners: 'Propietarios', property: 'Comprar y vender', group: 'El grupo', about: 'Sobre nosotros', faq: 'Ayuda & FAQ', contact: 'Contacto', book: 'Reservar', portal: 'Acceso propietarios', menu: 'Abrir navegación', close: 'Cerrar navegación', navigation: 'Navegación principal', language: 'Idioma', brandHome: 'Inicio de Grupo Serinamar' };
 const brands = [
-  { name: 'Serinamar', href: '/divisiones/serinamar/', detail: en ? 'Holiday stays & real estate' : 'Alojamientos e inmobiliaria' },
-  { name: 'Just Banús', href: '/divisiones/just-banus/', detail: en ? 'Services & property management' : 'Servicios y property management' },
-  { name: 'Iberiansun', href: '/divisiones/iberian-sun/', detail: en ? 'UK & non-resident services' : 'Servicios para no residentes y UK' },
+  { name: 'Serinamar', href: en ? '/en/divisiones/serinamar/' : '/divisiones/serinamar/', detail: en ? 'Holiday stays & real estate' : 'Alojamientos e inmobiliaria' },
+  { name: 'Just Banús', href: 'https://justbanus.com', detail: en ? 'Services & property management' : 'Servicios y property management' },
+  { name: 'Iberiansun', href: en ? '/en/divisiones/iberian-sun/' : '/divisiones/iberian-sun/', detail: en ? 'UK & non-resident services' : 'Servicios para no residentes y UK' },
 ];
 const isCurrent = (path: string) => Astro.url.pathname.replace(/\/$/, '') === path.replace(/\/$/, '');
 ---
@@ -49,8 +49,8 @@ const isCurrent = (path: string) => Astro.url.pathname.replace(/\/$/, '') === pa
     </nav>
     <div class="header-actions">
       <div class="languages" role="group" aria-label={labels.language}>
-        <a href="/" lang="es" aria-label="Español" aria-current={!en ? 'true' : undefined}>ES</a><span aria-hidden="true">/</span>
-        <a href="/en/" lang="en" aria-label="English" aria-current={en ? 'true' : undefined}>EN</a>
+        <a href="/" lang="es" aria-label="Español" aria-current={!en ? 'true' : undefined} onclick="try{localStorage.setItem('gruposerinamar_lang','es')}catch(e){}">ES</a><span aria-hidden="true">/</span>
+        <a href="/en/" lang="en" aria-label="English" aria-current={en ? 'true' : undefined} onclick="try{localStorage.setItem('gruposerinamar_lang','en')}catch(e){}">EN</a>
       </div>
       <a class="book-link" href="/alojamientos/">{labels.book}<span aria-hidden="true">↗</span></a>
       <button class="mobile-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label={labels.menu} data-nav-toggle data-open-label={labels.menu} data-close-label={labels.close}><span></span><span></span></button>

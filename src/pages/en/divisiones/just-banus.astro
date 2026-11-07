@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/layout/Header.astro';
+import Footer from '../../../components/layout/Footer.astro';
+import Hero from '../../../components/ui/Hero.astro';
+
+const services = [
+  { 
+    title: 'Property Administration', 
+    description: 'We coordinate all legal, municipal and community documentation for your home.', 
+    items: ['Property documentation & official tourist rental licenses', 'Energy performance certificates', 'Local rates and bilingual municipal liaison'] 
+  },
+  { 
+    title: 'Maintenance & Technical Repairs', 
+    description: 'Prompt, professional solutions for all household systems.', 
+    items: ['Air conditioning, heating, electrical & plumbing works', 'Locksmith services & smart access controls', 'Regular inspections & rapid emergency repair response'] 
+  },
+  { 
+    title: 'Refurbishment & Interior Upgrades', 
+    description: 'From seasonal touch-ups to comprehensive turnkey home renovations.', 
+    items: ['Kitchen, bathroom and terrace refurbishments', 'Painting, fine carpentry and luxury finishes', 'Interior design, furnishings & home staging'] 
+  },
+  { 
+    title: 'Housekeeping & Laundry', 
+    description: 'Dedicated cleaning care with our private commercial laundry facility.', 
+    items: ['Periodic home inspections during vacant periods', 'Deep cleaning & upholstery care', 'Premium laundry service & arrival preparations'] 
+  },
+  { 
+    title: 'Private Storage Rooms', 
+    description: 'Secure on-site storage solutions for your personal belongings.', 
+    items: ['Individual private storage units in Marbella', 'Secure key holding & owner locked closets', 'Detailed digital inventory control'] 
+  },
+  { 
+    title: 'Dedicated Owner Care', 
+    description: 'Your trusted on-the-ground team in Los Naranjos de Marbella.', 
+    items: ['Secure key holding & alarm response liaison', 'Package deliveries & parcel receiving', 'Contractor supervision & multilingual support'] 
+  }
+];
+---
+
+<BaseLayout title="Just Banús · Property Management & Home Services in Marbella | Grupo Serinamar" description="Dedicated home care in Marbella and Puerto Banús: maintenance, refurbishment, housekeeping, and owner services with Just Banús." canonicalURL="https://gruposerinamar.com/en/divisiones/just-banus/" lang="en">
+  <Header slot="header" currentLang="en" />
+
+  <div class="bg-[#132238] text-white py-3 px-4 border-b border-[#C5A880]/30 text-center text-xs sm:text-sm flex flex-wrap items-center justify-center gap-3">
+    <span class="text-[#C5A880] font-semibold">Official Just Banús Website:</span>
+    <a href="https://justbanus.com" target="_blank" rel="noopener noreferrer" class="underline hover:text-[#C5A880] font-medium">Visit Official Portal: www.justbanus.com ↗</a>
+  </div>
+
+  <Hero eyebrow="Just Banús · Marbella & Puerto Banús" title="Your property. Ready to enjoy." description="We take care of maintenance, cleaning, inspections and every technical detail of your home, especially when you are away." image="/images/hero/serinamar-villa-header.jpg" imageAlt="Bright dining room opening onto a sunny terrace in Marbella" actionLabel="Enquire for My Property" actionHref="/contacto/" secondaryLabel="View Services" secondaryHref="https://justbanus.com" />
+
+  <section class="page-section intro-grid">
+    <div>
+      <img class="brand-mark" src="/images/logos/just-banus-logo.png" alt="Just Banús" loading="lazy" />
+      <p class="eyebrow">Property Care & Management</p>
+      <h2>A cared-for home.<br />A dedicated local team.</h2>
+      <div class="body-copy">
+        <p>From scheduled routine inspections to comprehensive renovations, Just Banús coordinates the technical care of your Marbella property with the backing of Grupo Serinamar.</p>
+        <p>We handle day-to-day operations and ensure your home is pristine for your family's arrival or for your guests.</p>
+      </div>
+      <div class="actions">
+        <a class="button" href="https://justbanus.com" target="_blank" rel="noopener noreferrer">Explore Just Banús Official Site ↗</a>
+        <a class="text-link" href="https://wa.me/34951794931?text=Hello,%20I%20am%20interested%20in%20property%20management%20services" target="_blank" rel="noopener noreferrer">WhatsApp Support ↗</a>
+      </div>
+    </div>
+    <aside class="card">
+      <p class="eyebrow">Dedicated Attention</p>
+      <h3>Solutions designed around your needs.</h3>
+      <p>Whether you need ongoing monthly property management or a one-off technical service, our Marbella office provides complete transparency.</p>
+      <ul>
+        <li>Preventive maintenance and storm checks.</li>
+        <li>Professional housekeeping with dedicated private laundry.</li>
+        <li>Physical office in Centro Comercial Los Naranjos de Marbella.</li>
+      </ul>
+      <a class="text-link" href="https://justbanus.com" target="_blank" rel="noopener noreferrer">See all services on justbanus.com →</a>
+    </aside>
+  </section>
+
+  <section class="section-tint">
+    <div class="page-section">
+      <div class="section-heading">
+        <p class="eyebrow">Professional Services</p>
+        <h2>Everything your Marbella home requires.</h2>
+      </div>
+      <div class="cards">
+        {services.map((service, i) => (
+          <article class="card">
+            <span class="card-number">0{i + 1}</span>
+            <h3>{service.title}</h3>
+            <p>{service.description}</p>
+            <ul>
+              {service.items.map(item => <li>{item}</li>)}
+            </ul>
+            <a class="text-link" href="https://justbanus.com/servicios.html" target="_blank" rel="noopener noreferrer">Learn more on justbanus.com ↗</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" currentLang="en" />
+</BaseLayout>
+
+<style>
+  .page-section { max-width: 1200px; margin: 0 auto; padding: 64px 28px; }
+  .section-tint { background: #f3efe7; }
+  .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .section-heading { max-width: 680px; margin-bottom: 32px; }
+  .eyebrow { color: #796546; font-size: 12px; letter-spacing: .15em; text-transform: uppercase; font-weight: 700; margin-bottom: 14px; }
+  h2 { font-family: var(--font-serif, Georgia, serif); font-size: clamp(30px, 3.4vw, 44px); line-height: 1.12; color: #132238; margin-bottom: 20px; }
+  h3 { font-family: var(--font-serif, Georgia, serif); font-size: 25px; line-height: 1.2; color: #132238; margin-bottom: 14px; }
+  .body-copy { color: #596575; font-size: 16px; line-height: 1.8; }
+  .body-copy p + p { margin-top: 16px; }
+  .brand-mark { width: auto; max-width: 180px; height: 60px; object-fit: contain; object-position: left; margin-bottom: 24px; }
+  .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+  .card { padding: 30px; background: #fff; border: 1px solid #e5dfd4; border-radius: 16px; }
+  .card p, .card li { color: #596575; font-size: 15px; line-height: 1.7; }
+  .card ul { padding-left: 18px; margin: 20px 0; list-style: disc; }
+  .card li + li { margin-top: 8px; }
+  .card-number { display: block; color: #9c865f; font-size: 14px; margin-bottom: 20px; }
+  .text-link { display: inline-block; color: #132238; font-size: 14px; font-weight: 700; border-bottom: 1px solid #b89c72; padding-bottom: 3px; }
+  .text-link:hover { color: #796546; }
+  .button { display: inline-block; padding: 12px 20px; background: #132238; color: #fff; font-size: 14px; font-weight: 600; border-radius: 4px; text-decoration: none; }
+  .button:hover { background: #203654; }
+  .actions { display: flex; gap: 16px; align-items: center; margin-top: 24px; }
+  @media (max-width: 768px) {
+    .intro-grid, .cards { grid-template-columns: 1fr; }
+  }
+</style>

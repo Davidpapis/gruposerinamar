@@ -6,9 +6,9 @@ const copy = en
   ? { since: 'Marbella · Since 2000', intro: 'Holiday stays, real estate and property care. A local team to help you enjoy Marbella.', explore: 'How can we help?', stays: 'Find your holiday stay', owners: 'Services for owners', realestate: 'Buy or sell a property', faq: 'Help Center & FAQ (SAC)', ticket: 'Open Support Ticket (SAC)', about: 'About us', contact: 'Contact', group: 'Our brands', serinamar: 'Holiday stays & real estate', justbanus: 'Property management & care', iberian: 'Services for non-residents', naranjos: 'Holiday stays in Marbella', portal: 'Owner portal', availability: 'Check availability', whatsapp: 'Chat on WhatsApp', address: 'Urb. Los Naranjos de Marbella, Shopping Centre, Unit 5, 29660 Marbella (Málaga)', rights: 'All rights reserved.', tax: 'Tax ID', home: 'Grupo Serinamar home' }
   : { since: 'Marbella · Desde 2000', intro: 'Alojamientos, inmobiliaria y cuidado de propiedades. Un equipo local para ayudarte a disfrutar de Marbella.', explore: '¿Qué necesitas?', stays: 'Buscar alojamiento', owners: 'Servicios para propietarios', realestate: 'Comprar o vender una propiedad', faq: 'Centro de Ayuda & FAQ (SAC)', ticket: 'Abrir Ticket de Ayuda (SAC)', about: 'Sobre nosotros', contact: 'Contacto', group: 'Nuestras marcas', serinamar: 'Alojamientos e inmobiliaria', justbanus: 'Gestión y cuidado de viviendas', iberian: 'Servicios para no residentes', naranjos: 'Estancias en Marbella', portal: 'Acceso propietarios', availability: 'Consultar disponibilidad', whatsapp: 'Hablemos por WhatsApp', address: 'Urb. Los Naranjos de Marbella, Centro Comercial, Local 5, 29660 Marbella (Málaga)', rights: 'Todos los derechos reservados.', tax: 'CIF', home: 'Inicio de Grupo Serinamar' };
 const brands = [
-  { name: 'Serinamar', href: '/divisiones/serinamar/', detail: copy.serinamar },
-  { name: 'Just Banús', href: '/divisiones/just-banus/', detail: copy.justbanus },
-  { name: 'Iberiansun', href: '/divisiones/iberian-sun/', detail: copy.iberian },
+  { name: 'Serinamar', href: en ? '/en/divisiones/serinamar/' : '/divisiones/serinamar/', detail: copy.serinamar },
+  { name: 'Just Banús', href: 'https://justbanus.com', detail: copy.justbanus },
+  { name: 'Iberiansun', href: en ? '/en/divisiones/iberian-sun/' : '/divisiones/iberian-sun/', detail: copy.iberian },
 ];
 const whatsappMessage = en ? 'Hello, I would like information about Grupo Serinamar.' : 'Hola, me gustaría información sobre Grupo Serinamar.';
 ---

@@ -13,9 +13,15 @@ const services = [
 
 ---
 
-<BaseLayout title="Iberian Sun · Servicios para propietarios no residentes | Grupo Serinamar" description="Atención a propietarios no residentes en Marbella: gestión administrativa, fiscalidad, suministros y asistencia en español e inglés." canonicalURL="https://gruposerinamar.com/divisiones/iberian-sun/">
+<BaseLayout title="Iberiansun · Servicios para propietarios no residentes | Grupo Serinamar" description="Atención a propietarios no residentes en Marbella: gestión administrativa, fiscalidad, suministros y asistencia en español e inglés." canonicalURL="https://gruposerinamar.com/divisiones/iberian-sun/">
   <Header slot="header" currentLang="es" />
-  <Hero eyebrow="Iberian Sun · Propietarios internacionales" title="Estés donde estés, estamos cerca." description="Atención en español e inglés para gestionar los trámites y las necesidades de tu vivienda en Marbella." image="/images/hero/puerto-banus-panorama.webp" imageAlt="Vista panorámica del puerto y los edificios de Puerto Banús" actionLabel="Consultar con el equipo" actionHref="#consulta-fiscal" secondaryLabel="Ver servicios" secondaryHref="#servicios-uk" />
+
+  <div class="bg-[#132238] text-white py-3 px-4 border-b border-[#C5A880]/30 text-center text-xs sm:text-sm flex flex-wrap items-center justify-center gap-3">
+    <span class="text-[#C5A880] font-semibold">Web Oficial Iberiansun:</span>
+    <a href="https://iberiansun.co.uk" target="_blank" rel="noopener noreferrer" class="underline hover:text-[#C5A880] font-medium">Portal oficial Reino Unido e internacional: www.iberiansun.co.uk ↗</a>
+  </div>
+
+  <Hero eyebrow="Iberiansun · Propietarios internacionales" title="Estés donde estés, estamos cerca." description="Atención en español e inglés para gestionar los trámites y las necesidades de tu vivienda en Marbella." image="/images/hero/puerto-banus-panorama.webp" imageAlt="Vista panorámica del puerto y los edificios de Puerto Banús" actionLabel="Consultar con el equipo" actionHref="#consulta-fiscal" secondaryLabel="Ver servicios" secondaryHref="#servicios-uk" />
 
   <section class="page-section intro-grid">
     <div><img class="brand-mark" src="/images/logos/iberian-sun-logo.png" alt="Iberiansun" loading="lazy" /><p class="eyebrow">Non-resident, UK based & overseas clients</p><h2>Tu vivienda en España, con apoyo cercano.</h2><div class="body-copy"><p>Si vives fuera de España, Iberiansun te ayuda a coordinar los trámites de tu propiedad y la relación con administraciones, suministros y comunidad de propietarios.</p><p>Formamos parte de Grupo Serinamar y atendemos en español e inglés, con coordinación entre Marbella y Reino Unido.</p></div><div class="actions"><a class="text-link" href="https://wa.me/34951794931?text=Hola,%20soy%20propietario%20no%20residente%20y%20necesito%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer">Hablar por WhatsApp ↗</a></div></div>
@@ -38,7 +44,7 @@ const services = [
     internationalForm?.addEventListener('submit', event => {
       event.preventDefault();
       const values = new FormData(internationalForm);
-      const subject = `Consulta Iberian Sun: ${values.get('servicio')}`;
+      const subject = `Consulta Iberiansun: ${values.get('servicio')}`;
       const body = `Nombre: ${values.get('nombre')}
 Email: ${values.get('email')}
 Teléfono: ${values.get('telefono')}

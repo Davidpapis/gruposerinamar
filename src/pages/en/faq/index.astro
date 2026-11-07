@@ -5,7 +5,7 @@ import Footer from '../../../components/layout/Footer.astro';
 import faqs from '../../../data/freshdesk_faq_en.json';
 
 const title = "Help Center, Support & FAQ (SAC) | Grupo Serinamar";
-const description = "Grupo Serinamar customer support and knowledge base: holiday rentals, check-in, owner services (Just Banús), and non-resident tax advisory (Iberian Sun). Open a support ticket.";
+const description = "Grupo Serinamar customer support and knowledge base: holiday rentals, check-in, owner services (Just Banús), and non-resident tax advisory (Iberiansun). Open a support ticket.";
 const canonicalURL = "https://gruposerinamar.com/en/faq/";
 
 const faqSchema = {
@@ -26,7 +26,7 @@ const categoryList = [
   { id: 'Stays & Guests', name: 'Stays & Guests', count: faqs.filter(f => f.category === 'Stays & Guests').length, icon: '🏖️' },
   { id: 'Apartment Guide', name: 'Apartment Guide', count: faqs.filter(f => f.category === 'Apartment Guide').length, icon: '📖' },
   { id: 'Owner Services (Just Banús)', name: 'Owners & Maintenance (Just Banús)', count: faqs.filter(f => f.category === 'Owner Services (Just Banús)').length, icon: '🔑' },
-  { id: 'Fiscal & Non-Residents (Iberian Sun)', name: 'Fiscal & Non-Residents (Iberian Sun)', count: faqs.filter(f => f.category === 'Fiscal & Non-Residents (Iberian Sun)').length, icon: '🇬🇧' },
+  { id: 'Fiscal & Non-Residents (Iberiansun)', name: 'Fiscal & Non-Residents (Iberiansun)', count: faqs.filter(f => f.category === 'Fiscal & Non-Residents (Iberiansun)').length, icon: '🇬🇧' },
   { id: 'Real Estate & Investment', name: 'Real Estate & Investment', count: faqs.filter(f => f.category === 'Real Estate & Investment').length, icon: '🏡' },
   { id: 'Rentals & Key Holding', name: 'Rentals & Key Holding', count: faqs.filter(f => f.category === 'Rentals & Key Holding').length, icon: '🛡️' }
 ];
@@ -34,7 +34,7 @@ const categoryList = [
 const divisionLogos: Record<string, string> = {
   'Serinamar': '/images/logos/serin-logo-trimmed.png',
   'Just Banús': '/images/logos/jb-logo-trimmed.png',
-  'Iberian Sun': '/images/logos/iberian-logo-trimmed.png'
+  'Iberiansun': '/images/logos/iberian-logo-trimmed.png'
 };
 ---
 
@@ -57,7 +57,7 @@ const divisionLogos: Record<string, string> = {
       </h1>
       
       <p class="text-sm sm:text-base text-[#c7d2e0] max-w-2xl mx-auto leading-relaxed mb-8">
-        Find quick answers regarding your holiday stay, property maintenance and key holding by <strong class="text-white">Just Banús</strong>, or UK non-resident tax and administrative support by <strong class="text-white">Iberian Sun</strong>.
+        Find quick answers regarding your holiday stay, property maintenance and key holding by <strong class="text-white">Just Banús</strong>, or UK non-resident tax and administrative support by <strong class="text-white">Iberiansun</strong>.
       </p>
 
       <!-- Real-time search bar -->

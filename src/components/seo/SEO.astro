@@ -62,7 +62,7 @@ const schemaData = {
         },
         {
           "@type": "FinancialService",
-          "name": "Iberian Sun · International Property Services",
+          "name": "Iberiansun · International Property Services",
           "description": "Asesoría fiscal, gestión documental e impuestos para no residentes en España desde Reino Unido."
         }
       ]
@@ -107,10 +107,12 @@ const schemaData = {
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, siteUrl).href} />
 
-<!-- Favicon -->
-<link rel="icon" type="image/png" href="/favicon.png" />
-<link rel="apple-touch-icon" href="/favicon.png" />
-<link rel="shortcut icon" href="/favicon.ico" />
+<!-- Favicon & Touch Icons -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico?v=2" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2" />
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon.png?v=2" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2" />
+<link rel="manifest" href="/site.webmanifest" />
 
 <!-- Schema.org JSON-LD -->
 <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />

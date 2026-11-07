@@ -1,0 +1,176 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/layout/Header.astro';
+import Footer from '../../../components/layout/Footer.astro';
+import Hero from '../../../components/ui/Hero.astro';
+
+const services = [
+  { 
+    title: 'Non-Resident Spanish Taxation', 
+    description: 'We manage and file your Spanish property tax returns with bilingual transparency.', 
+    items: ['Preparation & electronic submission of Modelo 210 IRNR', 'Deemed rental income calculations & quarterly declarations', 'Spanish Tax Agency (AEAT) liaison & fiscal representation'] 
+  },
+  { 
+    title: 'English-Speaking Client Care & UK Coordination', 
+    description: 'A dedicated liaison between Marbella and the United Kingdom for your peace of mind.', 
+    items: ['Direct contact via phone, WhatsApp and email', 'UK representative coordination (Sara Keppler)', 'Full document explanations and verified English translations'] 
+  },
+  { 
+    title: 'NIE Numbers & Spanish Banking', 
+    description: 'Guiding you through essential legal milestones when buying or owning in Spain.', 
+    items: ['Fast-track NIE application appointments & legal documentation', 'Non-resident bank account opening & direct debit setups', 'Powers of attorney coordination with local bilingual notaries'] 
+  },
+  { 
+    title: 'Municipal Rates, Utilities & Community', 
+    description: 'Total administrative protection against utility disconnects or council surcharges.', 
+    items: ['Annual IBI (Council Tax) & Basura (waste collection) direct debits', 'Utility bill auditing (Endesa electricity, Acosol water, fiber internet)', 'Homeowners Community (Comunidad de Propietarios) liaison'] 
+  }
+];
+---
+
+<BaseLayout title="Iberiansun · Non-Resident, UK Based & Overseas Property Advisory | Grupo Serinamar" description="Dedicated support for non-resident property owners in Marbella: tax filing (Modelo 210), utility setups, NIE numbers and bilingual advisory." canonicalURL="https://gruposerinamar.com/en/divisiones/iberian-sun/" lang="en">
+  <Header slot="header" currentLang="en" />
+
+  <div class="bg-[#132238] text-white py-3 px-4 border-b border-[#C5A880]/30 text-center text-xs sm:text-sm flex flex-wrap items-center justify-center gap-3">
+    <span class="text-[#C5A880] font-semibold">Official Iberiansun UK Website:</span>
+    <a href="https://iberiansun.co.uk" target="_blank" rel="noopener noreferrer" class="underline hover:text-[#C5A880] font-medium">Official UK Portal: www.iberiansun.co.uk ↗</a>
+  </div>
+
+  <Hero eyebrow="Iberiansun · International Owners" title="Wherever you are, we are right here." description="Bilingual English & Spanish property assistance to handle administrative, legal and fiscal requirements for your Marbella home." image="/images/hero/puerto-banus-panorama.webp" imageAlt="Panoramic view of Puerto Banús marina" actionLabel="Consult Our Team" actionHref="#tax-consultation" secondaryLabel="View Services" secondaryHref="#uk-services" />
+
+  <section class="page-section intro-grid">
+    <div>
+      <img class="brand-mark" src="/images/logos/iberian-sun-logo.png" alt="Iberiansun" loading="lazy" />
+      <p class="eyebrow">Non-resident, UK based & overseas clients</p>
+      <h2>Your Spanish property, with reliable on-the-ground support.</h2>
+      <div class="body-copy">
+        <p>Living abroad shouldn't make owning in Marbella stressful. Iberiansun coordinates the administration of your home, liaising with local authorities, utility companies and community administrators.</p>
+        <p>Part of Grupo Serinamar, our team works seamlessly between Marbella and the United Kingdom, delivering clarity in your own language.</p>
+      </div>
+      <div class="actions">
+        <a class="text-link" href="https://wa.me/34951794931?text=Hello,%20I%20am%20a%20non-resident%20owner%20and%20need%20information" target="_blank" rel="noopener noreferrer">Chat on WhatsApp ↗</a>
+        <a class="text-link" href="https://iberiansun.co.uk" target="_blank" rel="noopener noreferrer">Visit iberiansun.co.uk ↗</a>
+      </div>
+    </div>
+    <aside class="card">
+      <p class="eyebrow">Non-Resident Advisory</p>
+      <h3>Guidance tailored to your home.</h3>
+      <p>Whether your property is exclusively for personal holiday use or rented out, tax and administrative obligations differ. Let our team assess your requirements.</p>
+      <ul>
+        <li>Non-resident income tax filing (Modelo 210 IRNR).</li>
+        <li>Annual council rates, utility audits and direct debit maintenance.</li>
+        <li>Bilingual documentation with clear UK client liaison.</li>
+      </ul>
+      <a class="text-link" href="#tax-consultation">Request a consultation →</a>
+    </aside>
+  </section>
+
+  <section id="uk-services" class="section-tint">
+    <div class="page-section">
+      <div class="section-heading">
+        <p class="eyebrow">How we help you</p>
+        <h2>Clear, hassle-free property administration.</h2>
+      </div>
+      <div class="cards two">
+        {services.map((service, i) => (
+          <article class="card">
+            <span class="card-number">0{i + 1}</span>
+            <h3>{service.title}</h3>
+            <p>{service.description}</p>
+            <ul>
+              {service.items.map(item => <li>{item}</li>)}
+            </ul>
+            <a class="text-link" href="#tax-consultation">Enquire about this service →</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="tax-consultation" class="page-section intro-grid" style="align-items:start">
+    <div>
+      <p class="eyebrow">Get in touch</p>
+      <h2>Tell us what your property needs.</h2>
+      <p class="body-copy">You can submit your enquiry in English or Spanish. Select your area of interest and our Iberiansun desk will get in touch promptly.</p>
+      <div class="actions">
+        <a class="text-link" href="mailto:sara@iberiansun.co.uk">sara@iberiansun.co.uk</a>
+      </div>
+    </div>
+    <form id="international-form" class="contact-form card" action="mailto:sara@iberiansun.co.uk" method="post" enctype="text/plain">
+      <div><label for="international-name">Full Name</label><input id="international-name" name="nombre" autocomplete="name" required /></div>
+      <div><label for="international-email">Email Address</label><input id="international-email" name="email" type="email" autocomplete="email" required /></div>
+      <div><label for="international-phone">Phone with country code</label><input id="international-phone" name="telefono" type="tel" autocomplete="tel" /></div>
+      <div>
+        <label for="international-service">Service of Interest</label>
+        <select id="international-service" name="servicio">
+          <option>Taxation & Modelo 210</option>
+          <option>NIE & Spanish Banking</option>
+          <option>Utilities & Community fees</option>
+          <option>Purchase / Conveyancing Support</option>
+          <option>Other Enquiry</option>
+        </select>
+      </div>
+      <div class="full">
+        <label for="international-message">Your Enquiry</label>
+        <textarea id="international-message" name="mensaje" rows="4" placeholder="Property location and any details you wish to share." required></textarea>
+      </div>
+      <div class="full">
+        <button class="button" type="submit">Prepare Consultation Email →</button>
+        <p class="form-note">Your email client will open to send this enquiry directly to sara@iberiansun.co.uk.</p>
+      </div>
+    </form>
+  </section>
+
+  <script>
+    const internationalForm = document.querySelector<HTMLFormElement>('#international-form');
+    internationalForm?.addEventListener('submit', event => {
+      event.preventDefault();
+      const values = new FormData(internationalForm);
+      const subject = `Iberiansun Enquiry: ${values.get('servicio')}`;
+      const body = `Name: ${values.get('nombre')}
+Email: ${values.get('email')}
+Phone: ${values.get('telefono')}
+Service: ${values.get('servicio')}
+
+${values.get('mensaje')}`;
+      window.location.href = `mailto:sara@iberiansun.co.uk?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+  </script>
+
+  <Footer slot="footer" currentLang="en" />
+</BaseLayout>
+
+<style>
+  .page-section { max-width: 1200px; margin: 0 auto; padding: 64px 28px; }
+  .section-tint { background: #f3efe7; }
+  .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .section-heading { max-width: 680px; margin-bottom: 32px; }
+  .eyebrow { color: #796546; font-size: 12px; letter-spacing: .15em; text-transform: uppercase; font-weight: 700; margin-bottom: 14px; }
+  h2 { font-family: var(--font-serif, Georgia, serif); font-size: clamp(30px, 3.4vw, 44px); line-height: 1.12; color: #132238; margin-bottom: 20px; }
+  h3 { font-family: var(--font-serif, Georgia, serif); font-size: 25px; line-height: 1.2; color: #132238; margin-bottom: 14px; }
+  .body-copy { color: #596575; font-size: 16px; line-height: 1.8; }
+  .body-copy p + p { margin-top: 16px; }
+  .brand-mark { width: auto; max-width: 180px; height: 60px; object-fit: contain; object-position: left; margin-bottom: 24px; }
+  .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+  .cards.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .card { padding: 30px; background: #fff; border: 1px solid #e5dfd4; border-radius: 16px; }
+  .card p, .card li { color: #596575; font-size: 15px; line-height: 1.7; }
+  .card ul { padding-left: 18px; margin: 20px 0; list-style: disc; }
+  .card li + li { margin-top: 8px; }
+  .card-number { display: block; color: #9c865f; font-size: 14px; margin-bottom: 20px; }
+  .text-link { display: inline-block; color: #132238; font-size: 14px; font-weight: 700; border-bottom: 1px solid #b89c72; padding-bottom: 3px; }
+  .text-link:hover { color: #796546; }
+  .button { display: inline-block; padding: 12px 20px; background: #132238; color: #fff; font-size: 14px; font-weight: 600; border-radius: 4px; text-decoration: none; }
+  .button:hover { background: #203654; }
+  .actions { display: flex; gap: 16px; align-items: center; margin-top: 24px; }
+  .contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .contact-form .full { grid-column: span 2; }
+  .contact-form label { display: block; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #132238; margin-bottom: 6px; }
+  .contact-form input, .contact-form select, .contact-form textarea { width: 100%; padding: 10px 14px; border: 1px solid #d4cbbd; border-radius: 4px; font-size: 14px; }
+  .form-note { font-size: 12px; color: #8a94a0; margin-top: 8px; }
+  @media (max-width: 768px) {
+    .intro-grid, .cards, .cards.two { grid-template-columns: 1fr; }
+    .contact-form { grid-template-columns: 1fr; }
+    .contact-form .full { grid-column: span 1; }
+  }
+</style>

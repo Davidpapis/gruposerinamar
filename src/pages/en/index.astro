@@ -1,4 +1,14 @@
 ---
 import HomePage from '../../components/home/HomePage.astro';
 ---
+<script is:inline>
+  (function() {
+    try {
+      var saved = localStorage.getItem('gruposerinamar_lang');
+      if (saved === 'es') {
+        window.location.replace('/');
+      }
+    } catch(e) {}
+  })();
+</script>
 <HomePage lang="en" />
