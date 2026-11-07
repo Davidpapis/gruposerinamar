@@ -21,7 +21,7 @@ const { eyebrow, title, description, image, imageAlt, actionLabel, actionHref, s
     <p class="page-hero__description">{description}</p>
     {(actionLabel || secondaryLabel) && <div class="page-hero__actions">
       {actionLabel && <a class="site-button site-button--light" href={actionHref}>{actionLabel}<span aria-hidden="true">↗</span></a>}
-      {secondaryLabel && <a class="page-hero__secondary" href={secondaryHref}>{secondaryLabel}<span aria-hidden="true">→</span></a>}
+      {secondaryLabel && <a class="site-button site-button--light" href={secondaryHref}>{secondaryLabel}<span aria-hidden="true">↗</span></a>}
     </div>}
     <slot />
   </div>

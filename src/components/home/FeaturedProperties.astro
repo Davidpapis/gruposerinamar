@@ -17,7 +17,7 @@ const copy = isEnglish ? {
   properties: [
     { title: 'Apartments', text: 'A place of your own to enjoy Marbella at your own pace.', image: '/images/hero/serinamar-villa-header.jpg', alt: 'Bright dining room with a wooden table and large windows' },
     { title: 'Townhouses', text: 'Discover the options for your next holiday with family or friends.', image: '/images/properties/adosada-exterior.jpg', alt: 'White townhouse exterior with a patio and greenery' },
-    { title: 'Los Naranjos', text: 'Explore our accommodation in this corner of Nueva Andalucía.', image: '/images/hero/naranjos-fase2.webp', alt: 'Communal swimming pool surrounded by gardens at Los Naranjos' },
+    { title: 'Los Naranjos - Dama de noche', text: 'Explore our accommodation in this corner of Nueva Andalucía.', image: '/images/hero/naranjos-fase2.webp', alt: 'Communal swimming pool surrounded by gardens at Los Naranjos' },
   ],
 } : {
   eyebrow: 'ALOJARSE EN MARBELLA',
@@ -30,7 +30,7 @@ const copy = isEnglish ? {
   properties: [
     { title: 'Apartamentos', text: 'Un espacio propio para disfrutar de Marbella a tu ritmo.', image: '/images/hero/serinamar-villa-header.jpg', alt: 'Comedor luminoso con mesa de madera y grandes ventanales' },
     { title: 'Casas adosadas', text: 'Descubre las opciones para tus próximas vacaciones en familia o con amigos.', image: '/images/properties/adosada-exterior.jpg', alt: 'Fachada blanca de una casa adosada con patio y vegetación' },
-    { title: 'Los Naranjos', text: 'Explora nuestros alojamientos en este rincón de Nueva Andalucía.', image: '/images/hero/naranjos-fase2.webp', alt: 'Piscina comunitaria rodeada de jardines en Los Naranjos' },
+    { title: 'Los Naranjos - Dama de noche', text: 'Explora nuestros alojamientos en este rincón de Nueva Andalucía.', image: '/images/hero/naranjos-fase2.webp', alt: 'Piscina comunitaria rodeada de jardines en Los Naranjos' },
   ],
 };
 ---
@@ -53,18 +53,22 @@ const copy = isEnglish ? {
           <figure class="luxury-photo-box">
             <img src={property.image} alt={property.alt} width="800" height="600" loading="lazy" decoding="async" />
           </figure>
-          <div class="stay-content">
+          <div class="stay-content text-center">
             <h3>{property.title}</h3>
-            <p>{property.text}</p>
-            <a href={bookingUrl} target="_blank" rel="noopener noreferrer" aria-label={`${copy.availability}: ${property.title}`} class="group">
-              <span>{copy.availability}</span>
-              <span aria-hidden="true" class="hover-arrow text-[#C5A880]">↗</span>
-            </a>
           </div>
         </article>
       ))}
     </div>
-    <p class="stays-note reveal-fade">{copy.note}</p>
+    
+    <!-- Botón único y centrado: Consultar Disponibilidad -->
+    <div class="single-availability-cta reveal-fade">
+      <a href={bookingUrl} target="_blank" rel="noopener noreferrer" class="btn-shine single-availability-btn">
+        <span>{copy.availability}</span>
+        <span aria-hidden="true" class="arrow">↗</span>
+      </a>
+    </div>
+
+    <p class="stays-note reveal-fade text-center">{copy.note}</p>
   </div>
 </section>
 
@@ -87,7 +91,12 @@ const copy = isEnglish ? {
   .stay-content p { margin: 0 0 1.75rem; color: #5C6570; font-size: .85rem; line-height: 1.75; }
   .stay-content a { display: flex; align-items: center; justify-content: space-between; gap: .65rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid #EAE3D9; font-size: .76rem; font-weight: 600; text-decoration: none; }
   .stay-content a span { font-size: 1.15rem; }
-  .stays-note { margin: 1.25rem 0 0; color: #68717B; font-size: .7rem; line-height: 1.7; }
+  .single-availability-cta { display: flex; justify-content: center; margin-top: 2.5rem; }
+  .single-availability-btn { display: inline-flex; align-items: center; justify-content: center; gap: .75rem; background: #132238; color: #fff; padding: 1rem 2.5rem; border-radius: .75rem; border: 1px solid rgba(197, 168, 128, 0.4); font-size: .95rem; font-weight: 600; text-decoration: none; box-shadow: 0 4px 15px rgba(19, 34, 56, 0.15); transition: all .3s ease; }
+  .single-availability-btn:hover { background: #1B2F4C; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(19, 34, 56, 0.25); border-color: #C5A880; }
+  .single-availability-btn .arrow { color: #C5A880; font-size: 1.15rem; transition: transform .3s ease; }
+  .single-availability-btn:hover .arrow { transform: translate(2px, -2px); }
+  .stays-note { margin: 1.5rem 0 0; color: #68717B; font-size: .75rem; line-height: 1.7; text-align: center; }
   a:focus-visible { outline: 2px solid #806847; outline-offset: 5px; }
   @media (hover: hover) and (pointer: fine) { 
     .stay-card:hover { transform: translateY(-8px); box-shadow: 0 20px 35px -10px rgba(19, 34, 56, 0.12); border-color: #C5A880; }

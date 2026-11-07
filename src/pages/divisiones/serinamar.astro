@@ -19,13 +19,13 @@ import Hero from '../../components/ui/Hero.astro';
   </section>
   <section id="valoracion" class="section-tint"><div class="page-section intro-grid" style="align-items:start">
     <div><p class="eyebrow">Para propietarios</p><h2>Hablemos de tu vivienda.</h2><p class="body-copy">Cuéntanos dónde está y qué quieres hacer con ella. El equipo estudiará tu caso para orientarte sobre la venta o el alquiler.</p><div class="actions"><a class="text-link" href="https://www.serinamar.com/form_captacion/" target="_blank" rel="noopener noreferrer">Acceder al formulario del portal inmobiliario ↗</a></div></div>
-    <form id="valuation-form" class="contact-form card" action="mailto:inmobiliaria@serinamar.com" method="post" enctype="text/plain">
+    <form id="valuation-form" class="contact-form card" action="mailto:info@serinamar.com" method="post" enctype="text/plain">
       <div><label for="valuation-name">Nombre y apellidos</label><input id="valuation-name" name="nombre" autocomplete="name" required /></div>
       <div><label for="valuation-email">Correo electrónico</label><input id="valuation-email" name="email" type="email" autocomplete="email" required /></div>
       <div><label for="valuation-phone">Teléfono</label><input id="valuation-phone" name="telefono" type="tel" autocomplete="tel" /></div>
       <div><label for="valuation-purpose">¿Qué necesitas?</label><select id="valuation-purpose" name="objetivo"><option>Vender mi vivienda</option><option>Gestionar el alquiler vacacional</option><option>Comprar una propiedad</option><option>Cuidado y mantenimiento</option></select></div>
       <div class="full"><label for="valuation-property">Cuéntanos sobre la propiedad</label><textarea id="valuation-property" name="propiedad" rows="4" placeholder="Zona, tipo de vivienda y cualquier detalle que quieras compartir." required></textarea></div>
-      <div class="full"><button class="button" type="submit">Preparar correo de consulta →</button><p class="form-note">Se abrirá tu aplicación de correo para revisar y enviar la consulta a inmobiliaria@serinamar.com.</p></div>
+      <div class="full"><button class="button" type="submit">Preparar correo de consulta →</button><p class="form-note">Se abrirá tu aplicación de correo para revisar y enviar la consulta a info@serinamar.com.</p></div>
     </form>
   </div></section>
   <script>
@@ -40,7 +40,7 @@ Teléfono: ${values.get('telefono')}
 Objetivo: ${values.get('objetivo')}
 
 ${values.get('propiedad')}`;
-      window.location.href = `mailto:inmobiliaria@serinamar.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = `mailto:info@serinamar.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     });
   </script>
 

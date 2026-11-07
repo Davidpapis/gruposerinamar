@@ -65,28 +65,27 @@ const copy = en ? {
       />
     </div>
     
-    <div class="max-w-6xl mx-auto w-full relative z-10 flex flex-col justify-center my-auto">
+    <div class="max-w-6xl mx-auto w-full relative z-10 flex flex-col justify-center my-auto py-8">
       
-      <div class="text-center max-w-3xl mx-auto mb-5 sm:mb-6">
-        <div class="animate-hero-eyebrow inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-[#C5A880]/40 text-[#C5A880] text-xs font-semibold uppercase tracking-widest mb-3 shadow-xs">
-          <span class="w-2 h-2 rounded-full bg-[#C5A880] animate-pulse"></span>
-          <span>{en ? 'Corporate Holding · Marbella & Puerto Banús' : 'Holding Corporativo · Marbella & Puerto Banús'}</span>
-        </div>
-
-        <h1 class="animate-hero-title text-2xl sm:text-4xl lg:text-[44px] font-serif font-bold text-white leading-[1.18] mb-3 tracking-tight">
-          {en ? 'One Single Group. Every Need for Your Property in Marbella.' : 'Un Solo Grupo. Todas las Necesidades de su Propiedad en Marbella.'}
+      <div class="text-center max-w-4xl mx-auto mb-6">
+        <h1 class="animate-hero-title text-center text-3xl sm:text-5xl lg:text-[56px] font-serif font-bold text-white tracking-widest uppercase mb-3 leading-[1.12]">
+          {en ? 'ONE SINGLE GROUP' : 'UN SOLO GRUPO'}
         </h1>
 
-        <p class="animate-hero-copy text-xs sm:text-sm md:text-[15px] text-[#EAE3D9] font-light leading-relaxed max-w-2xl mx-auto mb-3.5">
+        <p class="animate-hero-subtitle text-center text-lg sm:text-2xl lg:text-[28px] font-serif font-medium text-[#C5A880] tracking-wide mb-5 leading-snug">
+          {en ? 'Every need for your property in Marbella' : 'Todas las necesidades de su propiedad en Marbella'}
+        </p>
+
+        <p class="animate-hero-copy text-sm sm:text-base md:text-[17px] text-[#EAE3D9] font-light leading-relaxed max-w-3xl mx-auto mb-6 text-center">
           {en ? (
-            <>Since 2000, <strong>Grupo Serinamar</strong> brings together leading companies to accompany you throughout the property lifecycle: sales, holiday rentals powered by Guesty, day-to-day care with <strong>Just Banús</strong> and non-resident tax advisory with <strong>Iberian Sun</strong>.</>
+            <>Since 2000, <strong>Grupo Serinamar</strong> brings together leading companies to accompany you throughout the property lifecycle: sales, holiday rentals powered by Guesty, day-to-day care with <strong>Just Banús</strong> and non-resident tax advisory with <strong>Iberiansun</strong>.</>
           ) : (
-            <>Desde el año 2000, <strong>Grupo Serinamar</strong> reúne empresas líderes para acompañarle en todo el ciclo del inmueble: compraventa, alquiler vacacional con motor Guesty, cuidado diario con <strong>Just Banús</strong> y asesoría tributaria a no residentes con <strong>Iberian Sun</strong>.</>
+            <>Desde el año 2000, <strong>Grupo Serinamar</strong> reúne empresas líderes para acompañarle en todo el ciclo del inmueble: compraventa, alquiler vacacional con motor Guesty, cuidado diario con <strong>Just Banús</strong> y asesoría tributaria a no residentes con <strong>Iberiansun</strong>.</>
           )}
         </p>
 
         <!-- Métricas Comprobadas Compactas con Contadores Animados -->
-        <div class="animate-hero-stats inline-flex flex-wrap items-center justify-center gap-3 sm:gap-6 py-1.5 px-5 rounded-full bg-white/5 border border-white/10 text-center backdrop-blur-xs">
+        <div class="animate-hero-stats inline-flex flex-wrap items-center justify-center gap-3 sm:gap-6 py-2 px-6 rounded-full bg-white/5 border border-white/10 text-center backdrop-blur-xs mb-8">
           <div class="flex items-center gap-1.5">
             <span class="stat-counter text-sm sm:text-base font-serif font-bold text-[#C5A880]" data-target="25" data-prefix="+">{en ? '+25 Years' : '+25 Años'}</span>
             <span class="text-[10px] sm:text-[11px] uppercase tracking-wider text-[#EAE3D9]/70 font-medium">{en ? 'Track Record' : 'Trayectoria'}</span>
@@ -107,162 +106,33 @@ const copy = en ? {
             <span class="text-[10px] sm:text-[11px] uppercase tracking-wider text-[#EAE3D9]/70 font-medium">{en ? 'Management' : 'Gestión'}</span>
           </div>
         </div>
-      </div>
 
-      <!-- 4. BUSCADOR DUAL (GUESTY VACACIONAL + INMOWEB VENTA) -->
-      <div id="buscador" class="animate-hero-search relative z-20 w-full max-w-5xl mx-auto rounded-2xl bg-white shadow-2xl border border-[#EAE3D9] overflow-hidden text-[#132238]">
-        
-        <!-- Pestañas -->
-        <div class="flex border-b border-[#EAE3D9] bg-[#F4F0E8]">
-          <button 
-            id="btn-tab-vacational" 
-            type="button"
-            class="flex-1 py-4 px-6 text-center font-medium text-sm md:text-base flex items-center justify-center gap-2.5 border-b-2 border-[#132238] bg-white text-[#132238] transition-colors"
-          >
-            <img src="/images/logos/casita logo NO BG.png" alt="" class="w-5 h-5 object-contain shrink-0" />
-            <span>{en ? 'Direct Holiday Rentals' : 'Alquiler Vacacional Directo'} <strong class="text-xs font-semibold px-2 py-0.5 rounded-full bg-[#EAE3D9] text-[#132238] hidden sm:inline">Guesty PMS</strong></span>
-          </button>
-          
-          <button 
-            id="btn-tab-realestate" 
-            type="button"
-            class="flex-1 py-4 px-6 text-center font-medium text-sm md:text-base flex items-center justify-center gap-2.5 text-[#64748B] hover:text-[#132238] transition-colors"
-          >
-            <img src="/images/logos/casita logo NO BG.png" alt="" class="w-5 h-5 object-contain shrink-0 opacity-70" />
-            <span>{en ? 'Real Estate & Investment' : 'Compraventa e Inversión'} <strong class="text-xs font-semibold px-2 py-0.5 rounded-full bg-[#EAE3D9] text-[#132238] hidden sm:inline">Serinamar MLS</strong></span>
-          </button>
+        <!-- Acciones Directas de la Holding -->
+        <div class="animate-hero-actions flex flex-wrap items-center justify-center gap-4">
+          <a href="#divisions-heading" class="btn-shine inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-white text-[#132238] font-semibold text-sm shadow-lg hover:bg-[#F4F0E8] transition-all border border-white/20">
+            <span>{en ? 'Explore the 3 Divisions' : 'Conocer las 3 Divisiones'}</span>
+            <span class="text-[#C5A880] text-base">↓</span>
+          </a>
+          <a href="/alojamientos/" class="btn-shine inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#1B2F4C] text-white font-medium text-sm hover:bg-[#203654] transition-all border border-[#C5A880]/40">
+            <img src="/images/logos/casita logo NO BG.png" alt="" class="w-4 h-4 object-contain" />
+            <span>{en ? 'Holiday Stays (Guesty)' : 'Alojamientos Vacacionales'}</span>
+            <span class="text-[#C5A880]">↗</span>
+          </a>
+          <a href="https://justbanus.com" target="_blank" rel="noopener noreferrer" class="btn-shine inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#1B2F4C] text-white font-medium text-sm hover:bg-[#203654] transition-all border border-[#C5A880]/40">
+            <span>{en ? 'Home Care & Services' : 'Cuidado de Viviendas (Just Banús)'}</span>
+            <span class="text-[#C5A880]">↗</span>
+          </a>
         </div>
-
-        <!-- Formulario Vacacional (Guesty) -->
-        <form id="view-vacational" class="p-5 md:p-7 block">
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
-            <div>
-              <label for="inp-checkin" class="block text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1.5">{en ? 'Check-in' : 'Llegada'}</label>
-              <input type="date" id="inp-checkin" class="w-full bg-[#F9F8F6] border border-[#EAE3D9] rounded-xl px-3.5 py-3 text-sm text-[#132238] font-medium focus:ring-2 focus:ring-[#C5A880] outline-none" />
-            </div>
-            <div>
-              <label for="inp-checkout" class="block text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1.5">{en ? 'Check-out' : 'Salida'}</label>
-              <input type="date" id="inp-checkout" class="w-full bg-[#F9F8F6] border border-[#EAE3D9] rounded-xl px-3.5 py-3 text-sm text-[#132238] font-medium focus:ring-2 focus:ring-[#C5A880] outline-none" />
-            </div>
-            <div>
-              <label for="inp-guests" class="block text-xs font-semibold uppercase tracking-wider text-[#64748B] mb-1.5">{en ? 'Guests' : 'Huéspedes'}</label>
-              <select id="inp-guests" class="w-full bg-[#F9F8F6] border border-[#EAE3D9] rounded-xl px-3.5 py-3 text-sm text-[#132238] font-medium focus:ring-2 focus:ring-[#C5A880] outline-none">
-                <option value="1">{en ? '1 Guest' : '1 Huésped'}</option>
-                <option value="2" selected>{en ? '2 Guests' : '2 Huéspedes'}</option>
-                <option value="3">{en ? '3 Guests' : '3 Huéspedes'}</option>
-                <option value="4">{en ? '4 Guests' : '4 Huéspedes'}</option>
-                <option value="5">{en ? '5+ Guests' : '5+ Huéspedes'}</option>
-              </select>
-            </div>
-            <div>
-              <button type="submit" class="btn-shine w-full bg-[#132238] hover:bg-[#1E3557] text-white font-medium text-sm md:text-[15px] py-3.5 px-6 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 border border-[#C5A880]/30 cursor-pointer">
-                <svg class="w-4 h-4 text-[#C5A880]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                <span>{en ? 'Search Availability' : 'Buscar Disponibilidad'}</span>
-              </button>
-            </div>
-          </div>
-          <div class="mt-4 pt-3.5 border-t border-[#EAE3D9]/60 flex flex-wrap items-center justify-between text-xs text-[#64748B] gap-2">
-            <span>{en ? '✓ Best direct rate guaranteed' : '✓ Mejor tarifa directa garantizada'}</span>
-            <span>{en ? '✓ On-site reception at Los Naranjos' : '✓ Recepción física en Los Naranjos'}</span>
-            <span>{en ? '✓ Door-to-door Málaga Airport transfers' : '✓ Transfers puerta a puerta al Aeropuerto de Málaga'}</span>
-          </div>
-        </form>
-
-        <!-- Formulario Inmobiliario: Sólo Botón de Catálogo -->
-        <div id="view-realestate" class="p-5 md:p-7 hidden">
-          <div class="flex flex-col md:flex-row items-center justify-between gap-6 py-2">
-            <div class="max-w-xl text-center md:text-left">
-              <span class="inline-block text-xs font-semibold uppercase tracking-wider text-[#806847] mb-1">
-                {en ? 'Serinamar · Hospitality & Real Estate' : 'Serinamar · Hospitality & Real Estate'}
-              </span>
-              <h3 class="text-lg sm:text-xl font-serif font-semibold text-[#132238]">
-                {en ? 'Property Portfolio & Real Estate Investment in Marbella' : 'Cartera de Inmuebles e Inversión Inmobiliaria en Marbella'}
-              </h3>
-              <p class="text-xs sm:text-sm text-[#5c6570] mt-1 leading-relaxed">
-                {en 
-                  ? 'Apartments, duplex penthouses and exclusive villas for sale and long-term rental in Los Naranjos, Puerto Banús and Nueva Andalucía.' 
-                  : 'Apartamentos, áticos dúplex y villas exclusivas en venta y alquiler de larga temporada en Los Naranjos, Puerto Banús y Nueva Andalucía.'}
-              </p>
-            </div>
-            <div class="w-full md:w-auto flex-shrink-0">
-              <a 
-                href="https://www.serinamar.com/results?id_tipo_operacion=1" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                class="btn-shine w-full md:w-auto inline-flex items-center justify-center gap-2.5 bg-[#132238] hover:bg-[#1E3557] text-white font-medium text-sm sm:text-base py-3.5 px-8 rounded-xl shadow-md transition-all border border-[#C5A880]/30 hover:shadow-lg group cursor-pointer"
-              >
-                <svg class="w-5 h-5 text-[#C5A880]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-                <span>{en ? 'View Properties Catalog' : 'Ver Catálogo de Inmuebles'}</span>
-                <span aria-hidden="true" class="text-[#C5A880] transition-transform group-hover:translate-x-1">↗</span>
-              </a>
-            </div>
-          </div>
-          <div class="mt-4 pt-3.5 border-t border-[#EAE3D9]/60 flex flex-wrap items-center justify-between text-xs text-[#64748B] gap-2">
-            <span>{en ? '✓ Verified listings & official valuations' : '✓ Inmuebles verificados y valoraciones oficiales'}</span>
-            <span>{en ? '✓ Full purchase & investment advisory' : '✓ Asesoramiento integral en compraventa e inversión'}</span>
-            <a href="tel:+34952813362" class="text-[#C5A880] font-semibold hover:underline">{en ? 'Direct advisory: +34 952 81 33 62' : 'Asesor personal: +34 952 81 33 62'}</a>
-          </div>
-        </div>
-
       </div>
 
     </div>
   </section>
-
-  <script>
-    function setupDualSearch() {
-      const btnVac = document.getElementById('btn-tab-vacational');
-      const btnReal = document.getElementById('btn-tab-realestate');
-      const viewVac = document.getElementById('view-vacational');
-      const viewReal = document.getElementById('view-realestate');
-
-      if (!btnVac || !btnReal || !viewVac || !viewReal) return;
-
-      btnVac.addEventListener('click', () => {
-        btnVac.className = "flex-1 py-4 px-6 text-center font-medium text-sm md:text-base flex items-center justify-center gap-2 border-b-2 border-[#132238] bg-white text-[#132238] transition-colors cursor-pointer";
-        btnReal.className = "flex-1 py-4 px-6 text-center font-medium text-sm md:text-base flex items-center justify-center gap-2 text-[#64748B] hover:text-[#132238] transition-colors cursor-pointer";
-        viewVac.classList.remove('hidden');
-        viewVac.classList.add('block');
-        viewReal.classList.add('hidden');
-      });
-
-      btnReal.addEventListener('click', () => {
-        btnReal.className = "flex-1 py-4 px-6 text-center font-medium text-sm md:text-base flex items-center justify-center gap-2 border-b-2 border-[#132238] bg-white text-[#132238] transition-colors cursor-pointer";
-        btnVac.className = "flex-1 py-4 px-6 text-center font-medium text-sm md:text-base flex items-center justify-center gap-2 text-[#64748B] hover:text-[#132238] transition-colors cursor-pointer";
-        viewReal.classList.remove('hidden');
-        viewVac.classList.remove('block');
-        viewVac.classList.add('hidden');
-      });
-
-      viewVac.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const checkIn = (document.getElementById('inp-checkin') as HTMLInputElement)?.value;
-        const checkOut = (document.getElementById('inp-checkout') as HTMLInputElement)?.value;
-        const guests = (document.getElementById('inp-guests') as HTMLSelectElement)?.value;
-
-        let targetUrl = 'https://serinamar.guestybookings.com/properties?';
-        const params = new URLSearchParams();
-        if (guests) params.append('minOccupancy', guests);
-        if (checkIn) params.append('checkIn', checkIn);
-        if (checkOut) params.append('checkOut', checkOut);
-
-        window.open(targetUrl + params.toString(), '_blank');
-      });
-    }
-
-    setupDualSearch();
-    document.addEventListener('astro:page-load', setupDualSearch);
-  </script>
 
   <!-- SECCIÓN 3 DIVISIONES CORPORATIVAS DEL CONJUNTO SERINAMAR (ESTÁTICAS) -->
   <section class="site-section py-16 sm:py-20 px-4 sm:px-8 bg-[#FDFBF7]" aria-labelledby="divisions-heading">
     <div class="max-w-7xl mx-auto">
       
       <div class="reveal-title text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#132238]/5 border border-[#C5A880]/30 text-[#806847] text-xs font-semibold uppercase tracking-widest mb-4">
-          <span class="w-2 h-2 rounded-full bg-[#C5A880]"></span>
-          <span>{en ? 'THE SERINAMAR GROUP · THREE SPECIALISED PILLARS' : 'CONJUNTO SERINAMAR · ESTRUCTURA EN 3 BLOQUES'}</span>
-        </div>
         <h2 id="divisions-heading" class="text-2xl sm:text-4xl lg:text-[40px] font-serif font-normal text-[#132238] tracking-tight leading-[1.2]">
           {en ? 'Three specialised companies. One single trusted team.' : 'Tres empresas complementarias. Un solo equipo de confianza.'}
         </h2>
@@ -285,15 +155,10 @@ const copy = en ? {
             <span class="w-1.5 h-1.5 rounded-full bg-[#C5A880]"></span>
             <span>{en ? 'Hospitality & Real Estate' : 'Hospitality & Inmobiliaria'}</span>
           </div>
-          <h3 class="text-xl sm:text-2xl font-serif font-semibold text-[#132238] mb-2.5">
+          <h3 class="text-xl sm:text-2xl font-serif font-semibold text-[#132238] mb-4">
             Serinamar
           </h3>
-          <p class="text-xs sm:text-sm text-[#5c6570] leading-relaxed mb-6 flex-grow">
-            {en 
-              ? 'Holiday rental management powered by Guesty (integrating Los Naranjos de Marbella) alongside exclusive property sales and long-term rentals in Marbella and Puerto Banús.' 
-              : 'Alquiler vacacional directo con motor Guesty (absorbe y representa lo que era Los Naranjos de Marbella) y compraventa e intermediación inmobiliaria selecta.'}
-          </p>
-          <ul class="space-y-2 pt-4 border-t border-[#EAE3D9] text-xs text-[#5c6570] mb-6">
+          <ul class="space-y-2.5 pt-4 border-t border-[#EAE3D9] text-xs text-[#5c6570] mb-6 flex-grow">
             <li class="flex items-center gap-2"><span class="text-[#C5A880] font-bold">✓</span> {en ? 'Direct holiday rentals (Guesty PMS)' : 'Alquiler vacacional directo (Guesty PMS)'}</li>
             <li class="flex items-center gap-2"><span class="text-[#C5A880] font-bold">✓</span> {en ? 'Exclusive residential sales & long-term rentals' : 'Compraventa de inmuebles y larga temporada'}</li>
             <li class="flex items-center gap-2"><span class="text-[#C5A880] font-bold">✓</span> {en ? 'On-site reception & 24/7 guest support' : 'Recepción física y atención al huésped'}</li>
@@ -322,27 +187,22 @@ const copy = en ? {
             <span class="w-1.5 h-1.5 rounded-full bg-[#C5A880]"></span>
             <span>{en ? 'Services & Property Management' : 'Servicios & Property Management'}</span>
           </div>
-          <h3 class="text-xl sm:text-2xl font-serif font-semibold text-[#132238] mb-2.5">
+          <h3 class="text-xl sm:text-2xl font-serif font-semibold text-[#132238] mb-4">
             Just Banús
           </h3>
-          <p class="text-xs sm:text-sm text-[#5c6570] leading-relaxed mb-6 flex-grow">
-            {en 
-              ? 'Dedicated entirely to comprehensive owner services: professional housekeeping, in-house laundry, technical maintenance, key holding and turnkey renovations.' 
-              : 'Dedicado íntegramente a los servicios para la vivienda: limpieza profesional, lavandería propia, mantenimiento técnico preventivo, reformas llave en mano y custodia de llaves.'}
-          </p>
-          <ul class="space-y-2 pt-4 border-t border-[#EAE3D9] text-xs text-[#5c6570] mb-6">
+          <ul class="space-y-2.5 pt-4 border-t border-[#EAE3D9] text-xs text-[#5c6570] mb-6 flex-grow">
             <li class="flex items-center gap-2"><span class="text-[#C5A880] font-bold">✓</span> {en ? 'Professional cleaning & private laundry facility' : 'Limpieza profesional y lavandería propia'}</li>
             <li class="flex items-center gap-2"><span class="text-[#C5A880] font-bold">✓</span> {en ? 'Preventive maintenance, repairs & key holding' : 'Mantenimiento, revisiones e incidencias'}</li>
             <li class="flex items-center gap-2"><span class="text-[#C5A880] font-bold">✓</span> {en ? 'Turnkey renovations & interior upgrades' : 'Reformas integrales y modernización'}</li>
           </ul>
           <div class="pt-5 border-t border-[#EAE3D9] mt-auto flex flex-col gap-2.5">
-            <a href="/divisiones/just-banus/" class="btn-shine w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-[#132238] hover:bg-[#203654] text-white text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-xs group/btn">
+            <a href="https://justbanus.com" target="_blank" rel="noopener noreferrer" class="btn-shine w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-[#132238] hover:bg-[#203654] text-white text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-xs group/btn">
               <span>{en ? 'Explore Just Banús' : 'Conocer Just Banús'}</span>
               <span class="text-base text-[#C5A880] group-hover/btn:translate-x-1 transition-transform">→</span>
             </a>
             <div class="flex items-center justify-between px-1 text-[11px]">
               <span class="text-[#8A94A0]">{en ? 'Direct access:' : 'Acceso directo:'}</span>
-              <a href="/propietarios/" class="text-[#806847] hover:text-[#132238] hover:underline font-semibold flex items-center gap-1">
+              <a href="https://justbanus.com" target="_blank" rel="noopener noreferrer" class="text-[#806847] hover:text-[#132238] hover:underline font-semibold flex items-center gap-1">
                 <span>{en ? 'Owner Services' : 'Servicios Propietarios'}</span>
                 <span class="text-[10px]">↗</span>
               </a>
@@ -350,31 +210,26 @@ const copy = en ? {
           </div>
         </div>
 
-        <!-- Tarjeta 3: Iberian Sun -->
+        <!-- Tarjeta 3: Iberiansun -->
         <div class="holding-card reveal-on-scroll stagger-3 group flex flex-col bg-white border border-[#EAE3D9] hover:border-[#C5A880] rounded-2xl p-7 lg:p-8 shadow-sm hover:shadow-xl transition-all duration-300 relative text-[#132238]">
           <div class="h-24 flex items-center justify-center p-3 mb-6 bg-[#FAF8F5] rounded-xl border border-[#EAE3D9]/60 group-hover:border-[#C5A880]/40 transition-colors">
-            <img src="/images/logos/iberian-sun-logo.png" alt="Iberian Sun" class="holding-card-logo max-h-16 max-w-[200px] w-auto object-contain transition-transform duration-300" loading="lazy" />
+            <img src="/images/logos/iberian-sun-logo.png" alt="Iberiansun" class="holding-card-logo max-h-16 max-w-[200px] w-auto object-contain transition-transform duration-300" loading="lazy" />
           </div>
           <div class="inline-flex items-center gap-1.5 self-start px-3 py-1 rounded-full bg-[#132238]/5 text-[#132238] text-xs font-semibold uppercase tracking-wider mb-3">
             <span class="w-1.5 h-1.5 rounded-full bg-[#C5A880]"></span>
-            <span>{en ? 'Non-Resident & UK Client Desk' : 'No Residentes & Clientes UK'}</span>
+            <span>{en ? 'Non-Resident, UK & Overseas Clients' : 'No Residentes, UK & Clientes Internacionales'}</span>
           </div>
-          <h3 class="text-xl sm:text-2xl font-serif font-semibold text-[#132238] mb-2.5">
-            Iberian Sun
+          <h3 class="text-xl sm:text-2xl font-serif font-semibold text-[#132238] mb-4">
+            Iberiansun
           </h3>
-          <p class="text-xs sm:text-sm text-[#5c6570] leading-relaxed mb-6 flex-grow">
-            {en 
-              ? 'Focused on client acquisition and bespoke representation for non-EU owners and investors, specifically British homeowners requiring tax and legal assistance in Spain.' 
-              : 'Enfocado a la captación y gestión integral de clientes y propietarios fuera de la UE, con especial dedicación a clientes británicos (Reino Unido).'}
-          </p>
-          <ul class="space-y-2 pt-4 border-t border-[#EAE3D9] text-xs text-[#5c6570] mb-6">
+          <ul class="space-y-2.5 pt-4 border-t border-[#EAE3D9] text-xs text-[#5c6570] mb-6 flex-grow">
             <li class="flex items-center gap-2"><span class="text-[#C5A880] font-bold">✓</span> {en ? 'Non-resident tax filing (Modelo 210 IRNR)' : 'Gestión y liquidación fiscal (Modelo 210 IRNR)'}</li>
             <li class="flex items-center gap-2"><span class="text-[#C5A880] font-bold">✓</span> {en ? 'Dedicated UK client liaison & legal paperwork' : 'Atención en inglés y enlace directo con UK'}</li>
             <li class="flex items-center gap-2"><span class="text-[#C5A880] font-bold">✓</span> {en ? 'Utility management, municipal rates & NIE support' : 'Trámites de IBI, suministros y representación'}</li>
           </ul>
           <div class="pt-5 border-t border-[#EAE3D9] mt-auto flex flex-col gap-2.5">
             <a href="/divisiones/iberian-sun/" class="btn-shine w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-[#132238] hover:bg-[#203654] text-white text-xs font-semibold uppercase tracking-wider transition-all duration-300 shadow-xs group/btn">
-              <span>{en ? 'Explore Iberian Sun' : 'Conocer Iberian Sun'}</span>
+              <span>{en ? 'Explore Iberiansun' : 'Conocer Iberiansun'}</span>
               <span class="text-base text-[#C5A880] group-hover/btn:translate-x-1 transition-transform">→</span>
             </a>
             <div class="flex items-center justify-between px-1 text-[11px]">
@@ -405,7 +260,7 @@ const copy = en ? {
         <h2 id="owner-heading">{copy.ownerTitle}</h2>
         <p class="section-intro">{copy.ownerCopy}</p>
         <ul class="owner-services">{copy.services.map(([title,text],index)=><li class="reveal-on-scroll"><span class="service-number">0{index+1}</span><div><h3>{title}</h3><p>{text}</p></div></li>)}</ul>
-        <a class="site-button btn-shine" href="/propietarios/">{copy.ownerCta}<span aria-hidden="true">↗</span></a>
+        <a class="site-button btn-shine" href="https://justbanus.com" target="_blank" rel="noopener noreferrer">{copy.ownerCta}<span aria-hidden="true">↗</span></a>
       </div>
     </div>
   </section>
