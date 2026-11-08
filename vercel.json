@@ -1,0 +1,93 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/alojamientos/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "naranjosdemarbella.com"
+        }
+      ],
+      "destination": "https://gruposerinamar.com/alojamientos/",
+      "permanent": true
+    },
+    {
+      "source": "/alojamientos/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.naranjosdemarbella.com"
+        }
+      ],
+      "destination": "https://gruposerinamar.com/alojamientos/",
+      "permanent": true
+    },
+    {
+      "source": "/propiedades/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "naranjosdemarbella.com"
+        }
+      ],
+      "destination": "https://gruposerinamar.com/alojamientos/",
+      "permanent": true
+    },
+    {
+      "source": "/propiedades/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.naranjosdemarbella.com"
+        }
+      ],
+      "destination": "https://gruposerinamar.com/alojamientos/",
+      "permanent": true
+    },
+    {
+      "source": "/contacto/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "naranjosdemarbella.com"
+        }
+      ],
+      "destination": "https://gruposerinamar.com/contacto/",
+      "permanent": true
+    },
+    {
+      "source": "/contacto/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.naranjosdemarbella.com"
+        }
+      ],
+      "destination": "https://gruposerinamar.com/contacto/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "naranjosdemarbella.com"
+        }
+      ],
+      "destination": "https://gruposerinamar.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.naranjosdemarbella.com"
+        }
+      ],
+      "destination": "https://gruposerinamar.com/:path*",
+      "permanent": true
+    }
+  ]
+}
