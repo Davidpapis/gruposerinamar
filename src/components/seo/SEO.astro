@@ -8,8 +8,8 @@ interface Props {
 }
 
 const {
-  title = "Grupo Serinamar | Gestión Integral de Propiedades en Marbella",
-  description = "Más de 25 años cuidando de su patrimonio en Marbella. Compraventa, alquiler vacacional directo, mantenimiento de viviendas y asesoría fiscal para no residentes.",
+  title = "Inmobiliaria y Alquiler en Marbella | Grupo Serinamar",
+  description = "Más de 25 años en Marbella. Alquiler vacacional directo con Guesty, compraventa inmobiliaria, mantenimiento con Just Banús y asesoría fiscal Iberiansun.",
   canonicalURL = "https://gruposerinamar.com",
   image = "/images/hero/puerto-banus-panorama.webp",
   lang = "es"
@@ -17,7 +17,41 @@ const {
 
 const siteUrl = "https://gruposerinamar.com";
 
-// JSON-LD Schema estructurado según Skill SEO Astro
+// Breadcrumbs dinámicos para Rich Snippets en Google SERPs
+const pathSegments = new URL(canonicalURL, siteUrl).pathname.split('/').filter(Boolean).filter(s => s !== 'en');
+const breadcrumbItems = [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "name": lang === 'en' ? "Home" : "Inicio",
+    "item": lang === 'en' ? `${siteUrl}/en/` : `${siteUrl}/`
+  }
+];
+
+let accumulated = lang === 'en' ? '/en' : '';
+pathSegments.forEach((segment, idx) => {
+  accumulated += `/${segment}`;
+  let cleanName = segment.replace(/-/g, ' ');
+  if (segment === 'just-banus') cleanName = 'Just Banús';
+  else if (segment === 'iberian-sun') cleanName = 'Iberiansun';
+  else if (segment === 'serinamar') cleanName = 'Serinamar';
+  else if (segment === 'los-naranjos') cleanName = 'Los Naranjos';
+  else if (segment === 'alojamientos') cleanName = lang === 'en' ? 'Holiday Stays' : 'Alojamientos';
+  else if (segment === 'propietarios') cleanName = lang === 'en' ? 'Owners' : 'Propietarios';
+  else if (segment === 'sobre-nosotros') cleanName = lang === 'en' ? 'About Us' : 'Sobre Nosotros';
+  else if (segment === 'contacto') cleanName = lang === 'en' ? 'Contact' : 'Contacto';
+  else if (segment === 'faq') cleanName = 'FAQ';
+  else cleanName = cleanName.charAt(0).toUpperCase() + cleanName.slice(1);
+
+  breadcrumbItems.push({
+    "@type": "ListItem",
+    "position": idx + 2,
+    "name": cleanName,
+    "item": `${siteUrl}${accumulated}/`
+  });
+});
+
+// JSON-LD Schema estructurado según Playbook Rank Masters (LocalBusiness + BreadcrumbList)
 const schemaData = {
   "@context": "https://schema.org",
   "@graph": [
@@ -44,11 +78,63 @@ const schemaData = {
         "latitude": 36.5072,
         "longitude": -4.9504
       },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:00",
+          "closes": "16:00"
+        }
+      ],
+      "areaServed": [
+        { "@type": "AdministrativeArea", "name": "Marbella" },
+        { "@type": "AdministrativeArea", "name": "Puerto Banús" },
+        { "@type": "AdministrativeArea", "name": "Nueva Andalucía" },
+        { "@type": "AdministrativeArea", "name": "Costa del Sol" }
+      ],
       "sameAs": [
         "https://www.facebook.com/serinamar",
         "https://www.instagram.com/serinamar/",
         "https://twitter.com/nmserinamar"
       ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Servicios Inmobiliarios y Gestión de Propiedades",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Alquiler Vacacional Directo",
+              "description": "Gestión de reservas y apartamentos turísticos en Los Naranjos y Marbella con motor Guesty PMS."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Compraventa Inmobiliaria",
+              "description": "Comercialización, valoración y asesoramiento en compra y venta de viviendas residenciales en Marbella."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Property Management Just Banús",
+              "description": "Mantenimiento preventivo, reformas integrales, revisiones periódicas, custodia de llaves y limpieza profesional."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Asesoría Fiscal No Residentes Iberiansun",
+              "description": "Liquidación y presentación del Impuesto sobre la Renta de No Residentes (Modelo 210 IRNR), IBI y trámites en España y UK."
+            }
+          }
+        ]
+      },
       "department": [
         {
           "@type": "LocalBusiness",
@@ -66,6 +152,10 @@ const schemaData = {
           "description": "Asesoría fiscal, gestión documental e impuestos para no residentes en España desde Reino Unido."
         }
       ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": breadcrumbItems
     },
     {
       "@type": "WebSite",

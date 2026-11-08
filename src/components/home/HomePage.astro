@@ -7,8 +7,8 @@ interface Props { lang?: 'es' | 'en' }
 const { lang = 'es' } = Astro.props;
 const en = lang === 'en';
 const copy = en ? {
-  title: 'Holiday stays & property care in Marbella | Serinamar',
-  description: 'Discover holiday stays in Marbella and a local team to look after your property. Serinamar, in Los Naranjos since 2000.',
+  title: 'Holiday Rentals & Real Estate Marbella | Grupo Serinamar',
+  description: 'Over 25 years in Marbella: holiday rentals via Guesty, real estate sales, home maintenance with Just Banús and non-resident tax advisory with Iberiansun.',
   eyebrow: 'MARBELLA · PUERTO BANÚS · SINCE 2000',
   headline: 'Your place in Marbella.',
   headlineTwo: 'In good hands.',
@@ -24,12 +24,12 @@ const copy = en ? {
   placeCta: 'Discover Los Naranjos', placeImage: 'Covered terrace with outdoor dining area in Los Naranjos', poolAlt: 'Communal pool and gardens in Los Naranjos de Marbella',
   trustEyebrow: 'LOCAL KNOWLEDGE. PERSONAL SERVICE.',trustTitle: 'Here for you, since 2000.',
   trustCopy: 'Our story began in Marbella. Today, we continue to welcome guests and support property owners with the same personal approach.',trustCta: 'Meet the group',
-  brandsEyebrow: 'THE SERINAMAR GROUP',brandsTitle: 'Three specialized divisions. One trusted team.',
+  brandsEyebrow: 'THE SERINAMAR GROUP',brandsTitle: 'Three specialised companies. One single trusted team.',
   brands: [ ['Serinamar','Holiday stays & real estate (integrating Los Naranjos)','serinamar'],['Just Banús','Dedicated home care, maintenance & renovations','just-banus'],['Iberiansun','International & UK owner advisory','iberian-sun'] ],
   contactEyebrow: 'LET’S TALK',contactTitle: 'What brings you to Marbella?',contactCopy: 'Tell us what you need. We will help you take the next step.',contactCta:'Contact our team'
 } : {
-  title: 'Alojamientos y gestión en Marbella | Grupo Serinamar',
-  description: 'Tu estancia y tu propiedad en Marbella, en buenas manos. Alojamientos vacacionales y servicios para propietarios con un equipo local desde 2000.',
+  title: 'Inmobiliaria y Alquiler en Marbella | Grupo Serinamar',
+  description: 'Más de 25 años en Marbella. Alquiler vacacional directo con Guesty, compraventa inmobiliaria, mantenimiento con Just Banús y asesoría fiscal Iberiansun.',
   eyebrow: 'MARBELLA · PUERTO BANÚS · DESDE 2000',
   headline: 'Tu lugar en Marbella.',
   headlineTwo: 'En buenas manos.',
@@ -45,7 +45,7 @@ const copy = en ? {
   placeCta: 'Descubrir Los Naranjos',placeImage:'Terraza cubierta con comedor exterior en Los Naranjos',poolAlt:'Piscina comunitaria y jardines de Los Naranjos de Marbella',
   trustEyebrow: 'CERCANÍA Y EXPERIENCIA LOCAL',trustTitle: 'A tu lado, desde 2000.',
   trustCopy: 'Nuestra historia empezó en Marbella. Hoy seguimos recibiendo a huéspedes y acompañando a propietarios con el mismo trato cercano.',trustCta:'Conocer al grupo',
-  brandsEyebrow: 'CONJUNTO SERINAMAR',brandsTitle: 'Tres divisiones especializadas. Un solo equipo de confianza.',
+  brandsEyebrow: 'CONJUNTO SERINAMAR',brandsTitle: 'Tres empresas complementarias. Un solo equipo de confianza.',
   brands: [ ['Serinamar','Alquiler vacacional (Hospitality) e inmobiliaria (integra Los Naranjos)','serinamar'],['Just Banús','Cuidado integral, mantenimiento, reformas y servicios','just-banus'],['Iberiansun','Asesoría y gestión internacional para no residentes y UK','iberian-sun'] ],
   contactEyebrow:'HABLEMOS',contactTitle:'¿Qué te trae a Marbella?',contactCopy:'Cuéntanos qué necesitas. Te ayudamos a dar el siguiente paso.',contactCta:'Contactar con el equipo'
 };
@@ -70,11 +70,10 @@ const copy = en ? {
       <div class="text-center max-w-4xl mx-auto mb-6">
         <h1 class="animate-hero-title text-center text-3xl sm:text-5xl lg:text-[56px] font-serif font-bold text-white tracking-widest uppercase mb-3 leading-[1.12]">
           {en ? 'ONE SINGLE GROUP' : 'UN SOLO GRUPO'}
+          <span class="block animate-hero-subtitle text-center text-lg sm:text-2xl lg:text-[28px] font-serif font-medium text-[#C5A880] tracking-wide mt-3 mb-5 leading-snug normal-case">
+            {en ? 'Holiday Rentals, Property Sales & Home Care in Marbella' : 'Alquiler Vacacional, Venta de Propiedades y Gestión en Marbella'}
+          </span>
         </h1>
-
-        <p class="animate-hero-subtitle text-center text-lg sm:text-2xl lg:text-[28px] font-serif font-medium text-[#C5A880] tracking-wide mb-5 leading-snug">
-          {en ? 'Every need for your property in Marbella' : 'Todas las necesidades de su propiedad en Marbella'}
-        </p>
 
         <p class="animate-hero-copy text-sm sm:text-base md:text-[17px] text-[#EAE3D9] font-light leading-relaxed max-w-3xl mx-auto mb-6 text-center">
           {en ? (
