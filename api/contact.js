@@ -16,9 +16,9 @@ export default async function handler(req, res) {
     return res.status(400).json({ success: false, message: 'Faltan campos obligatorios' });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
+  const apiKey = process.env.RESEND_API_KEY || process.env.resend_ap1_key || process.env.resend_api_key;
   if (!apiKey) {
-    console.error('RESEND_API_KEY no está configurada en las variables de entorno de Vercel');
+    console.error('RESEND_API_KEY o resend_ap1_key no está configurada en las variables de entorno de Vercel');
     return res.status(500).json({ success: false, message: 'Error de configuración del servidor' });
   }
 
@@ -194,3 +194,4 @@ export default async function handler(req, res) {
     return res.status(500).json({ success: false, message: 'Error de conexión con el servicio de correo' });
   }
 }
+
