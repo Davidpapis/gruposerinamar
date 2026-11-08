@@ -45,7 +45,7 @@ const isCurrent = (path: string) => Astro.url.pathname.replace(/\/$/, '') === pa
         </div>
       </div>
       <a href={en ? '/en/faq/' : '/faq/'} aria-current={isCurrent(en ? '/en/faq/' : '/faq/') ? 'page' : undefined}>{labels.faq}</a>
-      <a href="/contacto/" aria-current={isCurrent('/contacto/') ? 'page' : undefined}>{labels.contact}</a>
+      <a href={en ? '/en/contacto/' : '/contacto/'} aria-current={isCurrent(en ? '/en/contacto/' : '/contacto/') ? 'page' : undefined}>{labels.contact}</a>
     </nav>
     <div class="header-actions">
       <div class="languages" role="group" aria-label={labels.language}>

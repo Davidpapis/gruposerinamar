@@ -141,32 +141,58 @@ const services = [
       statusMsg.style.display = 'none';
 
       try {
-        const response = await fetch('https://formsubmit.co/ajax/info@serinamar.com', {
+        const response = await fetch('/api/contact', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
           },
           body: JSON.stringify({
-            'Name': values.get('nombre'),
-            'Email': values.get('email'),
-            'Phone': values.get('telefono') || 'Not provided',
-            'Service': values.get('servicio'),
-            'Enquiry': values.get('mensaje'),
-            '_subject': `New Iberiansun Enquiry: ${values.get('servicio')} - ${values.get('nombre')}`,
-            '_template': 'table'
+            nombre: values.get('nombre'),
+            email: values.get('email'),
+            telefono: values.get('telefono') || 'Not provided',
+            departamento: 'Iberiansun: ' + values.get('servicio'),
+            mensaje: values.get('mensaje'),
+            lang: 'en'
           })
         });
 
         if (response.ok) {
           statusMsg.style.display = 'block';
           statusMsg.className = 'mt-3 p-3 bg-[#f0f9f1] border border-[#bbf7d0] text-[#166534] rounded-lg text-sm';
-          statusMsg.innerHTML = '✓ <strong>Enquiry sent successfully!</strong> The Iberiansun team will review your message and get back to you shortly.';
+          statusMsg.innerHTML = '✓ <strong>Enquiry sent successfully!</strong> We have safely received your request and sent a confirmation receipt to your email.';
           internationalForm.reset();
-        } else {
-          throw new Error('Send error');
+          return;
         }
+        throw new Error('Fallback to backup');
       } catch (err) {
+        try {
+          const fallback = await fetch('https://formsubmit.co/ajax/info@serinamar.com', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+              'Name': values.get('nombre'),
+              'Email': values.get('email'),
+              'Phone': values.get('telefono') || 'Not provided',
+              'Service': values.get('servicio'),
+              'Enquiry': values.get('mensaje'),
+              '_subject': `New Iberiansun Enquiry: ${values.get('servicio')} - ${values.get('nombre')}`,
+              '_template': 'table'
+            })
+          });
+
+          if (fallback.ok) {
+            statusMsg.style.display = 'block';
+            statusMsg.className = 'mt-3 p-3 bg-[#f0f9f1] border border-[#bbf7d0] text-[#166534] rounded-lg text-sm';
+            statusMsg.innerHTML = '✓ <strong>Enquiry sent successfully!</strong> The Iberiansun team will review your message and get back to you shortly.';
+            internationalForm.reset();
+            return;
+          }
+        } catch(e) {}
+
         statusMsg.style.display = 'block';
         statusMsg.className = 'mt-3 p-3 bg-[#fef2f2] border border-[#fecaca] text-[#991b1b] rounded-lg text-sm';
         statusMsg.innerHTML = 'Could not send at this moment. You can email us directly at <a href="mailto:info@serinamar.com" class="underline font-semibold">info@serinamar.com</a> or contact us via WhatsApp.';
