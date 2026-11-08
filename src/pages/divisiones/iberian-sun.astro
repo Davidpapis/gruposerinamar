@@ -62,7 +62,7 @@ const services = [
       statusMsg.style.display = 'none';
 
       try {
-        const response = await fetch('https://formsubmit.co/ajax/sara@iberiansun.co.uk', {
+        const response = await fetch('https://formsubmit.co/ajax/info@serinamar.com', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ const services = [
       } catch (err) {
         statusMsg.style.display = 'block';
         statusMsg.className = 'mt-3 p-3 bg-[#fef2f2] border border-[#fecaca] text-[#991b1b] rounded-lg text-sm';
-        statusMsg.innerHTML = 'No se pudo enviar en este momento. Puedes escribirnos directamente a <a href="mailto:sara@iberiansun.co.uk" class="underline font-semibold">sara@iberiansun.co.uk</a> o por WhatsApp.';
+        statusMsg.innerHTML = 'No se pudo enviar en este momento. Puedes escribirnos directamente a <a href="mailto:info@serinamar.com" class="underline font-semibold">info@serinamar.com</a> o por WhatsApp.';
       } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = originalText;

@@ -63,7 +63,7 @@ const departments = [
       statusMsg.style.display = 'none';
 
       try {
-        const response = await fetch(`https://formsubmit.co/ajax/${departmentEmail}`, {
+        const response = await fetch('https://formsubmit.co/ajax/info@serinamar.com', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ const departments = [
             'Nombre': values.get('nombre'),
             'Correo': values.get('email'),
             'Teléfono': values.get('telefono') || 'No indicado',
-            'Departamento': departmentName,
+            'Departamento de interés': departmentName,
             'Mensaje': values.get('mensaje'),
             '_subject': `Nueva consulta web: ${departmentName} - ${values.get('nombre')}`,
             '_template': 'table'
@@ -91,7 +91,7 @@ const departments = [
       } catch (err) {
         statusMsg.style.display = 'block';
         statusMsg.className = 'mt-3 p-3 bg-[#fef2f2] border border-[#fecaca] text-[#991b1b] rounded-lg text-sm';
-        statusMsg.innerHTML = `No se pudo enviar en este momento. Puedes escribirnos a <a href="mailto:${departmentEmail}" class="underline font-semibold">${departmentEmail}</a> o contactarnos por WhatsApp.`;
+        statusMsg.innerHTML = 'No se pudo enviar en este momento. Puedes escribirnos directamente a <a href="mailto:info@serinamar.com" class="underline font-semibold">info@serinamar.com</a> o contactarnos por WhatsApp.';
       } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = originalText;
