@@ -14,7 +14,7 @@ const copy = en ? {
   headlineTwo: 'In good hands.',
   intro: 'A holiday to look forward to. A home to feel good about. Discover our stays and local property services.',
   primary: 'Find a holiday stay', secondary: 'I own a property', photo: 'Puerto Banús marina at sunset',
-  quick: [ ['01','Stay in Marbella','Find your next holiday home','/alojamientos/'],['02','Care for your property','A local team, all year round','/propietarios/'],['03','Buy or sell','Take the next step with us','/divisiones/serinamar/'] ],
+  quick: [ ['01','Stay in Marbella','Find your next holiday home','/en/alojamientos/'],['02','Care for your property','A local team, all year round','/propietarios/'],['03','Buy or sell','Take the next step with us','/en/divisiones/serinamar/'] ],
   ownerEyebrow: 'FOR PROPERTY OWNERS', ownerTitle: 'Your home, cared for. Wherever you are.',
   ownerCopy: 'From holiday rentals to day-to-day maintenance, we bring together the people and services your property needs.',
   services: [ ['Holiday rental management','From preparing your home to welcoming your guests.'],['Maintenance & renovations','Inspections, repairs and thoughtful improvements.'],['Support for non-residents','Help with paperwork and tax administration, in your language.'] ],
@@ -116,7 +116,7 @@ const copy = en ? {
             <span>{en ? 'Property Sales' : 'Venta de Propiedades'}</span>
             <span class="text-[#C5A880]">↗</span>
           </a>
-          <a href="/alojamientos/" class="btn-shine inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#1B2F4C] text-white font-medium text-sm hover:bg-[#203654] transition-all border border-[#C5A880]/40">
+          <a href={en ? "/en/alojamientos/" : "/alojamientos/"} class="btn-shine inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#1B2F4C] text-white font-medium text-sm hover:bg-[#203654] transition-all border border-[#C5A880]/40">
             <span>{en ? 'Holiday Stays (Guesty)' : 'Alojamientos Vacacionales'}</span>
             <span class="text-[#C5A880]">↗</span>
           </a>
@@ -172,7 +172,7 @@ const copy = en ? {
             </a>
             <div class="flex items-center justify-between px-1 text-[11px]">
               <span class="text-[#8A94A0]">{en ? 'Direct access:' : 'Acceso directo:'}</span>
-              <a href="/alojamientos/" class="text-[#806847] hover:text-[#132238] hover:underline font-semibold flex items-center gap-1">
+              <a href={en ? "/en/alojamientos/" : "/alojamientos/"} class="text-[#806847] hover:text-[#132238] hover:underline font-semibold flex items-center gap-1">
                 <span>{en ? 'View Stays' : 'Ver Alojamientos'}</span>
                 <span class="text-[10px]">↗</span>
               </a>

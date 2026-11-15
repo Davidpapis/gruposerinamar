@@ -11,6 +11,38 @@ const brands = [
   { name: 'Iberiansun', href: en ? '/en/divisiones/iberian-sun/' : '/divisiones/iberian-sun/', detail: en ? 'UK & non-resident services' : 'Servicios para no residentes y UK' },
 ];
 const isCurrent = (path: string) => Astro.url.pathname.replace(/\/$/, '') === path.replace(/\/$/, '');
+
+const rawPathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+const bilingualRoutes = [
+  '',
+  '/alojamientos',
+  '/contacto',
+  '/faq',
+  '/divisiones/serinamar',
+  '/divisiones/iberian-sun',
+  '/divisiones/just-banus'
+];
+
+let targetEs = '/';
+let targetEn = '/en/';
+
+if (en) {
+  const baseRoute = rawPathname.replace(/^\/en/, '');
+  if (bilingualRoutes.includes(baseRoute)) {
+    targetEs = baseRoute === '' ? '/' : `${baseRoute}/`;
+  } else {
+    targetEs = '/';
+  }
+  targetEn = rawPathname === '/en' ? '/en/' : `${rawPathname}/`;
+} else {
+  const routeCheck = rawPathname === '/' ? '' : rawPathname;
+  if (bilingualRoutes.includes(routeCheck)) {
+    targetEn = rawPathname === '/' ? '/en/' : `/en${rawPathname}/`;
+  } else {
+    targetEn = '/en/';
+  }
+  targetEs = rawPathname === '/' ? '/' : `${rawPathname}/`;
+}
 ---
 <header class="site-header" data-site-header>
   <div class="header-top">
@@ -32,9 +64,9 @@ const isCurrent = (path: string) => Astro.url.pathname.replace(/\/$/, '') === pa
     </a>
     <nav class="main-navigation" id="primary-navigation" aria-label={labels.navigation}>
       <a href={en ? '/en/' : '/'} aria-current={isCurrent(en ? '/en/' : '/') ? 'page' : undefined}>{labels.home}</a>
-      <a href="/alojamientos/" aria-current={isCurrent('/alojamientos/') ? 'page' : undefined}>{labels.stays}</a>
+      <a href={en ? '/en/alojamientos/' : '/alojamientos/'} aria-current={isCurrent(en ? '/en/alojamientos/' : '/alojamientos/') ? 'page' : undefined}>{labels.stays}</a>
       <a href="/propietarios/" aria-current={isCurrent('/propietarios/') ? 'page' : undefined}>{labels.owners}</a>
-      <a href="/divisiones/serinamar/" aria-current={isCurrent('/divisiones/serinamar/') ? 'page' : undefined}>{labels.property}</a>
+      <a href={en ? '/en/divisiones/serinamar/' : '/divisiones/serinamar/'} aria-current={isCurrent(en ? '/en/divisiones/serinamar/' : '/divisiones/serinamar/') ? 'page' : undefined}>{labels.property}</a>
       <div class="group-navigation" data-group-navigation>
         <button class="group-toggle" type="button" aria-expanded="false" aria-controls="group-navigation-panel" data-group-toggle>
           {labels.group}<svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5" /></svg>
@@ -49,10 +81,10 @@ const isCurrent = (path: string) => Astro.url.pathname.replace(/\/$/, '') === pa
     </nav>
     <div class="header-actions">
       <div class="languages" role="group" aria-label={labels.language}>
-        <a href="/" lang="es" aria-label="Español" aria-current={!en ? 'true' : undefined} onclick="try{localStorage.setItem('gruposerinamar_lang','es')}catch(e){}">ES</a><span aria-hidden="true">/</span>
-        <a href="/en/" lang="en" aria-label="English" aria-current={en ? 'true' : undefined} onclick="try{localStorage.setItem('gruposerinamar_lang','en')}catch(e){}">EN</a>
+        <a href={targetEs} lang="es" aria-label="Español" aria-current={!en ? 'true' : undefined} onclick="try{localStorage.setItem('gruposerinamar_lang','es')}catch(e){}">ES</a><span aria-hidden="true">/</span>
+        <a href={targetEn} lang="en" aria-label="English" aria-current={en ? 'true' : undefined} onclick="try{localStorage.setItem('gruposerinamar_lang','en')}catch(e){}">EN</a>
       </div>
-      <a class="book-link" href="/alojamientos/">{labels.book}<span aria-hidden="true">↗</span></a>
+      <a class="book-link" href={en ? '/en/alojamientos/' : '/alojamientos/'}>{labels.book}<span aria-hidden="true">↗</span></a>
       <button class="mobile-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label={labels.menu} data-nav-toggle data-open-label={labels.menu} data-close-label={labels.close}><span></span><span></span></button>
     </div>
   </div>
