@@ -18,8 +18,7 @@ export default async function handler(req, res) {
 
   const apiKey = process.env.RESEND_API_KEY || process.env.resend_ap1_key || process.env.resend_api_key;
   if (!apiKey) {
-    console.error('RESEND_API_KEY o resend_ap1_key no está configurada en las variables de entorno de Vercel');
-    return res.status(500).json({ success: false, message: 'Error de configuración del servidor' });
+    console.warn('RESEND_API_KEY no configurada. Se utilizará el canal de respaldo del servidor.');
   }
 
   // Detección de idioma (por parámetro explícito 'lang' o por encabezado 'referer')
@@ -271,48 +270,125 @@ export default async function handler(req, res) {
     ? `Nueva consulta [EN]: ${deptLabel} - ${nombre}`
     : `Nueva consulta: ${deptLabel} - ${nombre}`;
 
-  try {
-    // A) Enviar notificación a la empresa (info@serinamar.com)
-    const staffRes = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        from: 'Grupo Serinamar Web <onboarding@resend.dev>',
-        to: ['info@serinamar.com'],
-        reply_to: email,
-        subject: staffSubject,
-        html: staffHtml
-      })
-    });
+  const resendFrom = process.env.RESEND_FROM_EMAIL || 'Grupo Serinamar Web <onboarding@resend.dev>';
+  const resendClientFrom = process.env.RESEND_FROM_EMAIL || 'Grupo Serinamar <onboarding@resend.dev>';
+  const primaryAdmin = process.env.CONTACT_ADMIN_EMAIL || 'info@serinamar.com';
+  const backupAdmin = process.env.BACKUP_ADMIN_EMAIL || 'dyminfo@gmail.com';
 
-    // B) Enviar confirmación de alta gama al cliente en su idioma
-    const clientRes = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${apiKey}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        from: 'Grupo Serinamar <onboarding@resend.dev>',
-        to: [email],
-        reply_to: 'info@serinamar.com',
-        subject: clientSubject,
-        html: isEn ? clientHtmlEn : clientHtmlEs
-      })
-    });
+  let sentSuccessfully = false;
 
-    if (!staffRes.ok && !clientRes.ok) {
-      const errData = await staffRes.json().catch(() => ({}));
-      console.error('Error en API Resend:', errData);
-      return res.status(500).json({ success: false, message: 'No se pudo enviar mediante Resend' });
+  // 1. INTENTO CON RESEND (SI HAY API KEY CONFIGURADA)
+  if (apiKey) {
+    try {
+      // A) Enviar notificación a la empresa (info@serinamar.com)
+      const staffRes = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          from: resendFrom,
+          to: [primaryAdmin],
+          reply_to: email,
+          subject: staffSubject,
+          html: staffHtml
+        })
+      });
+
+      // B) Enviar confirmación de alta gama al cliente en su idioma
+      const clientRes = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          from: resendClientFrom,
+          to: [email],
+          reply_to: primaryAdmin,
+          subject: clientSubject,
+          html: isEn ? clientHtmlEn : clientHtmlEs
+        })
+      });
+
+      if (staffRes.ok || clientRes.ok) {
+        sentSuccessfully = true;
+      } else {
+        const errData = await staffRes.json().catch(() => ({}));
+        console.warn('Resend no pudo entregar a destinatarios principales:', errData);
+
+        // Si Resend está en modo prueba/sandbox (onboarding@resend.dev solo permite enviar a la cuenta registrada):
+        // Enviar copia inmediata al email del administrador registrado (David) para no perder ningún lead jamás.
+        try {
+          const sandboxRes = await fetch('https://api.resend.com/emails', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${apiKey}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              from: 'Grupo Serinamar Web <onboarding@resend.dev>',
+              to: [backupAdmin],
+              reply_to: email,
+              subject: `[LEAD WEB SERINAMAR] ${staffSubject}`,
+              html: `<div style="background:#fff3cd;padding:14px;border:1px solid #ffeeba;margin-bottom:16px;font-family:sans-serif;font-size:13px;color:#856404;border-radius:6px;line-height:1.5;">
+                <strong>Aviso de Entrega:</strong> Este lead se ha entregado a ${backupAdmin} porque el dominio en Resend aún requiere verificación DNS para enviar libremente a ${primaryAdmin} o clientes externos. Configura el dominio en <a href="https://resend.com/domains" target="_blank">resend.com/domains</a> para habilitar envíos a cualquier buzón.
+              </div>` + staffHtml
+            })
+          });
+          if (sandboxRes.ok) {
+            sentSuccessfully = true;
+          }
+        } catch (e) {
+          console.error('Error enviando a backupAdmin vía Resend:', e);
+        }
+      }
+    } catch (error) {
+      console.error('Excepción al conectar con Resend:', error);
     }
-
-    return res.status(200).json({ success: true, message: 'Mensajes enviados con éxito', lang: isEn ? 'en' : 'es' });
-  } catch (error) {
-    console.error('Excepción al conectar con Resend:', error);
-    return res.status(500).json({ success: false, message: 'Error de conexión con el servicio de correo' });
   }
+
+  // 2. RESPALDO AUTOMÁTICO VÍA SERVIDOR A FORMSUBMIT
+  // Siempre enviamos respaldo hacia FormSubmit para asegurar que info@serinamar.com reciba los datos directamente
+  try {
+    const fsRes = await fetch('https://formsubmit.co/ajax/' + primaryAdmin, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Origin': siteUrl,
+        'Referer': siteUrl + '/'
+      },
+      body: JSON.stringify({
+        'Nombre': nombre,
+        'Email': email,
+        'Teléfono': userPhone,
+        'Departamento': deptLabel,
+        'Mensaje': mensaje,
+        '_subject': staffSubject,
+        '_template': 'table'
+      })
+    });
+    if (fsRes.ok) {
+      sentSuccessfully = true;
+    }
+  } catch (fsErr) {
+    console.error('Error al enviar respaldo FormSubmit:', fsErr);
+  }
+
+  if (sentSuccessfully) {
+    return res.status(200).json({
+      success: true,
+      message: isEn ? 'Enquiry submitted successfully' : 'Consulta enviada con éxito',
+      lang: isEn ? 'en' : 'es'
+    });
+  }
+
+  return res.status(500).json({
+    success: false,
+    message: isEn
+      ? 'Could not send message. Please contact us directly at info@serinamar.com'
+      : 'No se pudo enviar el mensaje. Por favor contáctenos directamente en info@serinamar.com'
+  });
 }
