@@ -4,16 +4,47 @@ export default async function handler(req, res) {
     return res.status(405).json({ success: false, message: 'Method Not Allowed' });
   }
 
-  const { nombre, email, telefono, departamento, mensaje, lang, _honey } = req.body || {};
+  const { nombre, email, telefono, departamento, mensaje, lang, _honey, website_url, company_fax, b_name } = req.body || {};
 
-  // Filtro anti-spam Honeypot
-  if (_honey) {
+  // 1. Filtro anti-spam Honeypot (trampa para bots)
+  if (_honey || website_url || company_fax || b_name) {
     return res.status(200).json({ success: true, message: 'OK' });
   }
 
-  // Validación básica
+  // 2. Validación básica de campos obligatorios
   if (!nombre || !email || !mensaje) {
     return res.status(400).json({ success: false, message: 'Faltan campos obligatorios' });
+  }
+
+  // 3. Filtro inteligente de Spam y Bots comerciales (prospección SEO, venta de dominios, estafas)
+  const textToCheck = `${nombre} ${email} ${departamento || ''} ${mensaje}`.toLowerCase();
+  const spamPatterns = [
+    /selling the digital asset/i,
+    /digital asset sale/i,
+    /acquire this asset/i,
+    /candidate for the domain/i,
+    /domain.*for sale/i,
+    /buy this domain/i,
+    /rank on page 1/i,
+    /rank for .* on google/i,
+    /first suggestion on google/i,
+    /guest post/i,
+    /backlinks/i,
+    /seo (services|audit|ranking|proposal)/i,
+    /crypto|bitcoin|usdt|forex trading/i,
+    /telegram\s*[:@]|t\.me\//i,
+    /whatsapp\s*[:@\+]\s*\d{10,}/i,
+    /spainadviser\.com/i,
+    /\b(viagra|cialis|casino|poker|betting)\b/i
+  ];
+
+  const hasSpamPattern = spamPatterns.some(pattern => pattern.test(textToCheck));
+  const urlCount = (mensaje.match(/https?:\/\/|www\./gi) || []).length;
+
+  if (hasSpamPattern || urlCount > 2) {
+    console.warn(`[Anti-Spam] Mensaje bloqueado silenciosamente de: ${email} (${nombre})`);
+    // Retornamos 200 OK para que el bot crea que se envió y no reintente con otros patrones
+    return res.status(200).json({ success: true, message: 'OK' });
   }
 
   const apiKey = process.env.RESEND_API_KEY || process.env.resend_ap1_key || process.env.resend_api_key;
@@ -270,8 +301,8 @@ export default async function handler(req, res) {
     ? `Nueva consulta [EN]: ${deptLabel} - ${nombre}`
     : `Nueva consulta: ${deptLabel} - ${nombre}`;
 
-  const resendFrom = process.env.RESEND_FROM_EMAIL || 'Grupo Serinamar Web <onboarding@resend.dev>';
-  const resendClientFrom = process.env.RESEND_FROM_EMAIL || 'Grupo Serinamar <onboarding@resend.dev>';
+  const resendFrom = process.env.RESEND_FROM_EMAIL || 'Grupo Serinamar <info@serinamar.com>';
+  const resendClientFrom = process.env.RESEND_FROM_EMAIL || 'Grupo Serinamar <info@serinamar.com>';
   const primaryAdmin = process.env.CONTACT_ADMIN_EMAIL || 'info@serinamar.com';
   const backupAdmin = process.env.BACKUP_ADMIN_EMAIL || 'dyminfo@gmail.com';
 

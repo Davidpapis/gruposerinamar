@@ -67,7 +67,10 @@ import Hero from '../../../components/ui/Hero.astro';
         </div>
       </div>
       <form id="valuation-form" class="contact-form card">
-        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+        <div style="position:absolute;left:-9999px;opacity:0;pointer-events:none;width:1px;height:1px;" aria-hidden="true">
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" />
+          <input type="text" name="website_url" tabindex="-1" autocomplete="off" />
+        </div>
         <div><label for="valuation-name">Full Name</label><input id="valuation-name" name="nombre" autocomplete="name" required /></div>
         <div><label for="valuation-email">Email Address</label><input id="valuation-email" name="email" type="email" autocomplete="email" required /></div>
         <div><label for="valuation-phone">Phone Number</label><input id="valuation-phone" name="telefono" type="tel" autocomplete="tel" /></div>
@@ -123,6 +126,8 @@ import Hero from '../../../components/ui/Hero.astro';
             telefono: values.get('telefono') || 'Not provided',
             departamento: 'Serinamar Real Estate: ' + values.get('objetivo'),
             mensaje: values.get('propiedad'),
+            _honey: values.get('_honey') || '',
+            website_url: values.get('website_url') || '',
             lang: 'en'
           })
         });

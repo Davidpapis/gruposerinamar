@@ -24,7 +24,10 @@ const departments = [
   <section class="section-tint"><div class="page-section contact-grid">
     <div id="consulta"><p class="eyebrow">Cuéntanos qué necesitas</p><h2>Prepara tu consulta.</h2>
       <form id="contact-form" class="contact-form">
-        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+        <div style="position:absolute;left:-9999px;opacity:0;pointer-events:none;width:1px;height:1px;" aria-hidden="true">
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" />
+          <input type="text" name="website_url" tabindex="-1" autocomplete="off" />
+        </div>
         <div><label for="contact-name">Nombre y apellidos</label><input id="contact-name" name="nombre" autocomplete="name" required /></div>
         <div><label for="contact-email">Correo electrónico</label><input id="contact-email" name="email" type="email" autocomplete="email" required /></div>
         <div><label for="contact-phone">Teléfono</label><input id="contact-phone" name="telefono" type="tel" autocomplete="tel" /></div>
@@ -76,6 +79,8 @@ const departments = [
             telefono: values.get('telefono') || 'No indicado',
             departamento: departmentName,
             mensaje: values.get('mensaje'),
+            _honey: values.get('_honey') || '',
+            website_url: values.get('website_url') || '',
             lang: 'es'
           })
         });
