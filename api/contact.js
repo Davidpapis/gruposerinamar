@@ -79,11 +79,11 @@ export default async function handler(req, res) {
         <!-- Contenedor Principal -->
         <table width="600" border="0" cellspacing="0" cellpadding="0" style="max-width:600px; width:100%; background-color:#ffffff; border:1px solid #EAE3D9; border-radius:12px; overflow:hidden; box-shadow:0 8px 30px rgba(19,34,56,0.05);">
           
-          <!-- Cabecera Corporativa Azul Marino -->
+          <!-- Cabecera Corporativa Luminosa y Limpia -->
           <tr>
-            <td align="center" style="background-color:#132238; padding: 36px 30px 28px 30px; border-bottom: 3px solid #C5A880;">
-              <img src="${siteUrl}/images/logos/serinamar-logo.png" alt="Grupo Serinamar" style="max-height: 52px; width: auto; display: block; filter: brightness(0) invert(1);" />
-              <p style="margin: 12px 0 0 0; color: #C5A880; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;">
+            <td align="center" style="background-color:#FAF8F5; padding: 36px 30px 24px 30px; border-bottom: 2px solid #C5A880;">
+              <img src="${siteUrl}/images/logos/serinamar-logo.png" alt="Grupo Serinamar" width="180" style="max-height: 56px; width: auto; display: block; margin: 0 auto; border: 0;" />
+              <p style="margin: 14px 0 0 0; color: #8A704C; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;">
                 Marbella · Puerto Banús · Desde 2000
               </p>
             </td>
@@ -184,11 +184,11 @@ export default async function handler(req, res) {
         <!-- Contenedor Principal -->
         <table width="600" border="0" cellspacing="0" cellpadding="0" style="max-width:600px; width:100%; background-color:#ffffff; border:1px solid #EAE3D9; border-radius:12px; overflow:hidden; box-shadow:0 8px 30px rgba(19,34,56,0.05);">
           
-          <!-- Cabecera Corporativa Azul Marino -->
+          <!-- Cabecera Corporativa Luminosa y Limpia -->
           <tr>
-            <td align="center" style="background-color:#132238; padding: 36px 30px 28px 30px; border-bottom: 3px solid #C5A880;">
-              <img src="${siteUrl}/images/logos/serinamar-logo.png" alt="Grupo Serinamar" style="max-height: 52px; width: auto; display: block; filter: brightness(0) invert(1);" />
-              <p style="margin: 12px 0 0 0; color: #C5A880; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;">
+            <td align="center" style="background-color:#FAF8F5; padding: 36px 30px 24px 30px; border-bottom: 2px solid #C5A880;">
+              <img src="${siteUrl}/images/logos/serinamar-logo.png" alt="Grupo Serinamar" width="180" style="max-height: 56px; width: auto; display: block; margin: 0 auto; border: 0;" />
+              <p style="margin: 14px 0 0 0; color: #8A704C; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;">
                 Marbella · Puerto Banús · Since 2000
               </p>
             </td>
@@ -278,17 +278,31 @@ export default async function handler(req, res) {
   const staffHtml = `
 <!DOCTYPE html>
 <html>
-<body style="font-family:sans-serif; color:#132238; padding:20px;">
-  <h2 style="color:#132238; border-bottom:2px solid #C5A880; padding-bottom:8px;">Nueva consulta recibida desde la web (${isEn ? 'Página en INGLÉS' : 'Página en ESPAÑOL'})</h2>
-  <table style="width:100%; max-width:600px; border-collapse:collapse; margin-top:16px;">
-    <tr><td style="padding:8px; border-bottom:1px solid #ddd; font-weight:bold; width:180px;">Idioma de origen:</td><td style="padding:8px; border-bottom:1px solid #ddd; color:#8A704C; font-weight:bold;">${isEn ? 'Inglés (English)' : 'Español'}</td></tr>
-    <tr><td style="padding:8px; border-bottom:1px solid #ddd; font-weight:bold;">Nombre:</td><td style="padding:8px; border-bottom:1px solid #ddd;">${nombre}</td></tr>
-    <tr><td style="padding:8px; border-bottom:1px solid #ddd; font-weight:bold;">Email del cliente:</td><td style="padding:8px; border-bottom:1px solid #ddd;"><a href="mailto:${email}">${email}</a></td></tr>
-    <tr><td style="padding:8px; border-bottom:1px solid #ddd; font-weight:bold;">Teléfono:</td><td style="padding:8px; border-bottom:1px solid #ddd;">${userPhone}</td></tr>
-    <tr><td style="padding:8px; border-bottom:1px solid #ddd; font-weight:bold;">Departamento / Asunto:</td><td style="padding:8px; border-bottom:1px solid #ddd;">${deptLabel}</td></tr>
-    <tr><td style="padding:8px; border-bottom:1px solid #ddd; font-weight:bold;">Mensaje:</td><td style="padding:8px; border-bottom:1px solid #ddd; white-space:pre-wrap;">${mensaje}</td></tr>
-  </table>
-  <p style="margin-top:20px; font-size:12px; color:#666;">Puedes responder directamente a este correo para escribir al cliente.</p>
+<body style="font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color:#FAF8F5; color:#132238; padding:30px 15px; margin:0;">
+  <div style="max-width:600px; margin:0 auto; background:#ffffff; border:1px solid #EAE3D9; border-radius:12px; overflow:hidden; box-shadow:0 4px 20px rgba(19,34,56,0.05);">
+    <div style="background-color:#FAF8F5; padding:28px 24px 20px; text-align:center; border-bottom:2px solid #C5A880;">
+      <img src="${siteUrl}/images/logos/serinamar-logo.png" alt="Grupo Serinamar" width="160" style="max-height:50px; width:auto; display:block; margin:0 auto; border:0;" />
+      <p style="margin:10px 0 0 0; color:#8A704C; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; font-weight:600;">
+        Marbella · Puerto Banús · Lead Web
+      </p>
+    </div>
+    <div style="padding:28px 32px;">
+      <h2 style="color:#132238; margin:0 0 16px 0; font-size:18px; border-bottom:1px solid #EAE3D9; padding-bottom:10px;">
+        Nueva consulta recibida (${isEn ? 'Página en INGLÉS' : 'Página en ESPAÑOL'})
+      </h2>
+      <table style="width:100%; border-collapse:collapse; margin-top:8px;">
+        <tr><td style="padding:10px 6px; border-bottom:1px solid #eee; font-weight:bold; width:160px; color:#555; font-size:13px;">Idioma:</td><td style="padding:10px 6px; border-bottom:1px solid #eee; color:#8A704C; font-weight:bold; font-size:13px;">${isEn ? 'Inglés (English)' : 'Español'}</td></tr>
+        <tr><td style="padding:10px 6px; border-bottom:1px solid #eee; font-weight:bold; color:#555; font-size:13px;">Nombre:</td><td style="padding:10px 6px; border-bottom:1px solid #eee; font-size:13px; font-weight:600; color:#132238;">${nombre}</td></tr>
+        <tr><td style="padding:10px 6px; border-bottom:1px solid #eee; font-weight:bold; color:#555; font-size:13px;">Email cliente:</td><td style="padding:10px 6px; border-bottom:1px solid #eee; font-size:13px;"><a href="mailto:${email}" style="color:#132238; font-weight:600;">${email}</a></td></tr>
+        <tr><td style="padding:10px 6px; border-bottom:1px solid #eee; font-weight:bold; color:#555; font-size:13px;">Teléfono:</td><td style="padding:10px 6px; border-bottom:1px solid #eee; font-size:13px; color:#132238;">${userPhone}</td></tr>
+        <tr><td style="padding:10px 6px; border-bottom:1px solid #eee; font-weight:bold; color:#555; font-size:13px;">Departamento:</td><td style="padding:10px 6px; border-bottom:1px solid #eee; font-size:13px; color:#8A704C; font-weight:600;">${deptLabel}</td></tr>
+        <tr><td style="padding:10px 6px; border-bottom:1px solid #eee; font-weight:bold; color:#555; font-size:13px; vertical-align:top;">Mensaje:</td><td style="padding:10px 6px; border-bottom:1px solid #eee; font-size:13px; white-space:pre-wrap; line-height:1.6; color:#132238;">${mensaje}</td></tr>
+      </table>
+      <div style="margin-top:24px; padding:12px 16px; background:#FAF8F5; border-radius:6px; font-size:12px; color:#6B7280; text-align:center;">
+        Puedes responder directamente a este correo para escribir a <strong>${nombre}</strong> (<a href="mailto:${email}" style="color:#8A704C;">${email}</a>).
+      </div>
+    </div>
+  </div>
 </body>
 </html>
 `;
