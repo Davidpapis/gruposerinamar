@@ -131,7 +131,7 @@ export default async function handler(req, res) {
                 </tr>
                 <tr>
                   <td style="font-size: 13px; color: #132238; padding: 3px 0;">
-                    · Atención multilingüe y WhatsApp: <strong>+34 951 79 49 31</strong>
+                    · Atención y WhatsApp: <strong>+34 617 225 589</strong>
                   </td>
                 </tr>
                 <tr>
@@ -236,7 +236,7 @@ export default async function handler(req, res) {
                 </tr>
                 <tr>
                   <td style="font-size: 13px; color: #132238; padding: 3px 0;">
-                    · Multilingual Support & WhatsApp: <strong>+34 951 79 49 31</strong>
+                    · WhatsApp & Direct Support: <strong>+34 617 225 589</strong>
                   </td>
                 </tr>
                 <tr>
